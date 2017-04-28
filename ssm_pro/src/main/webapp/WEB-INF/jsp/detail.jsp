@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-${book.bookId}<br>  
- ${book.name}<br>  
- ${book.number}<br>   
+${user.userIdenf}<br>  
+ ${user.userName}<br>  
+ ${user.userEmail}<br>   
 </body>
 </html>

@@ -24,19 +24,19 @@ body {
 					<h1 class="text-center text-primary">用户登录</h1>
 				</div>
 				<div class="modal-body">
-					<form action="" class="form col-md-12 center-block">
+					<form action="login" class="form col-md-12 center-block" method="post">
 						<div class="form-group">
-							<input type="text" class="form-control input-lg"
+							<input type="text" class="form-control input-lg" name="userIdenf"
 								placeholder="身份证号">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control input-lg"
+							<input type="password" class="form-control input-lg" name="userPassword"
 								placeholder="登录密码">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-primary btn-lg btn-block">立刻登录</button>
 							<span><a href="#">找回密码</a></span> <span><a href="#"
-								class="pull-right">注册</a></span>
+								class="pull-right">用户注册</a></span>
 						</div>
 					</form>
 				</div>
