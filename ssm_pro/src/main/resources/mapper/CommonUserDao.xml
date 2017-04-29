@@ -3,7 +3,73 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sfturing.dao.CommonUserDao">
-	<select id="findCommonUserByUserIdenf" resultType="CommonUser" parameterType="java.lang.String">
+	<!-- 查找用户，通过id、email、userName、phone -->
+	<select id="findCommonUserByUserId" resultType="CommonUser"
+		parameterType="int">
+		SELECT * FROM USER WHERE user_id = #{userId}
+	</select>
+	<select id="findCommonUserByUserIdenf" resultType="CommonUser"
+		parameterType="java.lang.String">
 		SELECT * FROM commonuser WHERE user_idenf = #{userIdenf}
 	</select>
+	<select id="findCommonUserByUserName" resultType="CommonUser"
+		parameterType="java.lang.String">
+		SELECT * FROM USER WHERE user_name = #{userName}
+	</select>
+	<select id="findCommonUserByPhone" resultType="CommonUser"
+		parameterType="java.lang.String">
+		SELECT * FROM USER WHERE user_mobile = #{userMobile}
+	</select>
+	<select id="findCommonUserByEmail" resultType="CommonUser"
+		parameterType="java.lang.String">
+		SELECT * FROM USER WHERE user_eamil = #{userEmail}
+	</select>
+	<!-- 新增用户 -->
+	<insert id="insertCommonUser">
+		INSERT INTO USER
+		(user_indenf,user_name,user_password,user_sex,reg_time,user_mobile,user_email,reg_ip)
+		VALUE
+		(#{userIdenf},#{userName},#{passWord},#{userSex},#{regTime},#{userMobile},#{userEmail},#{regIp})
+	</insert>
+
+	<!-- 删除用户 -->
+	<update id="deleteCommonUser">
+		UPDATE FROM USER SET
+		isDelete=1
+		WHERE id = #{id}
+	</update>
+	<update id="deleteCommonUserByIdenf">
+		UPDATE FROM USER SET
+		isDelete=1
+		WHERE user_idenf =
+		#{userIdenf}
+	</update>
+
+	<!-- 更新用户 更改密码、更改邮箱、更改手机 -->
+	<update id="midifyPassWord">
+		UPDATE USER SET
+		passWord=#{newPassWord}
+		WHERE userName=#{userName}
+	</update>
+	<update id="midifyEmail">
+		UPDATE USER SET
+		email=#{newEmail}
+		WHERE
+		userName=#{userName}
+	</update>
+	<update id="midifyPhone">
+		UPDATE USER SET
+		phone=#{newPhone}
+		WHERE
+		userName=#{userName}
+	</update>
+
+	<update id="activateUser">
+		UPDATE USER SET
+		status=1
+		WHERE email=#{email}
+	</update>
+
+
+
 </mapper>
