@@ -10,6 +10,6 @@ public interface CommonUserService {
 	 * @return 
 	 * @throws Exception 
 	 */
-	public int login(String userIdenf,String userPassword) throws Exception;
+	public int login(String userIdenf,String userPassword);
 	
 }

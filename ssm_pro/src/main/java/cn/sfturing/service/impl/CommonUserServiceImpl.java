@@ -17,7 +17,7 @@ public class CommonUserServiceImpl implements CommonUserService {
 	//登录业务
 	@Transactional
 	@Override
-	public int login(String userIdenf, String userPassword) throws Exception {
+	public int login(String userIdenf, String userPassword) {
 		CommonUser commonUser=commonUserDao.findCommonUserByUserIdenf(userIdenf);
 		if(commonUser==null){
 			return 0;		//用户不存在就返回0

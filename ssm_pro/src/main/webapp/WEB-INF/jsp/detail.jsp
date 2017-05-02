@@ -10,5 +10,6 @@
 ${user.userIdenf}<br>  
  ${user.userName}<br>  
  ${user.userEmail}<br>   
+  ${user.lastLoginIp}
 </body>
 </html>
