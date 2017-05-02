@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.sfturing.dao.CommonUserDao;
@@ -18,9 +19,14 @@ public class CommonUserController {
 	private CommonUserService commonUserService;
 	@Autowired
 	private CommonUserDao commonUserDao;
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(){
+		return "login";
+	}
 
 	/**
-	 * 登录用户
+	 * 用户登陆验证
 	 * 
 	 * @param email
 	 * @param passWord
@@ -28,7 +34,7 @@ public class CommonUserController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/login")
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginSuccess(Model model,String userIdenf, String userPassword, HttpSession httpSession) throws Exception {
 
 	
@@ -44,10 +50,10 @@ public class CommonUserController {
 			return "detail";
 		} else if (result == 1) {
 			System.out.println("密码错误");
-			return "NewFile";
+			return "login";
 		} else {
 			System.out.println("用户不存在");
-			return "NewFile";
+			return "login";
 		}
 
 	}

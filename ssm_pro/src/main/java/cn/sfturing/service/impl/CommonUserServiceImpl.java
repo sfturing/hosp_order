@@ -14,7 +14,7 @@ public class CommonUserServiceImpl implements CommonUserService {
 	@Autowired
 	private CommonUserDao commonUserDao;
 
-	
+	//登录业务
 	@Transactional
 	@Override
 	public int login(String userIdenf, String userPassword) throws Exception {
