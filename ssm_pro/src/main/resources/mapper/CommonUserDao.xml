@@ -24,7 +24,7 @@
 		parameterType="java.lang.String">
 		SELECT * FROM USER WHERE user_eamil = #{userEmail}
 	</select>
-	<!-- 新增用户 -->
+	<!-- 插入用户 -->
 	<insert id="insertCommonUser">
 		INSERT INTO USER
 		(user_indenf,user_name,user_password,user_sex,reg_time,user_mobile,user_email,reg_ip)
@@ -32,7 +32,7 @@
 		(#{userIdenf},#{userName},#{passWord},#{userSex},#{regTime},#{userMobile},#{userEmail},#{regIp})
 	</insert>
 
-	<!-- 删除用户 -->
+	<!-- 删除用户(假删除) -->
 	<update id="deleteCommonUser">
 		UPDATE FROM USER SET
 		isDelete=1
@@ -45,29 +45,34 @@
 		#{userIdenf}
 	</update>
 
-	<!-- 更新用户 更改密码、更改邮箱、更改手机 -->
-	<update id="midifyPassWord">
+	<!-- 更新用户 更改密码、更改邮箱、更改手机（用户个人中心修改） -->
+	<update id="modifyPassWord">
 		UPDATE USER SET
 		passWord=#{newPassWord}
-		WHERE userName=#{userName}
+		WHERE user_idenf=#{user_idenf}
 	</update>
-	<update id="midifyEmail">
+	<update id="modifyEmail">
 		UPDATE USER SET
 		email=#{newEmail}
 		WHERE
-		userName=#{userName}
+		user_idenf=#{user_idenf}
 	</update>
-	<update id="midifyPhone">
+	<update id="modifyPhone">
 		UPDATE USER SET
 		phone=#{newPhone}
 		WHERE
-		userName=#{userName}
+		user_idenf=#{user_idenf}
 	</update>
-
+	<!-- 激活用户 -->
 	<update id="activateUser">
 		UPDATE USER SET
 		status=1
 		WHERE email=#{email}
+	</update>
+	
+	<!-- 更新用户信息 -->
+	<update id="modifyIpAndTime">
+	
 	</update>
 
 

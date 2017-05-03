@@ -1,4 +1,4 @@
-package cn.sfturing.algorithm;
+package cn.sfturing.utils;
 
 import javax.servlet.http.HttpServletRequest;
 /**

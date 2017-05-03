@@ -61,10 +61,10 @@ input:-webkit-autofill {
 						<div class="form-top">
 							<div class="form-top-left">
 								<h3 style="color: #969696;">用户登录</h3>
-								<p>输入用户身份证以及密码</p>
+								<p>请输入身份证号及密码</p>
 							</div>
 							<div class="form-top-right">
-								<i class="fa fa-lock"></i>
+								<!-- <i class="fa fa-lock"></i> -->
 							</div>
 
 						</div>

@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.sfturing.algorithm.GetIP;
 import cn.sfturing.dao.CommonUserDao;
 import cn.sfturing.entity.CommonUser;
 import cn.sfturing.service.CommonUserService;
+import cn.sfturing.utils.GetIP;
+import cn.sfturing.utils.MD5;
 
 @Controller
 public class CommonUserController {
@@ -46,7 +47,7 @@ public class CommonUserController {
 
 	
 		// 登录用户，并将登录后的状态码返回，如果是0用户不存在，如果是1那么密码错误，如果是2那么密码正确
-		int result = commonUserService.login(userIdenf, userPassword);
+		int result = commonUserService.login(userIdenf, userPassword,request);
 
 		// 查找这个用户
 		CommonUser commonUser = commonUserDao.findCommonUserByUserIdenf(userIdenf);
@@ -54,7 +55,6 @@ public class CommonUserController {
 		if (result == 2) {
 			// 如果是2，那么登录成功，返回index
 			String ip = GetIP.getIpAddr(request);
-			System.out.println(ip);
 			commonUser.setLastLoginIp(ip);
 			model.addAttribute("user", commonUser);
 			return "detail";
@@ -78,8 +78,12 @@ public class CommonUserController {
 	}
 	
 	@RequestMapping(value = "/sign", method = RequestMethod.POST)
-	public String insetUser(CommonUser commonUser){
-		commonUserDao.insertCommonUser(commonUser);
+	public String insetUser(CommonUser commonUser,HttpServletRequest request){
+		String userpwd = commonUser.getUserPassword();
+		System.out.println(userpwd);
+		String a = MD5.getMD5(userpwd);
+		System.out.println(a);
+		/*commonUserDao.insertCommonUser(commonUser);*/
 		System.out.println("aaaa");
 		return "NewFile";
 	}

@@ -1,42 +1,55 @@
 package cn.sfturing.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import cn.sfturing.entity.CommonUser;
 
-
-
 public interface CommonUserDao {
-	/*
-	 * 查找用户
-	 */
+	/************************ 用户查找 ********************/
+	// 通过id查找用户
 	public CommonUser findCommonUserByUserId(long userId);
-	
+
+	// 通过身份证号查找用户
 	public CommonUser findCommonUserByUserIdenf(String userIdenf);
 
-	public CommonUser findCommonUserByUserName(String userName);
+	// 通过用户姓名查找用户
+	public List<CommonUser> findCommonUserByUserName(String userName);
 
+	// 通过用户邮箱查找用户
 	public CommonUser findCommonUserByEmail(String userEmail);
 
+	// 通过用户手机号查找用户
 	public CommonUser findCommonUserByMobile(String userMobile);
 
-	/*
-	 * 插入更新和删除
-	 */
+	/******************** 用户插入 *************************/
+	// 增加新用户
 	public int insertCommonUser(CommonUser CommonUser);
-	//通过id删除
+
+	/******************** 用户删除（假删除） *************************/
+	// 通过id删除
 	public void deleteCommonUser(long id);
-	//通过身份证号删除
+
+	// 通过身份证号删除
 	public void deleteCommonUserByIdenf(String userIdenf);
 
-	/*
-	 * 更改用户密码、手机号码以及激活邮箱
-	 */
-	public int midifyPassWord(@Param("CommonUserName") String CommonUserName, @Param("newPassWord") String newPassWord)
+	/******************** 用户修改信息（用户个人中心修改方法） *************************/
+	// 修改用户密码，需要邮箱验证
+	public int modifyPassWord(@Param("CommonUserName") String CommonUserName, @Param("newPassWord") String newPassWord)
 			throws Exception;
 
-	public int midifyPhone(@Param("CommonUserName") String CommonUserName, @Param("newPhone") String newPhone);
+	// 修改用户手机，需要邮箱验证
+	public int modifyPhone(@Param("CommonUserName") String CommonUserName, @Param("newPhone") String newPhone);
 
+	// 修改用户邮箱，需要申诉
+	public int modifyEmail(@Param("CommonUserName") String CommonUserName, @Param("newEmail") String newEmail);
+
+	// 激活用户
 	public int activateCommonUser(String email);
+
+	/******************************修改用户后台信息***************************************/
+	//更新最后登陆ip和最后登陆时间
+	public int modifyIpAndTime(CommonUser CommonUser);
 
 }

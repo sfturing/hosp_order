@@ -1,4 +1,4 @@
-package cn.sfturing.algorithm;
+package cn.sfturing.utils;
 
 import java.security.MessageDigest;
 
@@ -33,7 +33,6 @@ public class MD5 {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(md5str);
         return md5str;
     }
  
@@ -62,7 +61,7 @@ public class MD5 {
     
     @Test
     public void testMD5(){
-    	String message="shihao19961014.";
+    	String message="123,123";
     	String result=getMD5(message);
     	System.out.println(result);
     }

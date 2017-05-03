@@ -1,6 +1,8 @@
 package cn.sfturing.service;
 
+import javax.servlet.http.HttpServletRequest;
 
+import cn.sfturing.entity.CommonUser;
 
 public interface CommonUserService {
 	/**
@@ -10,6 +12,11 @@ public interface CommonUserService {
 	 * @return 
 	 * @throws Exception 
 	 */
-	public int login(String userIdenf,String userPassword);
-	
+	public int login(String userIdenf,String userPassword,HttpServletRequest request);
+	/**
+	 * 用户注册
+	 * @param commonUser
+	 * @return
+	 */
+	public int sign(CommonUser commonUser,HttpServletRequest request);
 }

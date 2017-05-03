@@ -34,14 +34,14 @@
 	href="assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="assets/ico/apple-touch-icon-57-precomposed.png">
-
-</head>
 <style>
 input:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0px 1000px white inset;
 	border: 1px solid #CCC !important;
 }
 </style>
+</head>
+
 <body>
 
 	<jsp:include page="../include/head.jsp" />
@@ -54,8 +54,9 @@ input:-webkit-autofill {
 							<h3 style="color: #969696;">用户注册</h3>
 							<p>请输入注册信息</p>
 						</div>
-						<div class="form-top-right">
-							<i class="fa fa-user"></i>
+						<div class="pull-right-bottom">
+							<!-- <i class="fa fa-user"></i> -->
+							<p class="text-danger" style="position:absolute;right:60px;bottom:770px">${error}</p>
 						</div>
 
 					</div>
@@ -63,41 +64,41 @@ input:-webkit-autofill {
 					<div class="form-bottom">
 						<form role="form" action="sign" method="post" class="login-form">
 							<div class="form-group">
-								<label class="sr-only" for="userIdenf">身份证号</label>身份证号:<input
-									type="text" name="userIdenf" placeholder="身份证号(*)"
-									class="form-username form-control" id="userIdenf" required
-									onkeyup="isCheckIdenf()" /><span id="idenfTip"></span>
+								<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
+									type="text" name="userIdenf" class="form-username form-control"
+									id="userIdenf" required onkeyup="isCheckIdenf()"
+									style="font-weight: bold" /><span id="idenfTip"></span>
 							</div>
 							<div class="form-group">
-								<label class="sr-only" for="userName">userName</label>姓名:<input
-									type="text" name="userName" id="userName"
-									class="form-control input-control clearfix" placeholder="姓名(*)"
+								<label class="sr-only" for="userName">userName</label>姓名(*):<input
+									style="font-weight: bold" type="text" name="userName"
+									id="userName" class="form-username form-control"
 									required />
 							</div>
 							<div class="form-group">
-								<label class="sr-only" for="userPassword">Password</label>密码:<input
-									type="password" name="userPassword" placeholder="密码(*)"
+								<label class="sr-only" for="userPassword">password</label>密码(*):<input
+									style="font-weight: bold" type="password" name="userPassword"
 									class="form-password form-control" id="pwd1" required />
 							</div>
 							<div class="form-group">
-								<label class="sr-only" for="userPassword">Password</label>确认密码:<input
-									type="password" name="userPassword" placeholder="确认密码(*)"
-									class="form-password form-control " id="pwd2" required
-									onkeyup="isCheckPwd()" /> <span id="pwdTip"></span>
+								<label class="sr-only" for="userPasswordCof">passwordCof</label>确认密码(*):<input
+									style="font-weight: bold" type="password"
+									name="userPasswordCof" class="form-password form-control "
+									id="pwd2" required onkeyup="isCheckPwd()" /> <span id="pwdTip"></span>
 							</div>
 							<div class="form-group">
-								<label class="sr-only" for="userEmail">userEmail</label>邮箱:<input
-									type="text" name="userEmail" id="userEmail"
-									class="form-control input-control clearfix" placeholder="邮箱(*)"
+								<label class="sr-only" for="userEmail">userEmail</label>邮箱(*):<input
+									style="font-weight: bold" type="text" name="userEmail"
+									id="userEmail" class="form-control input-control clearfix"
 									required onkeyup="isCheckEmail()" /><span id="emailTip"></span>
 							</div>
 							<div class="form-group">
-								<label class="sr-only" for="userMobile">userMobile</label>手机号:<input
-									type="text" name="userMobile" id="userMobile"
-									class="form-control input-control clearfix"
-									placeholder="手机号码(*)" required onkeyup="isCheckMobile()" /><span
-									id="mobileTip"></span>
-							</div>性别:
+								<label class="sr-only" for="userMobile">userMobile</label>手机号(*):<input
+									style="font-weight: bold" type="text" name="userMobile"
+									id="userMobile" class="form-control input-control clearfix"
+									required onkeyup="isCheckMobile()" /><span id="mobileTip"></span>
+							</div>
+							性别(*):
 							<div class="form-group">
 								<select class="form-control input-control "="userSex">
 									<option value="男">男</option>
@@ -118,7 +119,6 @@ input:-webkit-autofill {
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/js/jquery.backstretch.min.js"></script>
-	<script src="assets/js/retina-1.1.0.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
 	<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
@@ -131,9 +131,9 @@ input:-webkit-autofill {
 				isok = reg.test(idenf);
 				if (isok) {
 					document.getElementById("idenfTip").innerHTML = "<font color='#969696'>身份证格式正确</font>";
-					document.getElementById("btn").disabled = true;
-				} else {
 					document.getElementById("btn").disabled = false;
+				} else {
+					document.getElementById("btn").disabled = true;
 					document.getElementById("idenfTip").innerHTML = "身份证格式不正确";
 				}
 			} else {
@@ -147,10 +147,10 @@ input:-webkit-autofill {
 			var pwd2 = document.getElementById("pwd2").value;
 			if (pwd1 == pwd2) {
 				document.getElementById("pwdTip").innerHTML = "两次密码相同";
-				document.getElementById("btn").disabled = true;
+				document.getElementById("btn").disabled = false;
 			} else {
 				document.getElementById("pwdTip").innerHTML = "<font color='#969696'>两次密码不相同</font>";
-				document.getElementById("btn").disabled = false;
+				document.getElementById("btn").disabled = true;
 			}
 		}
 	</script>
