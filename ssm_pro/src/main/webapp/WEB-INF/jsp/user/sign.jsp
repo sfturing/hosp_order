@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-
-<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>用户注册</title>
@@ -56,7 +54,9 @@ input:-webkit-autofill {
 						</div>
 						<div class="pull-right-bottom">
 							<!-- <i class="fa fa-user"></i> -->
-							<p class="text-danger" style="position:absolute;right:60px;bottom:770px">${error}</p>
+							<p class="text-danger"
+								style="position: absolute; right: 60px; bottom: 770px"
+								id="errorTip">${error}</p>
 						</div>
 
 					</div>
@@ -72,8 +72,7 @@ input:-webkit-autofill {
 							<div class="form-group">
 								<label class="sr-only" for="userName">userName</label>姓名(*):<input
 									style="font-weight: bold" type="text" name="userName"
-									id="userName" class="form-username form-control"
-									required />
+									id="userName" class="form-username form-control" required />
 							</div>
 							<div class="form-group">
 								<label class="sr-only" for="userPassword">password</label>密码(*):<input
@@ -99,8 +98,9 @@ input:-webkit-autofill {
 									required onkeyup="isCheckMobile()" /><span id="mobileTip"></span>
 							</div>
 							性别(*):
+							
 							<div class="form-group">
-								<select class="form-control input-control "="userSex">
+								<select class="form-control input-control " name="userSex">
 									<option value="男">男</option>
 									<option value="女">女</option>
 								</select>
@@ -126,6 +126,7 @@ input:-webkit-autofill {
 	<script type="text/javascript">
 		function isCheckIdenf() {
 			var idenf = document.getElementById("userIdenf").value;
+			document.getElementById("errorTip").innerHTML = "";
 			if (idenf != "") {
 				var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 				isok = reg.test(idenf);
@@ -145,6 +146,7 @@ input:-webkit-autofill {
 		function isCheckPwd() {
 			var pwd1 = document.getElementById("pwd1").value;
 			var pwd2 = document.getElementById("pwd2").value;
+			document.getElementById("errorTip").innerHTML = "";
 			if (pwd1 == pwd2) {
 				document.getElementById("pwdTip").innerHTML = "两次密码相同";
 				document.getElementById("btn").disabled = false;
@@ -157,6 +159,7 @@ input:-webkit-autofill {
 	<script type="text/javascript">
 		function isCheckEmail() {
 			var email = document.getElementById("userEmail").value;
+			document.getElementById("errorTip").innerHTML = "";
 			if (email != "") {
 				var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
 				isok = reg.test(email);
@@ -175,6 +178,7 @@ input:-webkit-autofill {
 	<script type="text/javascript">
 		function isCheckMobile() {
 			var mobile = document.getElementById("userMobile").value;
+			document.getElementById("errorTip").innerHTML = "";
 			if (mobile != "") {
 				var reg = /^1[0-9]{10}$/;
 				isok = reg.test(mobile);

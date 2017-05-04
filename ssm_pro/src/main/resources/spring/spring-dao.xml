@@ -52,4 +52,7 @@
 		<!-- 给出需要扫描Dao接口包 -->
 		<property name="basePackage" value="cn.sfturing.dao" />
 	</bean>
+	
+	<!-- 5.扫描所需要的包 -->
+		 <context:component-scan base-package="cn.sfturing.utils"/>
 </beans>

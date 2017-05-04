@@ -6,7 +6,7 @@
 	<!-- 查找用户，通过id、email、userName、phone -->
 	<select id="findCommonUserByUserId" resultType="CommonUser"
 		parameterType="int">
-		SELECT * FROM USER WHERE user_id = #{userId}
+		SELECT * FROM commonuser WHERE user_id = #{userId}
 	</select>
 	<select id="findCommonUserByUserIdenf" resultType="CommonUser"
 		parameterType="java.lang.String">
@@ -14,32 +14,32 @@
 	</select>
 	<select id="findCommonUserByUserName" resultType="CommonUser"
 		parameterType="java.lang.String">
-		SELECT * FROM USER WHERE user_name = #{userName}
+		SELECT * FROM commonuser WHERE user_name = #{userName}
 	</select>
-	<select id="findCommonUserByPhone" resultType="CommonUser"
+	<select id="findCommonUserByMobile" resultType="CommonUser"
 		parameterType="java.lang.String">
-		SELECT * FROM USER WHERE user_mobile = #{userMobile}
+		SELECT * FROM commonuser WHERE user_mobile = #{userMobile}
 	</select>
 	<select id="findCommonUserByEmail" resultType="CommonUser"
 		parameterType="java.lang.String">
-		SELECT * FROM USER WHERE user_eamil = #{userEmail}
+		SELECT * FROM commonuser WHERE user_email = #{userEmail}
 	</select>
 	<!-- 插入用户 -->
 	<insert id="insertCommonUser">
-		INSERT INTO USER
-		(user_indenf,user_name,user_password,user_sex,reg_time,user_mobile,user_email,reg_ip)
+		INSERT INTO commonuser
+		(user_idenf,user_name,user_password,user_sex,user_mobile,user_email,reg_ip)
 		VALUE
-		(#{userIdenf},#{userName},#{passWord},#{userSex},#{regTime},#{userMobile},#{userEmail},#{regIp})
+		(#{userIdenf},#{userName},#{userPassword},#{userSex},#{userMobile},#{userEmail},#{regIp})
 	</insert>
 
 	<!-- 删除用户(假删除) -->
 	<update id="deleteCommonUser">
-		UPDATE FROM USER SET
+		UPDATE FROM commonuser SET
 		isDelete=1
 		WHERE id = #{id}
 	</update>
 	<update id="deleteCommonUserByIdenf">
-		UPDATE FROM USER SET
+		UPDATE FROM commonuser SET
 		isDelete=1
 		WHERE user_idenf =
 		#{userIdenf}
@@ -47,32 +47,34 @@
 
 	<!-- 更新用户 更改密码、更改邮箱、更改手机（用户个人中心修改） -->
 	<update id="modifyPassWord">
-		UPDATE USER SET
+		UPDATE commonuser SET
 		passWord=#{newPassWord}
 		WHERE user_idenf=#{user_idenf}
 	</update>
 	<update id="modifyEmail">
-		UPDATE USER SET
+		UPDATE commonuser SET
 		email=#{newEmail}
 		WHERE
 		user_idenf=#{user_idenf}
 	</update>
 	<update id="modifyPhone">
-		UPDATE USER SET
+		UPDATE commonuser SET
 		phone=#{newPhone}
 		WHERE
 		user_idenf=#{user_idenf}
 	</update>
 	<!-- 激活用户 -->
 	<update id="activateUser">
-		UPDATE USER SET
+		UPDATE commonuser SET
 		status=1
-		WHERE email=#{email}
+		WHERE user_email=#{userEmail}
 	</update>
 	
 	<!-- 更新用户信息 -->
 	<update id="modifyIpAndTime">
-	
+		UPDATE commonuser SET
+		last_login_time =#{lastLoginTime},last_login_ip=#{lastLoginIp}
+		WHERE user_email=#{userEmail}	
 	</update>
 
 

@@ -19,9 +19,9 @@ public class CommonUser {
 	private String userMobile;
 	private Timestamp regTime;
 	private String regIp;
-	private Timestamp lastLoginTime;
+	private String lastLoginTime;
 	private String lastLoginIp;
-	private Timestamp updateTime;
+	private String updateTime;
 	private Byte stetus;
 	private int isdelete;
 	public long getUserId() {
@@ -78,10 +78,10 @@ public class CommonUser {
 	public void setRegIp(String regIp) {
 		this.regIp = regIp;
 	}
-	public Timestamp getLastLoginTime() {
+	public String getLastLoginTime() {
 		return lastLoginTime;
 	}
-	public void setLastLoginTime(Timestamp lastLoginTime) {
+	public void setLastLoginTime(String lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
 	}
 	public String getLastLoginIp() {
@@ -90,10 +90,10 @@ public class CommonUser {
 	public void setLastLoginIp(String lastLoginIp) {
 		this.lastLoginIp = lastLoginIp;
 	}
-	public Timestamp getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Timestamp updateTime) {
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
 	public Byte getStetus() {

@@ -56,15 +56,18 @@ input:-webkit-autofill {
 						</div>
 					</div>
 				</div> -->
-				<div class="row">
+				
+				<div class="row" >
 					<div class="col-sm-6 col-sm-offset-3 form-box">
 						<div class="form-top">
 							<div class="form-top-left">
 								<h3 style="color: #969696;">用户登录</h3>
 								<p>请输入身份证号及密码</p>
 							</div>
-							<div class="form-top-right">
-								<!-- <i class="fa fa-lock"></i> -->
+							<div class="pull-right-bottom">
+								<p class="text-danger"
+									style="position: absolute; right: 60px; bottom: 300px"
+									id="errorTip">${error}</p>
 							</div>
 
 						</div>
@@ -72,14 +75,17 @@ input:-webkit-autofill {
 						<div class="form-bottom">
 							<form role="form" action="login" method="post" class="login-form">
 								<div class="form-group">
-									<label class="sr-only" for="userIdenf">身份证号</label> <input
-										type="text" name="userIdenf" placeholder="身份证号"
-										class="form-username form-control" id="userIdenf">
+									<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
+										type="text" name="userIdenf"
+										class="form-username form-control" id="userIdenf" required
+										onkeyup="isCheckIdenf()" style="font-weight: bold" /><span
+										id="idenfTip"></span>
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="userPassword">Password</label> <input
 										type="password" name="userPassword" placeholder="用户密码"
-										class="form-password form-control" id="userPassword">
+										class="form-password form-control" id="userPassword"
+										style="font-weight: bold" required onkeyup="isClearTip()">
 								</div>
 								<button type="submit" class="btn">立即登录</button>
 							</form>
@@ -88,6 +94,7 @@ input:-webkit-autofill {
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 
@@ -103,6 +110,30 @@ input:-webkit-autofill {
 	<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
+	<script type="text/javascript">
+		function isCheckIdenf() {
+			var idenf = document.getElementById("userIdenf").value;
+			document.getElementById("errorTip").innerHTML = "";
+			if (idenf != "") {
+				var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+				isok = reg.test(idenf);
+				if (!isok) {
+					document.getElementById("btn").disabled = true;
+					document.getElementById("idenfTip").innerHTML = "身份证格式不正确";
+				} else {
+					document.getElementById("idenfTip").innerHTML = "<font color='#969696'>身份证格式正确</font>";
+					document.getElementById("btn").disabled = false;
+				}
+			} else {
+				document.getElementById("idenfTip").innerHTML = "";
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		function isClearTip() {
+			document.getElementById("errorTip").innerHTML = "";
+		}
+	</script>
 
 </body>
 

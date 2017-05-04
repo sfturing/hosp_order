@@ -22,9 +22,8 @@
 							<span class="li-text">
 							</span> 
 							<span class="li-social">
-								<br />
 							</span>
-							<div>
+							<div>	
 							<a class="navbar-brand" style="font-size:12px;" href="login	"><strong>登录</strong></a>
 							<a class="navbar-brand" style="font-size:12px;" href="sign"><strong>注册</strong></a>  
 							<a class="navbar-brand" style="font-size:12px;" href="index.html"><strong>帮助中心</strong></a> </div>
