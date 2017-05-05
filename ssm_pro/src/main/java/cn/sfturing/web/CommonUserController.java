@@ -45,7 +45,7 @@ public class CommonUserController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginSuccess(Model model, String userIdenf, String userPassword, HttpSession session	,
+	public String loginSuccess(Model model, String userIdenf, String userPassword, HttpSession session,
 			HttpServletRequest request) {
 
 		// 登录用户，并将登录后的状态码返回，如果是0用户不存在，如果是1那么密码错误，如果是2那么密码正确
@@ -113,8 +113,8 @@ public class CommonUserController {
 			model.addAttribute("error", error);
 			return "user/sign";
 		}
-		
-		error="注册成功，请登录账号";
+
+		error = "注册成功，请登录账号";
 		log.info(error);
 		model.addAttribute("error", error);
 		return "user/login";

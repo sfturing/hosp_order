@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>用户登录</title>
-
+<jsp:include page="../include/headtag.jsp" />
 <!-- CSS -->
 <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -43,6 +43,7 @@ input:-webkit-autofill {
 
 <body>
 	<jsp:include page="../include/head.jsp" />
+	<jsp:include page="../include/menu.jsp" />
 	<!-- Top content -->
 	<div class="top-content">
 
@@ -56,8 +57,8 @@ input:-webkit-autofill {
 						</div>
 					</div>
 				</div> -->
-				
-				<div class="row" >
+
+				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 form-box">
 						<div class="form-top">
 							<div class="form-top-left">
@@ -74,27 +75,29 @@ input:-webkit-autofill {
 
 						<div class="form-bottom">
 							<form role="form" action="login" method="post" class="login-form">
-								<div class="form-group">
+								<div class="form-group col-xs-12">
 									<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
 										type="text" name="userIdenf"
 										class="form-username form-control" id="userIdenf" required
 										onkeyup="isCheckIdenf()" style="font-weight: bold" /><span
 										id="idenfTip"></span>
 								</div>
-								<div class="form-group">
-									<label class="sr-only" for="userPassword">Password</label> <input
+								<div class="form-group col-xs-12">
+									<label class="sr-only" for="userPassword">Password</label>密码(*): <input
 										type="password" name="userPassword" placeholder="用户密码"
 										class="form-password form-control" id="userPassword"
 										style="font-weight: bold" required onkeyup="isClearTip()">
 								</div>
-								<button type="submit" class="btn">立即登录</button>
+								<div class="form-group col-xs-12">
+									<button type="submit" class="btn">立即登录</button>
+								</div>
 							</form>
 							<span><a href="#">找回密码</a></span> <span><a href="sign"
 								class="pull-right">用户注册</a></span>
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 
