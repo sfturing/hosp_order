@@ -22,7 +22,6 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
 <!-- Favicon and touch icons -->
 <link rel="shortcut icon" href="assets/ico/favicon.png">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -57,7 +56,6 @@ input:-webkit-autofill {
 						</div>
 					</div>
 				</div> -->
-
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 form-box">
 						<div class="form-top">
