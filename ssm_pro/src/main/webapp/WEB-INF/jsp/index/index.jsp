@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>天津市医院预约挂号</title>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"

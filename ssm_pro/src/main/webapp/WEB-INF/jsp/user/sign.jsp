@@ -7,31 +7,13 @@
 <title>用户注册</title>
 <jsp:include page="../include/headtag.jsp" />
 <!-- CSS -->
-<link rel="stylesheet"
-	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<!-- <link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="assets/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/css/form-elements.css">
 <link rel="stylesheet" href="assets/css/style.css">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-<!-- Favicon and touch icons -->
-<link rel="shortcut icon" href="assets/ico/favicon.png">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="assets/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="assets/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="assets/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-	href="assets/ico/apple-touch-icon-57-precomposed.png">
 <style>
 input:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -67,8 +49,8 @@ input:-webkit-autofill {
 							<div class="form-group col-xs-12">
 								<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
 									type="text" name="userIdenf" class="form-username form-control"
-									id="userIdenf" required onkeyup="isCheckIdenf()"
-									style="font-weight: bold" /><span id="idenfTip"></span>
+									id="userIdenf" required 
+									style="font-weight: bold" onkeyup="isCheckIdenf()"/><span id="idenfTip"></span>
 							</div>
 							<div class="form-group col-xs-12">
 								<label class="sr-only" for="userName">userName</label>姓名(*):<input
@@ -98,19 +80,18 @@ input:-webkit-autofill {
 									id="userMobile" class="form-control input-control clearfix"
 									required onkeyup="isCheckMobile()" /><span id="mobileTip"></span>
 							</div>
-							性别(*):
-							
 							<div class="form-group col-xs-12">
+							性别(*):
 								<select class="form-control input-control " name="userSex">
 									<option value="男">男</option>
 									<option value="女">女</option>
 								</select>
 							</div>
 							<div class="form-group col-xs-12">
-							<button type="submit" class="btn" id="btn">立即注册</button>
+								<button type="submit" class="btn" id="btn">立即注册</button>
 							</div>
 						</form>
-						<span><a href="#">找回密码</a></span> <span><a href="login"
+						<span><a href="findPassword">找回密码</a></span> <span><a href="login"
 							class="pull-right">用户登录</a></span>
 					</div>
 				</div>
@@ -154,7 +135,7 @@ input:-webkit-autofill {
 				document.getElementById("pwdTip").innerHTML = "两次密码相同";
 				document.getElementById("btn").disabled = false;
 			} else {
-				document.getElementById("pwdTip").innerHTML = "<font color='#969696'>两次密码不相同</font>";
+				document.getElementById("pwdTip").innerHTML = "两次密码不相同";
 				document.getElementById("btn").disabled = true;
 			}
 		}
@@ -167,7 +148,7 @@ input:-webkit-autofill {
 				var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
 				isok = reg.test(email);
 				if (isok) {
-					document.getElementById("emailTip").innerHTML = "<font color='#969696'>邮箱格式正确</font>";
+					document.getElementById("emailTip").innerHTML = "邮箱格式正确";
 					document.getElementById("btn").disabled = false;
 				} else {
 					document.getElementById("btn").disabled = true;

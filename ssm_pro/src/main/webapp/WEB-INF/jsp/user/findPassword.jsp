@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>用户登录</title>
+<title>用户找回密码</title>
 <jsp:include page="../include/headtag.jsp" />
 <!-- CSS -->
 <!-- <link rel="stylesheet"
@@ -16,6 +16,13 @@
 <link rel="stylesheet" href="assets/css/form-elements.css">
 <link rel="stylesheet" href="assets/css/style.css">
 
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+<!-- Favicon and touch icons -->
 <style>
 input:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -39,13 +46,13 @@ input:-webkit-autofill {
 							<h3 style="color: #96968E;">天津市医院预约挂号系统</h3	>
 						</div>
 					</div>
-				</div>  -->
+				</div> -->
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 form-box">
 						<div class="form-top">
 							<div class="form-top-left">
-								<h3 style="color: #969696;">用户登录</h3>
-								<p>请输入身份证号及密码</p>
+								<h3 style="color: #969696;">找回密码</h3>
+								<p>请输入身份证号及邮箱验证</p>
 							</div>
 							<div class="pull-right-bottom">
 								<p class="text-danger"
@@ -56,26 +63,26 @@ input:-webkit-autofill {
 						</div>
 
 						<div class="form-bottom">
-							<form role="form" action="login" method="post" class="login-form">
+							<form role="form" action="findPassword" method="post" class="login-form" id="findPwdForm">
 								<div class="form-group col-xs-12">
 									<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
 										type="text" name="userIdenf"
 										class="form-username form-control" id="userIdenf" required
-										onkeyup="isCheckIdenf()" style="font-weight: bold" /><span
+										onkeyup="isClearTip()" style="font-weight: bold" /><span
 										id="idenfTip"></span>
 								</div>
 								<div class="form-group col-xs-12">
-									<label class="sr-only" for="userPassword">Password</label>密码(*):
-									<input type="password" name="userPassword" placeholder="用户密码"
-										class="form-password form-control" id="userPassword"
-										style="font-weight: bold" required onkeyup="isClearTip()">
-								</div>
+								<label class="sr-only" for="userEmail">userEmail</label>注册邮箱(*):<input
+									style="font-weight: bold" type="text" name="userEmail"
+									id="userEmail" class="form-control input-control clearfix"
+									required onkeyup="isCheckEmail()" /><span id="emailTip"></span>
+							</div>
 								<div class="form-group col-xs-12">
-									<button type="submit" class="btn">立即登录</button>
+									<button type="button" id="fat-btn" class="btn"data-loading-text="邮件正在发送中...">找回密码</button>
 								</div>
 							</form>
-							<span><a href="findPassword">找回密码</a></span> <span><a
-								href="sign" class="pull-right">用户注册</a></span>
+							<span><a href="login">用户登录</a></span> <span><a href="sign"
+								class="pull-right">用户注册</a></span>
 						</div>
 					</div>
 				</div>
@@ -95,22 +102,23 @@ input:-webkit-autofill {
 	<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
+	
 	<script type="text/javascript">
-		function isCheckIdenf() {
-			var idenf = document.getElementById("userIdenf").value;
+		function isCheckEmail() {
+			var email = document.getElementById("userEmail").value;
 			document.getElementById("errorTip").innerHTML = "";
-			if (idenf != "") {
-				var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-				isok = reg.test(idenf);
+			if (email != "") {
+				var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+				isok = reg.test(email);
 				if (isok) {
-					document.getElementById("idenfTip").innerHTML = "<font color='#969696'>身份证格式正确</font>";
+					document.getElementById("emailTip").innerHTML = "邮箱格式正确";
 					document.getElementById("btn").disabled = false;
 				} else {
 					document.getElementById("btn").disabled = true;
-					document.getElementById("idenfTip").innerHTML = "身份证格式不正确";
+					document.getElementById("emailTip").innerHTML = "邮箱格式不正确";
 				}
 			} else {
-				document.getElementById("idenfTip").innerHTML = "";
+				document.getElementById("emailTip").innerHTML = "";
 			}
 		}
 	</script>
@@ -119,6 +127,17 @@ input:-webkit-autofill {
 			document.getElementById("errorTip").innerHTML = "";
 		}
 	</script>
+	<script>
+    $(function() {
+        $(".btn").click(function(){
+            $(this).button('loading').delay(1000).queue(function() {
+            // $(this).button('reset');
+            // $(this).dequeue(); 
+            	document.getElementById("findPwdForm").submit();
+            });
+        });
+    });  
+</script>
 
 </body>
 

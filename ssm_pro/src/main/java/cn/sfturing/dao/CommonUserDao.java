@@ -5,7 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import cn.sfturing.entity.CommonUser;
-
+/**
+ * 
+ * @author sfturing
+ *
+ * @date 2017年5月6日
+ */
 public interface CommonUserDao {
 	/************************ 用户查找 ********************/
 	// 通过id查找用户
@@ -36,20 +41,27 @@ public interface CommonUserDao {
 
 	/******************** 用户修改信息（用户个人中心修改方法） *************************/
 	// 修改用户密码，需要邮箱验证
-	public int modifyPassWord(@Param("CommonUserName") String CommonUserName, @Param("newPassWord") String newPassWord)
+	public int modifyPassWord(@Param("userIdenf") String userIdenf, @Param("newPassWord") String newPassWord)
 			throws Exception;
 
 	// 修改用户手机，需要邮箱验证
-	public int modifyPhone(@Param("CommonUserName") String CommonUserName, @Param("newPhone") String newPhone);
+	public int modifyPhone(@Param("userIdenf") String userIdenf, @Param("newPhone") String newPhone);
 
 	// 修改用户邮箱，需要申诉
-	public int modifyEmail(@Param("CommonUserName") String CommonUserName, @Param("newEmail") String newEmail);
+	public int modifyEmail(@Param("userIdenf") String userIdenf, @Param("newEmail") String newEmail);
+
+	// 更新验证码并设置发送时间
+	public int sendVerification(@Param("userIdenf") String userIdenf,
+			@Param("verificationCode") int verificationCode, @Param("updateTime") String updateTime);
+
+	// 清空验证码以及清空发送时间
+	public int clearVerification(String userIdenf);
 
 	// 激活用户
 	public int activateCommonUser(String email);
 
-	/******************************修改用户后台信息***************************************/
-	//更新最后登陆ip和最后登陆时间
+	/****************************** 修改用户后台信息 ***************************************/
+	// 更新最后登陆ip和最后登陆时间
 	public int modifyIpAndTime(CommonUser CommonUser);
 
 }

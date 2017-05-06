@@ -10,19 +10,35 @@ import java.util.Date;
  * @date 2017年4月28日
  */
 public class CommonUser {
+	//userid
 	private long userId;
+	//user身份证号
 	private String userIdenf;
+	//user姓名
 	private String userName;
+	//user性别
 	private String userSex;
+	//user密码
 	private String userPassword;
+	//user邮箱
 	private String userEmail;
+	//user手机
 	private String userMobile;
+	//user注册时间
 	private Timestamp regTime;
+	//user注册ip
 	private String regIp;
+	//user最后登录时间
 	private String lastLoginTime;
+	//user最后登录的ip
 	private String lastLoginIp;
+	//user验证码发送时间
 	private String updateTime;
-	private Byte stetus;
+	//验证码
+	private int verificationCode;
+	//User是否激活状态。0：表示未激活，1：表示以激活，可以挂号
+	private Byte status;
+	//user是否存在。0：存在，1：不存在
 	private int isdelete;
 	public long getUserId() {
 		return userId;
@@ -96,11 +112,17 @@ public class CommonUser {
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
-	public Byte getStetus() {
-		return stetus;
+	public int getVerificationCode() {
+		return verificationCode;
 	}
-	public void setStetus(Byte stetus) {
-		this.stetus = stetus;
+	public void setVerificationCode(int verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+	public Byte getStatus() {
+		return status;
+	}
+	public void setStatus(Byte status) {
+		this.status = status;
 	}
 	public int getIsdelete() {
 		return isdelete;
@@ -113,7 +135,9 @@ public class CommonUser {
 		return "CommonUser [userId=" + userId + ", userIdenf=" + userIdenf + ", userName=" + userName + ", userSex="
 				+ userSex + ", userPassword=" + userPassword + ", userEmail=" + userEmail + ", userMobile=" + userMobile
 				+ ", regTime=" + regTime + ", regIp=" + regIp + ", lastLoginTime=" + lastLoginTime + ", lastLoginIp="
-				+ lastLoginIp + ", updateTime=" + updateTime + ", stetus=" + stetus + ", isdelete=" + isdelete + "]";
+				+ lastLoginIp + ", updateTime=" + updateTime + ", verificationCode=" + verificationCode + ", status="
+				+ status + ", isdelete=" + isdelete + "]";
 	}
+	
 
 }

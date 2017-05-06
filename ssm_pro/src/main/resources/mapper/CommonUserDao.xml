@@ -18,7 +18,8 @@
 	</select>
 	<select id="findCommonUserByMobile" resultType="CommonUser"
 		parameterType="java.lang.String">
-		SELECT * FROM commonuser WHERE user_mobile = #{userMobile}
+		SELECT * FROM commonuser WHERE user_mobile =
+		#{userMobile}
 	</select>
 	<select id="findCommonUserByEmail" resultType="CommonUser"
 		parameterType="java.lang.String">
@@ -27,9 +28,9 @@
 	<!-- 插入用户 -->
 	<insert id="insertCommonUser">
 		INSERT INTO commonuser
-		(user_idenf,user_name,user_password,user_sex,user_mobile,user_email,reg_ip)
+		(user_idenf,user_name,user_password,user_sex,user_mobile,user_email,reg_ip,update_time)
 		VALUE
-		(#{userIdenf},#{userName},#{userPassword},#{userSex},#{userMobile},#{userEmail},#{regIp})
+		(#{userIdenf},#{userName},#{userPassword},#{userSex},#{userMobile},#{userEmail},#{regIp},#{updateTime})
 	</insert>
 
 	<!-- 删除用户(假删除) -->
@@ -41,7 +42,8 @@
 	<update id="deleteCommonUserByIdenf">
 		UPDATE FROM commonuser SET
 		isDelete=1
-		WHERE user_idenf =
+		WHERE user_idenf
+		=
 		#{userIdenf}
 	</update>
 
@@ -49,32 +51,51 @@
 	<update id="modifyPassWord">
 		UPDATE commonuser SET
 		passWord=#{newPassWord}
-		WHERE user_idenf=#{user_idenf}
+		WHERE
+		user_idenf=#{userIdenf}
 	</update>
 	<update id="modifyEmail">
 		UPDATE commonuser SET
 		email=#{newEmail}
 		WHERE
-		user_idenf=#{user_idenf}
+		user_idenf=#{userIdenf}
 	</update>
 	<update id="modifyPhone">
 		UPDATE commonuser SET
 		phone=#{newPhone}
 		WHERE
-		user_idenf=#{user_idenf}
+		user_idenf=#{userIdenf}
 	</update>
+
+	<!-- 更新验证码并设置发送时间 -->
+	<update id="sendVerification">
+		UPDATE commonuser SET
+		verification_code = #{verificationCode},update_time = #{updateTime}
+		WHERE user_idenf=#{userIdenf}
+	</update>
+	
+	<!-- 更新验证码并设置发送时间 -->
+	<update id="clearVerification">
+		UPDATE commonuser SET
+		verification_code = null,update_time = null
+		WHERE user_idenf=#{userIdenf}
+	</update>
+	
 	<!-- 激活用户 -->
 	<update id="activateUser">
 		UPDATE commonuser SET
 		status=1
-		WHERE user_email=#{userEmail}
+		WHERE
+		user_email=#{userEmail}
 	</update>
-	
+
 	<!-- 更新用户信息 -->
 	<update id="modifyIpAndTime">
 		UPDATE commonuser SET
-		last_login_time =#{lastLoginTime},last_login_ip=#{lastLoginIp}
-		WHERE user_email=#{userEmail}	
+		last_login_time
+		=#{lastLoginTime},last_login_ip=#{lastLoginIp}
+		WHERE
+		user_email=#{userEmail}
 	</update>
 
 

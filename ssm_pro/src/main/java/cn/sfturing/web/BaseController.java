@@ -5,7 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+/**
+ * 
+ * @author sfturing
+ *
+ * @date 2017年5月6日
+ */
 @Controller
 public class BaseController {
 	private static Logger log = LoggerFactory.getLogger(BaseController.class);

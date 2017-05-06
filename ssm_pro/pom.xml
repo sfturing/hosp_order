@@ -135,19 +135,25 @@
 			<version>3.2</version>
 		</dependency>
 
+		<!-- java邮件 -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.6</version>
+		</dependency>
 	</dependencies>
 	<build>
-	 <plugins>  
-        <!-- define the project compile level -->  
-        <plugin>  
-            <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-compiler-plugin</artifactId>  
-            <version>2.3.2</version>  
-            <configuration>  
-                <source>1.7</source>  
-                <target>1.7</target>  
-            </configuration>  
-        </plugin>  
-    </plugins>  
+		<plugins>
+			<!-- define the project compile level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
