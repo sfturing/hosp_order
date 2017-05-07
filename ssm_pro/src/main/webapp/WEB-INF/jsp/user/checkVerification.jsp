@@ -52,18 +52,18 @@ input:-webkit-autofill {
 						<div class="form-top">
 							<div class="form-top-left">
 								<h3 style="color: #969696;">找回密码</h3>
-								<p>验证码在1分钟内将发送至您的邮箱,请注意查收，验证码有效期为30分钟,发送频率不能低于5分钟。</p>
+								<p>验证码在1分钟内将发送至您的邮箱,请注意查收，验证码有效期为30分钟,且5分钟内只能发送一次。</p>
 							</div>
 							<div class="pull-right-bottom">
 								<p class="text-danger"
-									style="position: absolute; right: 60px; bottom: 300px"
+									style="position: absolute; right: 60px; bottom: 320px"
 									id="errorTip">${error}</p>
 							</div>
 
 						</div>
 
 						<div class="form-bottom">
-							<form role="form" action="login" method="post" class="login-form">
+							<form role="form" action="checkVerification" method="post" class="login-form">
 								<div class="form-group col-xs-12">
 									<label class="sr-only" for="verificationCode">验证码</label>验证码(*):<input
 										type="text" name="verificationCode"
@@ -72,7 +72,7 @@ input:-webkit-autofill {
 										id="idenfTip"></span>
 								</div>
 								<div class="form-group col-xs-12">
-									<button type="submit" class="btn">立即登录</button>
+									<button type="submit" class="btn">验证</button>
 								</div>
 							</form>
 							<span><a href="#"></a></span>&nbsp<span><a href="findPassword"

@@ -50,19 +50,19 @@
 	<!-- 更新用户 更改密码、更改邮箱、更改手机（用户个人中心修改） -->
 	<update id="modifyPassWord">
 		UPDATE commonuser SET
-		passWord=#{newPassWord}
+		user_passWord=#{newPassWord}
 		WHERE
 		user_idenf=#{userIdenf}
 	</update>
 	<update id="modifyEmail">
 		UPDATE commonuser SET
-		email=#{newEmail}
+		user_email=#{newEmail}
 		WHERE
 		user_idenf=#{userIdenf}
 	</update>
 	<update id="modifyPhone">
 		UPDATE commonuser SET
-		phone=#{newPhone}
+		user_mobile=#{newPhone}
 		WHERE
 		user_idenf=#{userIdenf}
 	</update>
@@ -70,17 +70,20 @@
 	<!-- 更新验证码并设置发送时间 -->
 	<update id="sendVerification">
 		UPDATE commonuser SET
-		verification_code = #{verificationCode},update_time = #{updateTime}
-		WHERE user_idenf=#{userIdenf}
+		verification_code =
+		#{verificationCode},update_time = #{updateTime}
+		WHERE
+		user_idenf=#{userIdenf}
 	</update>
-	
+
 	<!-- 更新验证码并设置发送时间 -->
 	<update id="clearVerification">
 		UPDATE commonuser SET
-		verification_code = null,update_time = null
-		WHERE user_idenf=#{userIdenf}
+		verification_code = null
+		WHERE
+		user_idenf=#{userIdenf}
 	</update>
-	
+
 	<!-- 激活用户 -->
 	<update id="activateUser">
 		UPDATE commonuser SET

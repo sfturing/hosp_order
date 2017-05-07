@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 import cn.sfturing.dao.CommonUserDao;
 import cn.sfturing.entity.CommonUser;
 import cn.sfturing.service.CommonUserService;
 import cn.sfturing.utils.DateUtil;
 import cn.sfturing.utils.DateUtil.DateFormat;
-import cn.sfturing.web.CommonUserController;
+
 import cn.sfturing.utils.GetIP;
 import cn.sfturing.utils.MD5;
 import cn.sfturing.utils.MailUtil;
@@ -109,15 +107,15 @@ public class CommonUserServiceImpl implements CommonUserService {
 		log.info(updateTime);
 		String userIdenf = commonUser.getUserIdenf();
 		log.info(userIdenf);
-		commonUserDao.sendVerification(userIdenf, verificationCode, updateTime);
 		String email = commonUser.getUserEmail();
 		log.info(email);
 		String sender = "天津市医院预约系统";
-		String title = "验证码【天津市医院预约挂号】";
-		String content = "您的验证码是:" + verificationCode + "\n<br>验证码有效期为30分钟，请及时验证。10分钟内只能发送一封邮件，请勿重复发送。";
+		String title = "天津市医院预约挂号【验证码】";
+		String content = verificationCode + "\n<br>验证码有效期为30分钟，请及时验证。";
 		boolean isSuccess = mailUtil.sendMail(email, sender, title, content);
 		if (isSuccess == true) {
 			log.info("发送成功");
+			commonUserDao.sendVerification(userIdenf, verificationCode, updateTime);
 			return true;
 		} else {
 			log.info("发送失败");
@@ -127,13 +125,13 @@ public class CommonUserServiceImpl implements CommonUserService {
 
 	@Override
 	public CommonUser findCommonUserByUserIdenf(String userIdenf) {
-		// TODO Auto-generated method stub
+
 		return commonUserDao.findCommonUserByUserIdenf(userIdenf);
 	}
 
 	@Override
 	public CommonUser findCommonUserByEmail(String userEmail) {
-		// TODO Auto-generated method stub
+
 		return commonUserDao.findCommonUserByEmail(userEmail);
 	}
 
@@ -141,6 +139,46 @@ public class CommonUserServiceImpl implements CommonUserService {
 	public int findHeadway(String updateTime) {
 		return dateUtil.timeSubtractionSecond(updateTime, dateUtil.getCurrentTime(DateFormat.YYYY_MM_DD_HH_mm_ss));
 
+	}
+
+	/**
+	 * 0：验证码超时 1：验证码验证通过 2：验证码验证失败
+	 */
+	@Override
+	public int checkVerification(int verificationCode, CommonUser commonUser) {
+		// 验证时间是否超过30分钟
+		if (findHeadway(commonUser.getUpdateTime()) > 1800) {
+			return 0;// 返回值为0：代表验证码时间超过30分钟
+		} else {
+			if (verificationCode == commonUser.getVerificationCode()) {
+				return 1;// 返回值为1，代表验证码验证通过，可以修改密码
+			} else {
+				return 2;// 返回值为2：代表验证码验证失败，重新输入验证码
+			}
+		}
+	}
+
+	/**
+	 * 清空验证码以及发送时间
+	 */
+	@Override
+	public int clearVerification(String userIdenf) {
+
+		return commonUserDao.clearVerification(userIdenf);
+	}
+
+	/**
+	 * 修改密码
+	 */
+	@Override
+	public boolean modifyPassWord(String userIdenf, String newPassWord) {
+		// 将用户密码转为MD5格式
+		newPassWord = MD5.getMD5(newPassWord);
+		if (commonUserDao.modifyPassWord(userIdenf, newPassWord) > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

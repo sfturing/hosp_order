@@ -41,8 +41,7 @@ public interface CommonUserDao {
 
 	/******************** 用户修改信息（用户个人中心修改方法） *************************/
 	// 修改用户密码，需要邮箱验证
-	public int modifyPassWord(@Param("userIdenf") String userIdenf, @Param("newPassWord") String newPassWord)
-			throws Exception;
+	public int modifyPassWord(@Param("userIdenf") String userIdenf, @Param("newPassWord") String newPassWord);
 
 	// 修改用户手机，需要邮箱验证
 	public int modifyPhone(@Param("userIdenf") String userIdenf, @Param("newPhone") String newPhone);
@@ -54,7 +53,7 @@ public interface CommonUserDao {
 	public int sendVerification(@Param("userIdenf") String userIdenf,
 			@Param("verificationCode") int verificationCode, @Param("updateTime") String updateTime);
 
-	// 清空验证码以及清空发送时间
+	// 清空验证码
 	public int clearVerification(String userIdenf);
 
 	// 激活用户

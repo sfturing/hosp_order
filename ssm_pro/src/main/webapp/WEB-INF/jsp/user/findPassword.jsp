@@ -78,7 +78,7 @@ input:-webkit-autofill {
 									required onkeyup="isCheckEmail()" /><span id="emailTip"></span>
 							</div>
 								<div class="form-group col-xs-12">
-									<button type="button" id="fat-btn" class="btn"data-loading-text="邮件正在发送中...">找回密码</button>
+									<button type="submit" class="btn">找回密码</button>
 								</div>
 							</form>
 							<span><a href="login">用户登录</a></span> <span><a href="sign"
@@ -127,7 +127,7 @@ input:-webkit-autofill {
 			document.getElementById("errorTip").innerHTML = "";
 		}
 	</script>
-	<script>
+	<!-- <script>
     $(function() {
         $(".btn").click(function(){
             $(this).button('loading').delay(1000).queue(function() {
@@ -137,7 +137,7 @@ input:-webkit-autofill {
             });
         });
     });  
-</script>
+</script> -->
 
 </body>
 

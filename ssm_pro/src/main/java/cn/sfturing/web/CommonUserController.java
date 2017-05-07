@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cn.sfturing.entity.CommonUser;
 import cn.sfturing.service.CommonUserService;
-import cn.sfturing.utils.MailUtil;
 
 /**
  * 
@@ -143,11 +142,11 @@ public class CommonUserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/findPassword", method = RequestMethod.POST)
-	public String findPassword(Model model, String userIdenf, String userEmail) {
+	public String findPassword(Model model, final String userIdenf, String userEmail, final HttpSession session) {
 		// 错误信息
 		String error = "";
 		// 通过输入的身份证查找用户
-		CommonUser commonUser = commonUserService.findCommonUserByUserIdenf(userIdenf);
+		final CommonUser commonUser = commonUserService.findCommonUserByUserIdenf(userIdenf);
 		// 用户不存在返回找回密码页面
 		if (commonUser == null) {
 			error = "用户不存在，请检查后输入";
@@ -158,40 +157,88 @@ public class CommonUserController {
 			// 输入的邮箱与密码不匹配，返回找回密码界面
 			String email = commonUser.getUserEmail();
 			log.info(email);
-			log.info(userEmail);
 			if (!userEmail.equals(email)) {
 				error = "邮箱不匹配，请检查后输入";
 				log.info(error);
 				model.addAttribute("error", error);
 				return "user/findPassword";
 			} else {
-				if(commonUserService.findHeadway(commonUser.getUpdateTime()) < 300){
+				if (commonUserService.findHeadway(commonUser.getUpdateTime()) < 300) {
 					error = "5分钟内只能发送一封邮件";
 					log.info(error);
 					model.addAttribute("error", error);
 					return "user/findPassword";
 				}
-				commonUserService.sendEmailCheck(commonUser);
+				// 单独开启线程发送邮件，防止用户等待时间过长，成功日志输出，失败也输出。
+				new Thread(new Runnable() {
+					public void run() {
+						boolean isSuccess = commonUserService.sendEmailCheck(commonUser);
+						if (isSuccess) {
+							log.info(commonUser.getUserEmail() + "发送成功" + commonUser.getUpdateTime());
+							CommonUser userMSG = commonUserService.findCommonUserByUserIdenf(userIdenf);
+							session.setAttribute("userMSG", userMSG);
+						} else {
+							log.info(commonUser.getUserEmail() + "发送失败" + commonUser.getUpdateTime());
+						}
+					}
+				}).start();
 				return "/user/checkVerification";
 			}
 		}
 	}
-	
+
 	/**
-	 * 检查验证码界面
+	 * 检查验证码界面 0：验证码超时 1：验证码验证通过 2：验证码验证失败
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/checkVerification", method = RequestMethod.POST)
-	public String checkVerification(Model model,String verificationCode){
-		
-		return "/user/updatePassword";
+	public String checkVerification(Model model, int verificationCode, HttpSession session) {
+		CommonUser commonUser = (CommonUser) session.getAttribute("userMSG");
+		int result = commonUserService.checkVerification(verificationCode, commonUser);
+		// 错误信息
+		String error = "";
+		if (result == 0) {
+			error = "发送时间已经超过30分钟，请重新发送。";
+			log.info(error);
+			model.addAttribute("error", error);
+			return "user/checkVerification";
+		}
+		if (result == 2) {
+			error = "您输入的验证码不正确，请重新输入。";
+			log.info(error);
+			model.addAttribute("error", error);
+			return "user/checkVerification";
+		}
+		if (result == 1) {
+			commonUserService.clearVerification(commonUser.getUserIdenf());
+			return "/user/updatePassword";
+		}
+		return "/user/checkVerification";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	/**
+	 * 用户更改密码
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+	public String updatePassword(String newPassWord, Model model, HttpSession session) {
+		// 错误信息
+		String error = "";
+		CommonUser commonUser = (CommonUser) session.getAttribute("userMSG");
+		boolean isSuccess = commonUserService.modifyPassWord(commonUser.getUserIdenf(), newPassWord);
+		if (isSuccess) {
+			error = "密码修改成功";
+			log.info(error);
+			model.addAttribute("error", error);
+			return "user/login";
+		}else{
+			error = "密码修改失败";
+			log.info(error);
+			model.addAttribute("error", error);
+			return "user/updatePassword";
+		}
+	}
+
 }

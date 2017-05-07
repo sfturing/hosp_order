@@ -2,6 +2,7 @@ package cn.sfturing.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import cn.sfturing.entity.CommonUser;
 /**
  * 
@@ -67,5 +68,24 @@ public interface CommonUserService {
 	 * @return
 	 */
 	public int findHeadway(String updateTime);
+	/**
+	 * 检查验证码是否正确
+	 * @param verificationCode
+	 * @return
+	 */
+	public int checkVerification(int verificationCode,CommonUser commonUser);
+	/**
+	 * 清空验证码以及发送时间
+	 * @param userIdenf
+	 * @return
+	 */
+	public int clearVerification(String userIdenf);
+	/**
+	 * 修改新密码
+	 * @param userIdenf
+	 * @param newPassWord
+	 * @return
+	 */
+	public boolean modifyPassWord( String userIdenf,String newPassWord);
 
 }
