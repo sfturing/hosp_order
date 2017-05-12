@@ -52,25 +52,25 @@ input:-webkit-autofill {
 						<div class="form-top">
 							<div class="form-top-left">
 								<h3 style="color: #969696;">找回密码</h3>
-								<p>请输入身份证号及邮箱验证</p>
+								<p>请输入邮箱验证</p>
 							</div>
 							<div class="pull-right-bottom">
 								<p class="text-danger"
 									style="position: absolute; right: 60px; bottom: 300px"
-									id="errorTip">${error}</p>
+									id="errorTip">${error}错误信息</p>
 							</div>
 
 						</div>
 
 						<div class="form-bottom">
 							<form role="form" action="findPassword" method="post" class="login-form" id="findPwdForm">
-								<div class="form-group col-xs-12">
+								<!-- <div class="form-group col-xs-12">
 									<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
 										type="text" name="userIdenf"
 										class="form-username form-control" id="userIdenf" required
 										onkeyup="isClearTip()" style="font-weight: bold" /><span
 										id="idenfTip"></span>
-								</div>
+								</div> -->
 								<div class="form-group col-xs-12">
 								<label class="sr-only" for="userEmail">userEmail</label>注册邮箱(*):<input
 									style="font-weight: bold" type="text" name="userEmail"

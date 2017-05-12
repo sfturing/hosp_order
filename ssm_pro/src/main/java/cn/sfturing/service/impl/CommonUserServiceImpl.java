@@ -42,8 +42,8 @@ public class CommonUserServiceImpl implements CommonUserService {
 	 */
 	@Transactional
 	@Override
-	public int login(String userIdenf, String userPassword, HttpServletRequest request) {
-		CommonUser commonUser = commonUserDao.findCommonUserByUserIdenf(userIdenf);
+	public int login(String userEmail, String userPassword, HttpServletRequest request) {
+		CommonUser commonUser = commonUserDao.findCommonUserByEmail(userEmail);
 		if (commonUser == null) {
 			return 0; // 用户不存在就返回0
 		} else {
@@ -63,18 +63,18 @@ public class CommonUserServiceImpl implements CommonUserService {
 	 */
 	@Transactional
 	public int sign(CommonUser commonUser, HttpServletRequest request) {
-		String userIdenf = commonUser.getUserIdenf();
+		/*String userIdenf = commonUser.getUserIdenf();
 		if (commonUserDao.findCommonUserByUserIdenf(userIdenf) != null) {
 			return 0;// 用户身份证号已注册
-		}
+		}*/
 		String userEmail = commonUser.getUserEmail();
 		if (commonUserDao.findCommonUserByEmail(userEmail) != null) {
 			return 1;// 用户邮箱已注册
 		}
-		String userMobile = commonUser.getUserMobile();
+		/*String userMobile = commonUser.getUserMobile();
 		if (commonUserDao.findCommonUserByMobile(userMobile) != null) {
 			return 2;// 用户手机号已注册
-		}
+		}*/
 		// 将用户密码转为MD5格式
 		String userpwd = commonUser.getUserPassword();
 		commonUser.setUserPassword(MD5.getMD5(userpwd));
@@ -89,9 +89,9 @@ public class CommonUserServiceImpl implements CommonUserService {
 	}
 
 	@Override
-	public boolean findPasswordCheck(String userIdenf, String userEmail) {
-		CommonUser commonUser = commonUserDao.findCommonUserByUserIdenf(userIdenf);
-		if (commonUser.getUserEmail() == userEmail) {
+	public boolean findPasswordCheck(String userEmail) {
+		CommonUser commonUser = commonUserDao.findCommonUserByEmail(userEmail);
+		if (commonUser != null) {
 			return true;
 		} else {
 			return false;
@@ -105,8 +105,8 @@ public class CommonUserServiceImpl implements CommonUserService {
 		log.info("验证码是:" + verificationCode);
 		String updateTime = dateUtil.getCurrentTime(DateFormat.YYYY_MM_DD_HH_mm_ss);
 		log.info(updateTime);
-		String userIdenf = commonUser.getUserIdenf();
-		log.info(userIdenf);
+		String userEmail = commonUser.getUserEmail();
+		log.info(userEmail);
 		String email = commonUser.getUserEmail();
 		log.info(email);
 		String sender = "天津市医院预约系统";
@@ -115,7 +115,7 @@ public class CommonUserServiceImpl implements CommonUserService {
 		boolean isSuccess = mailUtil.sendMail(email, sender, title, content);
 		if (isSuccess == true) {
 			log.info("发送成功");
-			commonUserDao.sendVerification(userIdenf, verificationCode, updateTime);
+			commonUserDao.sendVerification(userEmail, verificationCode, updateTime);
 			return true;
 		} else {
 			log.info("发送失败");
@@ -162,9 +162,9 @@ public class CommonUserServiceImpl implements CommonUserService {
 	 * 清空验证码以及发送时间
 	 */
 	@Override
-	public int clearVerification(String userIdenf) {
+	public int clearVerification(String userEmail) {
 
-		return commonUserDao.clearVerification(userIdenf);
+		return commonUserDao.clearVerification(userEmail);
 	}
 
 	/**

@@ -45,7 +45,7 @@ input:-webkit-autofill {
 						<div class="form-top">
 							<div class="form-top-left">
 								<h3 style="color: #969696;">用户登录</h3>
-								<p>请输入身份证号及密码</p>
+								<p>请输入邮箱及密码</p>
 							</div>
 							<div class="pull-right-bottom">
 								<p class="text-danger"
@@ -58,12 +58,11 @@ input:-webkit-autofill {
 						<div class="form-bottom">
 							<form role="form" action="login" method="post" class="login-form">
 								<div class="form-group col-xs-12">
-									<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
-										type="text" name="userIdenf"
-										class="form-username form-control" id="userIdenf" required
-										onkeyup="isCheckIdenf()" style="font-weight: bold" /><span
-										id="idenfTip"></span>
-								</div>
+								<label class="sr-only" for="userEmail">userEmail</label>邮箱(*):<input
+									style="font-weight: bold" type="text" name="userEmail"
+									id="userEmail" class="form-control input-control clearfix"
+									required onkeyup="isCheckEmail()" /><span id="emailTip"></span>
+							</div>
 								<div class="form-group col-xs-12">
 									<label class="sr-only" for="userPassword">Password</label>密码(*):
 									<input type="password" name="userPassword" placeholder="用户密码"
@@ -95,22 +94,22 @@ input:-webkit-autofill {
 	<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
-	<script type="text/javascript">
-		function isCheckIdenf() {
-			var idenf = document.getElementById("userIdenf").value;
+<script type="text/javascript">
+		function isCheckEmail() {
+			var email = document.getElementById("userEmail").value;
 			document.getElementById("errorTip").innerHTML = "";
-			if (idenf != "") {
-				var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-				isok = reg.test(idenf);
+			if (email != "") {
+				var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+				isok = reg.test(email);
 				if (isok) {
-					document.getElementById("idenfTip").innerHTML = "<font color='#969696'>身份证格式正确</font>";
+					document.getElementById("emailTip").innerHTML = "邮箱格式正确";
 					document.getElementById("btn").disabled = false;
 				} else {
 					document.getElementById("btn").disabled = true;
-					document.getElementById("idenfTip").innerHTML = "身份证格式不正确";
+					document.getElementById("emailTip").innerHTML = "邮箱格式不正确";
 				}
 			} else {
-				document.getElementById("idenfTip").innerHTML = "";
+				document.getElementById("emailTip").innerHTML = "";
 			}
 		}
 	</script>

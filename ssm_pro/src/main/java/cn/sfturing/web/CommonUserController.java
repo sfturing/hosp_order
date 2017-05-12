@@ -50,20 +50,21 @@ public class CommonUserController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model, String userIdenf, String userPassword, HttpSession session,
+	public String login(Model model, String userEmail, String userPassword, HttpSession session,
 			HttpServletRequest request) {
 
 		// 登录用户，并将登录后的状态码返回，如果是0用户不存在，如果是1那么密码错误，如果是2那么密码正确
-		int result = commonUserService.login(userIdenf, userPassword, request);
+		int result = commonUserService.login(userEmail, userPassword, request);
 		// 错误信息
 		String error = "";
 		// 查找这个用户
-		CommonUser commonUser = commonUserService.findCommonUserByUserIdenf(userIdenf);
+		CommonUser commonUser = commonUserService.findCommonUserByEmail(userEmail);
 
 		if (result == 2) {
 			// 如果是2，那么登录成功，返回index
 			model.addAttribute("user", commonUser);
-			return "detail";
+			session.setAttribute("userInfo", commonUser);
+			return "test/detail";
 		} else if (result == 1) {
 			error = "密码错误";
 			log.info(error);
@@ -101,24 +102,24 @@ public class CommonUserController {
 		int result = commonUserService.sign(commonUser, request);
 		// 错误信息
 		String error = "";
-		if (result == 0) {
+		/*if (result == 0) {
 			error = "用户身份证已被注册";
 			log.info(error);
 			model.addAttribute("error", error);
 			return "user/sign";
-		}
+		}*/
 		if (result == 1) {
-			error = "用户邮箱已注册已被注册";
+			error = "用户邮箱已被注册";
 			log.info(error);
 			model.addAttribute("error", error);
 			return "user/sign";
 		}
-		if (result == 2) {
+		/*if (result == 2) {
 			error = "用户手机号已被注册";
 			log.info(error);
 			model.addAttribute("error", error);
 			return "user/sign";
-		}
+		}*/
 
 		error = "注册成功，请登录账号";
 		log.info(error);
@@ -142,11 +143,11 @@ public class CommonUserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/findPassword", method = RequestMethod.POST)
-	public String findPassword(Model model, final String userIdenf, String userEmail, final HttpSession session) {
+	public String findPassword(Model model,  final String userEmail, final HttpSession session) {
 		// 错误信息
 		String error = "";
 		// 通过输入的身份证查找用户
-		final CommonUser commonUser = commonUserService.findCommonUserByUserIdenf(userIdenf);
+		final CommonUser commonUser = commonUserService.findCommonUserByEmail(userEmail);
 		// 用户不存在返回找回密码页面
 		if (commonUser == null) {
 			error = "用户不存在，请检查后输入";
@@ -175,7 +176,7 @@ public class CommonUserController {
 						boolean isSuccess = commonUserService.sendEmailCheck(commonUser);
 						if (isSuccess) {
 							log.info(commonUser.getUserEmail() + "发送成功" + commonUser.getUpdateTime());
-							CommonUser userMSG = commonUserService.findCommonUserByUserIdenf(userIdenf);
+							CommonUser userMSG = commonUserService.findCommonUserByEmail(userEmail);
 							session.setAttribute("userMSG", userMSG);
 						} else {
 							log.info(commonUser.getUserEmail() + "发送失败" + commonUser.getUpdateTime());
@@ -211,7 +212,7 @@ public class CommonUserController {
 			return "user/checkVerification";
 		}
 		if (result == 1) {
-			commonUserService.clearVerification(commonUser.getUserIdenf());
+			commonUserService.clearVerification(commonUser.getUserEmail());
 			return "/user/updatePassword";
 		}
 		return "/user/checkVerification";
@@ -227,7 +228,7 @@ public class CommonUserController {
 		// 错误信息
 		String error = "";
 		CommonUser commonUser = (CommonUser) session.getAttribute("userMSG");
-		boolean isSuccess = commonUserService.modifyPassWord(commonUser.getUserIdenf(), newPassWord);
+		boolean isSuccess = commonUserService.modifyPassWord(commonUser.getUserEmail(), newPassWord);
 		if (isSuccess) {
 			error = "密码修改成功";
 			log.info(error);

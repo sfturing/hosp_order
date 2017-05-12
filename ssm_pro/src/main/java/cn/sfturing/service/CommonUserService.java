@@ -21,7 +21,7 @@ public interface CommonUserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public int login(String userIdenf, String userPassword, HttpServletRequest request);
+	public int login(String userEmail, String userPassword, HttpServletRequest request);
 
 	/**
 	 * 用户注册
@@ -32,13 +32,13 @@ public interface CommonUserService {
 	public int sign(CommonUser commonUser, HttpServletRequest request);
 
 	/**
-	 * 用户找回密码用户身份证与邮箱是否匹配
+	 * 用户找回密码邮箱是否匹配
 	 * 
 	 * @param userIdenf
 	 * @param userEmail
 	 * @return
 	 */
-	public boolean findPasswordCheck(String userIdenf, String userEmail);
+	public boolean findPasswordCheck(String userEmail);
 	
 	/**
 	 * 发送邮件并返回发送结果
@@ -79,13 +79,13 @@ public interface CommonUserService {
 	 * @param userIdenf
 	 * @return
 	 */
-	public int clearVerification(String userIdenf);
+	public int clearVerification(String userEmail);
 	/**
 	 * 修改新密码
 	 * @param userIdenf
 	 * @param newPassWord
 	 * @return
 	 */
-	public boolean modifyPassWord( String userIdenf,String newPassWord);
+	public boolean modifyPassWord( String userEmail,String newPassWord);
 
 }

@@ -36,26 +36,32 @@ input:-webkit-autofill {
 							<p>请输入注册信息</p>
 						</div>
 						<div class="pull-right-bottom">
-							<!-- <i class="fa fa-user"></i> -->
-							<p class="text-danger"
-								style="position: absolute; right: 60px; bottom: 770px"
-								id="errorTip">${error}</p>
-						</div>
+								<p class="text-danger"
+									style="position: absolute; right: 60px; bottom: 430px"
+									id="errorTip">${error}</p>
+							</div>
 
 					</div>
-
 					<div class="form-bottom">
 						<form role="form" action="sign" method="post" class="login-form">
-							<div class="form-group col-xs-12">
-								<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
-									type="text" name="userIdenf" class="form-username form-control"
-									id="userIdenf" required 
-									style="font-weight: bold" onkeyup="isCheckIdenf()"/><span id="idenfTip"></span>
-							</div>
+							<!--  
 							<div class="form-group col-xs-12">
 								<label class="sr-only" for="userName">userName</label>姓名(*):<input
 									style="font-weight: bold" type="text" name="userName"
 									id="userName" class="form-username form-control" required />
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="sr-only" for="userIdenf">身份证号</label>身份证号(*):<input
+									type="text" name="userIdenf" class="form-username form-control"
+									id="userIdenf" required style="font-weight: bold"
+									onkeyup="isCheckIdenf()" /><span id="idenfTip"></span>
+							</div>
+							-->
+							<div class="form-group col-xs-12">
+								<label class="sr-only" for="userEmail">userEmail</label>邮箱(*):<input
+									style="font-weight: bold" type="text" name="userEmail"
+									id="userEmail" class="form-control input-control clearfix"
+									required onkeyup="isCheckEmail()" /><span id="emailTip"></span>
 							</div>
 							<div class="form-group col-xs-12">
 								<label class="sr-only" for="userPassword">password</label>密码(*):<input
@@ -68,12 +74,8 @@ input:-webkit-autofill {
 									name="userPasswordCof" class="form-password form-control "
 									id="pwd2" required onkeyup="isCheckPwd()" /> <span id="pwdTip"></span>
 							</div>
-							<div class="form-group col-xs-12">
-								<label class="sr-only" for="userEmail">userEmail</label>邮箱(*):<input
-									style="font-weight: bold" type="text" name="userEmail"
-									id="userEmail" class="form-control input-control clearfix"
-									required onkeyup="isCheckEmail()" /><span id="emailTip"></span>
-							</div>
+
+							<!--
 							<div class="form-group col-xs-12">
 								<label class="sr-only" for="userMobile">userMobile</label>手机号(*):<input
 									style="font-weight: bold" type="text" name="userMobile"
@@ -87,12 +89,13 @@ input:-webkit-autofill {
 									<option value="女">女</option>
 								</select>
 							</div>
+							-->
 							<div class="form-group col-xs-12">
 								<button type="submit" class="btn" id="btn">立即注册</button>
 							</div>
 						</form>
-						<span><a href="findPassword">找回密码</a></span> <span><a href="login"
-							class="pull-right">用户登录</a></span>
+						<span><a href="findPassword">找回密码</a></span> <span><a
+							href="login" class="pull-right">用户登录</a></span>
 					</div>
 				</div>
 			</div>
@@ -107,6 +110,7 @@ input:-webkit-autofill {
 	<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
+        <!--
 	<script type="text/javascript">
 		function isCheckIdenf() {
 			var idenf = document.getElementById("userIdenf").value;
@@ -126,6 +130,7 @@ input:-webkit-autofill {
 			}
 		}
 	</script>
+	  -->
 	<script>
 		function isCheckPwd() {
 			var pwd1 = document.getElementById("pwd1").value;
@@ -140,6 +145,7 @@ input:-webkit-autofill {
 			}
 		}
 	</script>
+	
 	<script type="text/javascript">
 		function isCheckEmail() {
 			var email = document.getElementById("userEmail").value;
@@ -159,6 +165,7 @@ input:-webkit-autofill {
 			}
 		}
 	</script>
+	<!--
 	<script type="text/javascript">
 		function isCheckMobile() {
 			var mobile = document.getElementById("userMobile").value;
@@ -178,6 +185,7 @@ input:-webkit-autofill {
 			}
 		}
 	</script>
+	-->
 </body>
 
 </html>

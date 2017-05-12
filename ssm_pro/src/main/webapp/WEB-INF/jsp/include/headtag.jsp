@@ -1,5 +1,4 @@
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="shortcut icon" href="assets/ico/favicon.png">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="assets/ico/favicon.png">

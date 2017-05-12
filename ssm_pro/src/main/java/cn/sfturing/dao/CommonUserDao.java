@@ -41,23 +41,23 @@ public interface CommonUserDao {
 
 	/******************** 用户修改信息（用户个人中心修改方法） *************************/
 	// 修改用户密码，需要邮箱验证
-	public int modifyPassWord(@Param("userIdenf") String userIdenf, @Param("newPassWord") String newPassWord);
+	public int modifyPassWord(@Param("userEmail") String userEmail, @Param("newPassWord") String newPassWord);
 
 	// 修改用户手机，需要邮箱验证
-	public int modifyPhone(@Param("userIdenf") String userIdenf, @Param("newPhone") String newPhone);
+	public int modifyPhone(@Param("userEmail") String userEmail, @Param("newPhone") String newPhone);
 
 	// 修改用户邮箱，需要申诉
 	public int modifyEmail(@Param("userIdenf") String userIdenf, @Param("newEmail") String newEmail);
 
 	// 更新验证码并设置发送时间
-	public int sendVerification(@Param("userIdenf") String userIdenf,
+	public int sendVerification(@Param("userEmail") String userEmail,
 			@Param("verificationCode") int verificationCode, @Param("updateTime") String updateTime);
 
 	// 清空验证码
-	public int clearVerification(String userIdenf);
+	public int clearVerification(String userEmail);
 
 	// 激活用户
-	public int activateCommonUser(String email);
+	public int activateCommonUser(String userEmail);
 
 	/****************************** 修改用户后台信息 ***************************************/
 	// 更新最后登陆ip和最后登陆时间
