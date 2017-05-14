@@ -5,10 +5,10 @@
 <!-- Top menu -->
 
 <nav class="navbar navbar-inverse navbar-no-bg navbar-fixed-top"
-	role="navigation">
+	role="navigation" >
 	<div class="container">
 		<div style="position: absolute; left: 40px; top: 6px;">
-			<a href="#menu-toggle" class="btn btn-inverse" id="menu-toggle">MENU</a>
+			<a href="#menu-toggle" class="btn btn-inverse" id="menu-toggle">菜单栏</a>
 		</div>
 		<div style="position: absolute; left: 150px; top: -2px;">
 			<a class="navbar-brand" href="index">天津市医院预约挂号系统</a>
@@ -22,7 +22,7 @@
 							<a class="navbar-brand" style="font-size: 12px;" href="login"><strong>登录</strong></a>
 							<a class="navbar-brand" style="font-size: 12px;" href="sign"><strong>注册</strong></a>
 						</c:if>
-						<c:if test="${userInfo.userIdenf == null}">
+						<c:if test="${userInfo.userIdenf == null}&&${userInfo.userEmail != null}">
 							<a class="navbar-brand" style="font-size: 12px;" href="#"><strong>完善个人信息</strong></a>
 						</c:if>
 						<c:if test="${userInfo.userIdenf != null}">

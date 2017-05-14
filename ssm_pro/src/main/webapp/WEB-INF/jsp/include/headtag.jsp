@@ -13,7 +13,7 @@
 
 <!-- Custom CSS -->
 <link href="assets/bootstrap/css/simple-sidebar.css" rel="stylesheet">
-
+<link rel="stylesheet" href="assets/css/custom.css">
 <!-- jQuery -->
 <script src="assets/bootstrap/js/jquery.js"></script>
 

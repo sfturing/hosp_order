@@ -18,10 +18,35 @@
 <body>
 	<jsp:include page="../include/head.jsp" />
 	<jsp:include page="../include/menu.jsp" />
+	 <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                    <br /><br/>
+                     <h2>预留页面标题</h2>   
+                        <h5>预留内容小标题. </h5>
+                       
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+      
 </body>
 <!-- Javascript -->
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.backstretch.min.js"></script>
-	<!--不需要背景 <script src="assets/js/scripts.js"></script> -->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<!--不需要背景 <script src="assets/js/scripts.js"></script> -->
+<!-- <script type="text/javascript">
+	jQuery(document).ready(function() {
+	
+    $.backstretch("assets/img/backgrounds/1.jpg");
+    
+    });
+    </script> -->
 </html>
