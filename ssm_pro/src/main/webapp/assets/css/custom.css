@@ -353,10 +353,11 @@ line-height: 1.428571429;
  
  @media(min-width:768px) {
      #page-wrapper{
-               margin: 0 0 0 260px;
+     	margin-top: 50px;
+        margin: 0 0 0 260px;
         padding: 15px 30px;
         min-height: 1200px;
-		
+        
     }
 	
 	

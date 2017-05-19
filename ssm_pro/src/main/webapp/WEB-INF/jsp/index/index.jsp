@@ -18,28 +18,75 @@
 <body>
 	<jsp:include page="../include/head.jsp" />
 	<jsp:include page="../include/menu.jsp" />
-	 <div id="page-wrapper" >
-            <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                    <br /><br/>
-                     <h2>预留页面标题</h2>   
-                        <h5>预留内容小标题. </h5>
-                       
-                    </div>
-                </div>
-                 <!-- /. ROW  -->
-                 <hr />
-               
-    </div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
-      
+	<div id="page-wrapper" style="margin-top: 50px;">
+		<div id="page-inner">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- <br />
+					<br />
+					<h2>预留页面标题</h2>
+					<h5>预留内容小标题.</h5> -->
+					
+					<div class="carousel slide" id="carousel-630453">
+				<ol class="carousel-indicators">
+					<li data-slide-to="0" data-target="#carousel-630453">
+					</li>
+					<li data-slide-to="1" data-target="#carousel-630453" class="active">
+					</li>
+					<li data-slide-to="2" data-target="#carousel-630453">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item">
+						<img alt="" src="assets/img/1.jpg" />
+						<div class="carousel-caption">
+							<h4>
+								First Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item active">
+						<img alt="" src="assets/img/2.jpg" />
+						<div class="carousel-caption">
+							<h4>
+								Second Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="" src="assets/img/3.jpg" />
+						<div class="carousel-caption">
+							<h4>
+								Third Thumbnail label
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+				</div> <a class="left carousel-control" href="#carousel-630453" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-630453" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+				</div>
+			</div>
+			<!-- /. ROW  -->
+			<hr />
+
+		</div>
+		<!-- /. PAGE INNER  -->
+
+	</div>
+	<!-- /. PAGE WRAPPER  -->
+
 </body>
 <!-- Javascript -->
-<script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/bootstrap/js/jquery.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <!--不需要背景 <script src="assets/js/scripts.js"></script> -->
 <!-- <script type="text/javascript">

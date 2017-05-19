@@ -180,5 +180,19 @@ public class CommonUserServiceImpl implements CommonUserService {
 			return false;
 		}
 	}
+	/**
+	 * 完善个人信息
+	 */
+	@Override
+	public int addUserInfo(String userEmail, String userIdenf, String userName, String userMobile,String userSex) {
+		if (commonUserDao.findCommonUserByUserIdenf(userIdenf) != null) {
+			return 0;// 用户身份证号已注册
+		}
+		if (commonUserDao.findCommonUserByMobile(userMobile) != null) {
+			return 2;// 用户手机号已注册
+		}
+		commonUserDao.addUserInfo(userEmail, userIdenf, userName, userMobile,userSex);
+		return 1; //用户更新成功
+	}
 
 }

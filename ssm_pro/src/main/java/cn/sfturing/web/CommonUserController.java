@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import cn.sfturing.entity.CommonUser;
 import cn.sfturing.service.CommonUserService;
 
@@ -36,7 +38,8 @@ public class CommonUserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login(HttpSession session) {
+		session.invalidate();
 		return "user/login";
 	}
 
@@ -85,7 +88,8 @@ public class CommonUserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/sign", method = RequestMethod.GET)
-	public String sign() {
+	public String sign(HttpSession session) {
+		session.invalidate();
 		return "user/sign";
 	}
 
@@ -102,24 +106,20 @@ public class CommonUserController {
 		int result = commonUserService.sign(commonUser, request);
 		// 错误信息
 		String error = "";
-		/*if (result == 0) {
-			error = "用户身份证已被注册";
-			log.info(error);
-			model.addAttribute("error", error);
-			return "user/sign";
-		}*/
+		/*
+		 * if (result == 0) { error = "用户身份证已被注册"; log.info(error);
+		 * model.addAttribute("error", error); return "user/sign"; }
+		 */
 		if (result == 1) {
 			error = "用户邮箱已被注册";
 			log.info(error);
 			model.addAttribute("error", error);
 			return "user/sign";
 		}
-		/*if (result == 2) {
-			error = "用户手机号已被注册";
-			log.info(error);
-			model.addAttribute("error", error);
-			return "user/sign";
-		}*/
+		/*
+		 * if (result == 2) { error = "用户手机号已被注册"; log.info(error);
+		 * model.addAttribute("error", error); return "user/sign"; }
+		 */
 
 		error = "注册成功，请登录账号";
 		log.info(error);
@@ -143,7 +143,7 @@ public class CommonUserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/findPassword", method = RequestMethod.POST)
-	public String findPassword(Model model,  final String userEmail, final HttpSession session) {
+	public String findPassword(Model model, final String userEmail, final HttpSession session) {
 		// 错误信息
 		String error = "";
 		// 通过输入的身份证查找用户
@@ -177,6 +177,7 @@ public class CommonUserController {
 						if (isSuccess) {
 							log.info(commonUser.getUserEmail() + "发送成功" + commonUser.getUpdateTime());
 							CommonUser userMSG = commonUserService.findCommonUserByEmail(userEmail);
+							userMSG.setStatus(0);
 							session.setAttribute("userMSG", userMSG);
 						} else {
 							log.info(commonUser.getUserEmail() + "发送失败" + commonUser.getUpdateTime());
@@ -213,7 +214,15 @@ public class CommonUserController {
 		}
 		if (result == 1) {
 			commonUserService.clearVerification(commonUser.getUserEmail());
-			return "/user/updatePassword";
+			if(commonUser.getStatus() ==0){
+				System.out.println(commonUser.getStatus());
+				return "/user/updatePassword";
+			}
+			if(commonUser.getStatus() == 1 ){
+				System.out.println(commonUser.getStatus());
+				return "user/addUserInfo";
+			}
+			
 		}
 		return "/user/checkVerification";
 	}
@@ -234,12 +243,61 @@ public class CommonUserController {
 			log.info(error);
 			model.addAttribute("error", error);
 			return "user/login";
-		}else{
+		} else {
 			error = "密码修改失败";
 			log.info(error);
 			model.addAttribute("error", error);
 			return "user/updatePassword";
 		}
+	}
+
+	/**
+	 * 用户完善信息
+	 */
+	@RequestMapping(value = "/addUserInfo", method = RequestMethod.GET)
+	public String addUserInfo(final HttpSession session,Model model) {
+		final CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		// 单独开启线程发送邮件，防止用户等待时间过长，成功日志输出，失败也输出。
+		new Thread(new Runnable() {
+			public void run() {
+				boolean isSuccess = commonUserService.sendEmailCheck(commonUser);
+				if (isSuccess) {
+					log.info(commonUser.getUserEmail() + "发送成功" + commonUser.getUpdateTime());
+					CommonUser userMSG = commonUserService.findCommonUserByEmail(commonUser.getUserEmail());
+					userMSG.setStatus(1);
+					session.setAttribute("userMSG", userMSG);
+				} else {
+					log.info(commonUser.getUserEmail() + "发送失败" + commonUser.getUpdateTime());
+				}
+			}
+		}).start();
+		return "/user/checkVerification";
+	}
+
+	/**
+	 * 用户完善信息
+	 */
+	@RequestMapping(value = "/addUserInfo", method = RequestMethod.POST)
+	public String addUserInfo(String userIdenf, String userName, String userMobile, String userSex, HttpSession session,
+			Model model) {
+		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		String error = "";
+		int result = commonUserService.addUserInfo(commonUser.getUserEmail(), userIdenf, userName, userMobile, userSex);
+		if (result == 0) {
+			error = "身份证已经被注册";
+			log.info(error);
+			model.addAttribute("error", error);
+			return "user/addUserInfo";
+		}
+		if (result == 2) {
+			error = "手机号已经被注册";
+			log.info(error);
+			model.addAttribute("error", error);
+			return "user/addUserInfo";
+		}
+		CommonUser commonUser1 = commonUserService.findCommonUserByEmail(commonUser.getUserEmail());
+		session.setAttribute("userInfo", commonUser1);
+		return "index/index";
 	}
 
 }

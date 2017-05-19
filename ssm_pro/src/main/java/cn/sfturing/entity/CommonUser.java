@@ -37,8 +37,8 @@ public class CommonUser {
 	//验证码
 	private int verificationCode;
 	//User是否激活状态。0：表示未激活，1：表示以激活，可以挂号
-	private Byte status;
-	//user是否存在。0：存在，1：不存在
+	private int status;
+	//user是否存在。0：修改密码校验码，1：完善信息校验码
 	private int isdelete;
 	public long getUserId() {
 		return userId;
@@ -118,10 +118,10 @@ public class CommonUser {
 	public void setVerificationCode(int verificationCode) {
 		this.verificationCode = verificationCode;
 	}
-	public Byte getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(Byte status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public int getIsdelete() {
@@ -138,6 +138,7 @@ public class CommonUser {
 				+ lastLoginIp + ", updateTime=" + updateTime + ", verificationCode=" + verificationCode + ", status="
 				+ status + ", isdelete=" + isdelete + "]";
 	}
+	
 	
 
 }

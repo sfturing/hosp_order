@@ -5,7 +5,8 @@
 	<!-- Sidebar -->
 	<div id="sidebar-wrapper">
 		<ul class="sidebar-nav">
-			<li class="sidebar-brand"><a href="#">sfturing </a></li>
+			<li class="sidebar-brand"><a href="#"> </a></li>
+			<br />
 			<br />
 			<li><a href="#">医院</a></li>
 			<li><a href="#">科室</a></li>
@@ -32,10 +33,4 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Menu Toggle Script -->
-<script>
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-		$("#wrapper").toggleClass("toggled");
-	});
-</script>
+

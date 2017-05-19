@@ -87,5 +87,15 @@ public interface CommonUserService {
 	 * @return
 	 */
 	public boolean modifyPassWord( String userEmail,String newPassWord);
+	/**
+	 * 完善个人信息
+	 * @param userEmail
+	 * @param userIdenf
+	 * @param userName
+	 * @param userMobile
+	 * @return
+	 */
+	public int addUserInfo(String userEmail,String userIdenf,String userName, String userMobile,String userSex);
+		
 
 }

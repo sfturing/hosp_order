@@ -58,6 +58,9 @@ public interface CommonUserDao {
 
 	// 激活用户
 	public int activateCommonUser(String userEmail);
+	
+	//完善用户信息
+	public int addUserInfo(@Param("userEmail") String userEmail,@Param("userIdenf") String userIdenf,@Param("userName") String userName,@Param("userMobile") String userMobile,@Param("userSex") String userSex);
 
 	/****************************** 修改用户后台信息 ***************************************/
 	// 更新最后登陆ip和最后登陆时间

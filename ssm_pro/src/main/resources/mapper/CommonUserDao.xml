@@ -54,12 +54,8 @@
 		WHERE
 		user_email=#{userEmail}
 	</update>
-	<!-- <update id="modifyEmail">
-		UPDATE commonuser SET
-		user_email=#{newEmail}
-		WHERE
-		user_idenf=#{userIdenf}
-	</update> -->
+	<!-- <update id="modifyEmail"> UPDATE commonuser SET user_email=#{newEmail} 
+		WHERE user_idenf=#{userIdenf} </update> -->
 	<update id="modifyPhone">
 		UPDATE commonuser SET
 		user_mobile=#{newPhone}
@@ -79,7 +75,7 @@
 	<!-- 更新验证码并设置发送时间 -->
 	<update id="clearVerification">
 		UPDATE commonuser SET
-		verification_code = null
+		verification_code = '0000'
 		WHERE
 		user_email=#{userEmail}
 	</update>
@@ -92,7 +88,7 @@
 		user_email=#{userEmail}
 	</update>
 
-	<!-- 更新用户信息 -->
+	<!-- 更新用户登录信息以及ip信息 -->
 	<update id="modifyIpAndTime">
 		UPDATE commonuser SET
 		last_login_time
@@ -101,6 +97,13 @@
 		user_email=#{userEmail}
 	</update>
 
+	<update id="addUserInfo">
+		UPDATE commonuser SET
+		user_idenf
+		=#{userIdenf},user_name=#{userName},user_mobile=#{userMobile},user_sex=#{userSex}
+		WHERE
+		user_email=#{userEmail}
+	</update>
 
 
 </mapper>
