@@ -8,7 +8,7 @@
 			<li class="sidebar-brand"><a href="#"> </a></li>
 			<br />
 			<br />
-			<li><a href="#">医院</a></li>
+			<li><a href="hosIndex">医院</a></li>
 			<li><a href="#">科室</a></li>
 			<li><a href="#">医生</a></li>
 			<li><a href="#">疾病</a></li>

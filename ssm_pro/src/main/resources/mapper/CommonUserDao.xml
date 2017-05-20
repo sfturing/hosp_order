@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="cn.sfturing.dao.CommonUserDao">
 	<!-- 查找用户，通过id、email、userName、phone -->
 	<select id="findCommonUserByUserId" resultType="CommonUser"

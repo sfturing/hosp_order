@@ -5,7 +5,7 @@
 <!-- Top menu -->
 
 <nav class="navbar navbar-inverse navbar-no-bg navbar-fixed-top"
-	role="navigation">
+	role="navigation" style= "border-color: #101010">
 	<div class="container">
 		<div style="position: absolute; left: 40px; top: 6px;"></div>
 		<div style="position: absolute; left: 150px; top: -2px;">

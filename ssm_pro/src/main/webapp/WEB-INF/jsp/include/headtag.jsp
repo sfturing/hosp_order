@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon-precomposed" href="assets/ico/favicon.png">
 
 <!-- Bootstrap Core CSS -->
-<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/newbootstrap/css/bootstrap.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="assets/bootstrap/css/simple-sidebar.css" rel="stylesheet">

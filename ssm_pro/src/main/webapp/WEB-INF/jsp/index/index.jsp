@@ -41,10 +41,10 @@
 						<img alt="" src="assets/img/1.jpg" />
 						<div class="carousel-caption">
 							<h4>
-								First Thumbnail label
+								天津市挂号系统已上线
 							</h4>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								热烈庆祝挂号系统上线,已经支持网上预付功能。
 							</p>
 						</div>
 					</div>
@@ -52,10 +52,10 @@
 						<img alt="" src="assets/img/2.jpg" />
 						<div class="carousel-caption">
 							<h4>
-								Second Thumbnail label
+								全国医院查询功能
 							</h4>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								支持4万余医院信息查询，助您准确查询医院信息。
 							</p>
 						</div>
 					</div>
@@ -63,10 +63,10 @@
 						<img alt="" src="assets/img/3.jpg" />
 						<div class="carousel-caption">
 							<h4>
-								Third Thumbnail label
+								常见疾病
 							</h4>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								查询常见疾病，提前预防，准确医治。
 							</p>
 						</div>
 					</div>

@@ -7,6 +7,8 @@ package cn.sfturing.entity;
  * @date 2017年4月29日
  */
 public class Hospital {
+	//医院id
+	private int id;
 	//医院名称
 	private String hospitalName;
 	//医院的地区
@@ -41,6 +43,14 @@ public class Hospital {
 	private int hospitalBedNum;
 	//年门诊量
 	private int outpatientNum;
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getHospitalName() {
 		return hospitalName;
 	}
@@ -145,13 +155,25 @@ public class Hospital {
 	}
 	@Override
 	public String toString() {
-		return "Hospital [hospitalName=" + hospitalName + ", hospitalArea=" + hospitalArea + ", hospitalImg="
-				+ hospitalImg + ", hospitalDeanNsame=" + hospitalDeanNsame + ", hospitalYear=" + hospitalYear
-				+ ", hospitalNature=" + hospitalNature + ", hospitalGrade=" + hospitalGrade + ", isMedicalInsurance="
-				+ isMedicalInsurance + ", hospitalEquipment=" + hospitalEquipment + ", hospitalbout=" + hospitalbout
-				+ ", hospitalHonor=" + hospitalHonor + ", hospitalUrl=" + hospitalUrl + ", hospitalPhone="
-				+ hospitalPhone + ", hospitalOfficesNum=" + hospitalOfficesNum + ", medicalInsuranceNum="
-				+ medicalInsuranceNum + ", hospitalBedNum=" + hospitalBedNum + ", outpatientNum=" + outpatientNum + "]";
+		return "Hospital [id=" + id + ", hospitalName=" + hospitalName + ", hospitalArea=" + hospitalArea
+				+ ", hospitalImg=" + hospitalImg + ", hospitalDeanNsame=" + hospitalDeanNsame + ", hospitalYear="
+				+ hospitalYear + ", hospitalNature=" + hospitalNature + ", hospitalGrade=" + hospitalGrade
+				+ ", isMedicalInsurance=" + isMedicalInsurance + ", hospitalEquipment=" + hospitalEquipment
+				+ ", hospitalbout=" + hospitalbout + ", hospitalHonor=" + hospitalHonor + ", hospitalUrl=" + hospitalUrl
+				+ ", hospitalPhone=" + hospitalPhone + ", hospitalOfficesNum=" + hospitalOfficesNum
+				+ ", medicalInsuranceNum=" + medicalInsuranceNum + ", hospitalBedNum=" + hospitalBedNum
+				+ ", outpatientNum=" + outpatientNum + ", getId()=" + getId() + ", getHospitalName()="
+				+ getHospitalName() + ", getHospitalArea()=" + getHospitalArea() + ", getHospitalImg()="
+				+ getHospitalImg() + ", getHospitalDeanNsame()=" + getHospitalDeanNsame() + ", getHospitalYear()="
+				+ getHospitalYear() + ", getHospitalNature()=" + getHospitalNature() + ", getHospitalGrade()="
+				+ getHospitalGrade() + ", getIsMedicalInsurance()=" + getIsMedicalInsurance()
+				+ ", getHospitalEquipment()=" + getHospitalEquipment() + ", getHospitalbout()=" + getHospitalbout()
+				+ ", getHospitalHonor()=" + getHospitalHonor() + ", getHospitalUrl()=" + getHospitalUrl()
+				+ ", getHospitalPhone()=" + getHospitalPhone() + ", getHospitalOfficesNum()=" + getHospitalOfficesNum()
+				+ ", getMedicalInsuranceNum()=" + getMedicalInsuranceNum() + ", getHospitalBedNum()="
+				+ getHospitalBedNum() + ", getOutpatientNum()=" + getOutpatientNum() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
+	
+	
 }
