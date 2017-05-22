@@ -67,7 +67,7 @@ public class CommonUserController {
 			// 如果是2，那么登录成功，返回index
 			model.addAttribute("user", commonUser);
 			session.setAttribute("userInfo", commonUser);
-			return "test/detail";
+			return "index/index";
 		} else if (result == 1) {
 			error = "密码错误";
 			log.info(error);

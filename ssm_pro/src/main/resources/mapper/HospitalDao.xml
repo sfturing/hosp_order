@@ -4,19 +4,23 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sfturing.dao.HospitalDao">
 	<!--通过ID查询医院 -->
-	<select id="findHosById" resultMap="Hospital" parameterType="int">
+	<select id="findHosById" resultType="cn.sfturing.entity.Hospital" parameterType="int">
 		SELECT * FROM `hospital`
 		WHERE id = #{id}
 	</select>
 	<!--通过医院名称查询医院  -->
-	<select id="findHosByName" resultMap="Hospital" parameterType="java.lang.String">
+	<select id="findHosByName" resultType="cn.sfturing.entity.Hospital" parameterType="java.lang.String">
 		SELECT * FROM `hospital`
 		WHERE hospital_name = #{hospitalName}
 	</select>
 	<!-- 查询开通预约挂号的医院 -->
-	<select id="findOpenHos" resultMap="Hospital">
+	<select id="findOpenHos" resultType="cn.sfturing.entity.Hospital">
 		SELECT * FROM `hospital`
 		WHERE is_open = 1
 	</select>
-
+	<!-- 推荐9个开通预约挂号的医院 -->
+	<select id="findHosByRe" resultType="cn.sfturing.entity.Hospital">
+		SELECT * FROM `hospital`
+		WHERE is_open = 1 limit 0,9
+	</select>
 </mapper>

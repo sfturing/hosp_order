@@ -23,27 +23,33 @@
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					
-					<p class="text-left">医院列表</p>
-					
-
-
+					<p class="text-left">推荐医院列表</p>
+					<div class="col-md-12">
+						<div class="nav navbar-nav navbar-right">
+							<a href="#">查看更多可预约医院</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<hr />
 			<br /> <br />
-			<%-- <c:forEach var="hos" items="${hospital }" varStatus="status"> --%>
-			<c:forEach var="i" begin="1" end="9" varStatus="status">
-				<div class="col-md-4">
+			<c:forEach var="hos" items="${hospital }" varStatus="status">
+				<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
+				<div class="col-md-3">
 					<div class="thumbnail">
 						<img alt="Bootstrap Thumbnail Third"
 							src="http://yyk.99.com.cn/Images/NoPicture.jpg">
 						<div class="caption">
-							<h3>医院名称</h3>
-							<p>医院介绍.</p>
+							<h4>${hos.hospitalName}</h4>
+							<p>
+								<span class="glyphicon glyphicon-earphone "></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalPhone}
+							</p>
+							<p>
+								<span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalAddress}
+							</p>
 							<p>
 								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="#">详细信息</a>
+									href="hosInfoShow">详细信息</a>
 							</p>
 						</div>
 					</div>
