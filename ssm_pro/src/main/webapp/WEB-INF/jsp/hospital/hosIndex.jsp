@@ -49,7 +49,7 @@
 							</p>
 							<p>
 								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="hosInfoShow">详细信息</a>
+									href="hosInfoShow/${hos.id}">详细信息</a>
 							</p>
 						</div>
 					</div>

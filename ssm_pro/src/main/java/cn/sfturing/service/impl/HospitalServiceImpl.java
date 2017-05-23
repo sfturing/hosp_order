@@ -27,4 +27,10 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalDao.findHosByRe();
 	}
 
+	@Override
+	public Hospital findHosById(int id) {
+		
+		return hospitalDao.findHosById(id);
+	}
+
 }

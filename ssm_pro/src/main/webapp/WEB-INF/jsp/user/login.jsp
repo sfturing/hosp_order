@@ -12,9 +12,9 @@
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
 
 <link rel="stylesheet"
-	href="assets/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/form-elements.css">
-<link rel="stylesheet" href="assets/css/style.css">
+	href="${mybasePath}assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="${mybasePath}assets/css/form-elements.css">
+<link rel="stylesheet" href="${mybasePath}assets/css/style.css">
 
 <style>
 input:-webkit-autofill {
@@ -86,10 +86,9 @@ input:-webkit-autofill {
 
 
 	<!-- Javascript -->
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.backstretch.min.js"></script>
-	<script src="assets/js/scripts.js"></script>
+	<script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${mybasePath}assets/js/jquery.backstretch.min.js"></script>
+	<script src="${mybasePath}assets/js/scripts.js"></script>
 
 	<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>

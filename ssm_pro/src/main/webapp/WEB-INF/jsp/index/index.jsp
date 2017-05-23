@@ -5,15 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>天津市医院预约挂号</title>
+<%
+	/********** 保存网站的基本路径 ***********/
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() 
+	+ ":" + request.getServerPort()
+			+ path + "/";
+	//将该路径地址缓存到 session中 ,例如：http://localhost:8090/tjnu_ssh_1128/
+	session.setAttribute("mybasePath", basePath);
+%>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="assets/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/form-elements.css">
-<link rel="stylesheet" href="assets/css/style.css">
+	href="${mybasePath}assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="${mybasePath}assets/css/form-elements.css">
+<link rel="stylesheet" href="${mybasePath}assets/css/style.css">
 </head>
 <body>
 	<jsp:include page="../include/head.jsp" />
@@ -40,9 +48,9 @@
 					<div class="item">
 						<img alt="" src="assets/img/1.jpg" />
 						<div class="carousel-caption">
-							<h4>
+							<p>
 								天津市挂号系统已上线
-							</h4>
+							</p>
 							<p>
 								热烈庆祝挂号系统上线,已经支持网上预付功能。
 							</p>
@@ -51,9 +59,9 @@
 					<div class="item active">
 						<img alt="" src="assets/img/2.jpg" />
 						<div class="carousel-caption">
-							<h4>
+							<p>
 								全国医院查询功能
-							</h4>
+							</p>
 							<p>
 								支持4万余医院信息查询，助您准确查询医院信息。
 							</p>
@@ -85,9 +93,9 @@
 
 </body>
 <!-- Javascript -->
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/bootstrap/js/jquery.min.js"></script>
-<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="${mybasePath}assets/bootstrap/js/jquery.min.js"></script>
+<script src="${mybasePath}assets/js/jquery.backstretch.min.js"></script>
 <!--不需要背景 <script src="assets/js/scripts.js"></script> -->
 <!-- <script type="text/javascript">
 	jQuery(document).ready(function() {

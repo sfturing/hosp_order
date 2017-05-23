@@ -8,7 +8,7 @@
 			<li class="sidebar-brand"><a href="#"> </a></li>
 			<br />
 			<br />
-			<li><a href="hosIndex">医院</a></li>
+			<li><a href="/ssm_pro/hosIndex">医院</a></li>
 			<li><a href="#">科室</a></li>
 			<li><a href="#">医生</a></li>
 			<li><a href="#">疾病</a></li>
@@ -28,9 +28,9 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="assets/bootstrap/js/jquery.js"></script>
+<script src="${mybasePath}assets/bootstrap/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
 
 
