@@ -65,5 +65,6 @@ public interface CommonUserDao {
 	/****************************** 修改用户后台信息 ***************************************/
 	// 更新最后登陆ip和最后登陆时间
 	public int modifyIpAndTime(CommonUser CommonUser);
+	
 
 }

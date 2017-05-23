@@ -96,6 +96,7 @@ public interface CommonUserService {
 	 * @return
 	 */
 	public int addUserInfo(String userEmail,String userIdenf,String userName, String userMobile,String userSex);
-		
+	
+
 
 }

@@ -33,4 +33,16 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalDao.findHosById(id);
 	}
 
+	@Override
+	public int findOrderHosNum() {
+		
+		return hospitalDao.findOrderHosNum();
+	}
+
+	@Override
+	public List<Hospital> findfindOrderHos(int start, int size) {
+		
+		return hospitalDao.findOrderHos(start, size);
+	}
+
 }

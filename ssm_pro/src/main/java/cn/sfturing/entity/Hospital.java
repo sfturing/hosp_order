@@ -16,7 +16,7 @@ public class Hospital {
 	// 医院图片
 	private String hospitalImg;
 	// 院长姓名
-	private String hospitalDeanNsame;
+	private String hospitalDeanName;
 	// 建院年份
 	private String hospitalYear;
 	// 医院类型
@@ -40,7 +40,7 @@ public class Hospital {
 	//医院邮编
 	private String hospitalPostCode;
 	//医院公交路线
-	private String hopitalBusRoute;
+	private String hospitalBusRoute;
 	// 医院科室数量
 	private int hospitalOfficesNum;
 	// 医保人数
@@ -51,6 +51,7 @@ public class Hospital {
 	private int outpatientNum;
 	//是否开放预约
 	private int isOpen;
+	
 	public int getId() {
 		return id;
 	}
@@ -75,11 +76,11 @@ public class Hospital {
 	public void setHospitalImg(String hospitalImg) {
 		this.hospitalImg = hospitalImg;
 	}
-	public String getHospitalDeanNsame() {
-		return hospitalDeanNsame;
+	public String getHospitalDeanName() {
+		return hospitalDeanName;
 	}
-	public void setHospitalDeanNsame(String hospitalDeanNsame) {
-		this.hospitalDeanNsame = hospitalDeanNsame;
+	public void setHospitalDeanName(String hospitalDeanName) {
+		this.hospitalDeanName = hospitalDeanName;
 	}
 	public String getHospitalYear() {
 		return hospitalYear;
@@ -147,11 +148,11 @@ public class Hospital {
 	public void setHospitalPostCode(String hospitalPostCode) {
 		this.hospitalPostCode = hospitalPostCode;
 	}
-	public String getHopitalBusRoute() {
-		return hopitalBusRoute;
+	public String getHospitalBusRoute() {
+		return hospitalBusRoute;
 	}
-	public void setHopitalBusRoute(String hopitalBusRoute) {
-		this.hopitalBusRoute = hopitalBusRoute;
+	public void setHospitalBusRoute(String hospitalBusRoute) {
+		this.hospitalBusRoute = hospitalBusRoute;
 	}
 	public int getHospitalOfficesNum() {
 		return hospitalOfficesNum;
@@ -186,16 +187,17 @@ public class Hospital {
 	@Override
 	public String toString() {
 		return "Hospital [id=" + id + ", hospitalName=" + hospitalName + ", hospitalArea=" + hospitalArea
-				+ ", hospitalImg=" + hospitalImg + ", hospitalDeanNsame=" + hospitalDeanNsame + ", hospitalYear="
+				+ ", hospitalImg=" + hospitalImg + ", hospitalDeanName=" + hospitalDeanName + ", hospitalYear="
 				+ hospitalYear + ", hospitalNature=" + hospitalNature + ", hospitalGrade=" + hospitalGrade
 				+ ", isMedicalInsurance=" + isMedicalInsurance + ", hospitalEquipment=" + hospitalEquipment
 				+ ", hospitalAbout=" + hospitalAbout + ", hospitalHonor=" + hospitalHonor + ", hospitalUrl="
 				+ hospitalUrl + ", hospitalPhone=" + hospitalPhone + ", hospitalAddress=" + hospitalAddress
-				+ ", hospitalPostCode=" + hospitalPostCode + ", hopitalBusRoute=" + hopitalBusRoute
+				+ ", hospitalPostCode=" + hospitalPostCode + ", hospitalBusRoute=" + hospitalBusRoute
 				+ ", hospitalOfficesNum=" + hospitalOfficesNum + ", medicalInsuranceNum=" + medicalInsuranceNum
 				+ ", hospitalBedNum=" + hospitalBedNum + ", outpatientNum=" + outpatientNum + ", isOpen=" + isOpen
 				+ "]";
 	}
+	
 	
 
 }

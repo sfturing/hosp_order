@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PageUtils {
 
-	private int pageRecord = 9;// 每页面的记录数
+	private int pageRecord = 8;// 每页面的记录数
 
 	private int totalRecord;// 总记录数
 	private int currentPage = 1;// 当前页
