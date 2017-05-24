@@ -4,14 +4,17 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sfturing.dao.HospitalDao">
 	<!--通过ID查询医院 -->
-	<select id="findHosById" resultType="cn.sfturing.entity.Hospital" parameterType="int">
+	<select id="findHosById" resultType="cn.sfturing.entity.Hospital"
+		parameterType="int">
 		SELECT * FROM `hospital`
 		WHERE id = #{id}
 	</select>
-	<!--通过医院名称查询医院  -->
-	<select id="findHosByName" resultType="cn.sfturing.entity.Hospital" parameterType="java.lang.String">
+	<!--通过医院名称查询医院 -->
+	<select id="findHosByName" resultType="cn.sfturing.entity.Hospital"
+		parameterType="java.lang.String">
 		SELECT * FROM `hospital`
-		WHERE hospital_name = #{hospitalName}
+		WHERE hospital_name =
+		#{hospitalName}
 	</select>
 	<!-- 查询开通预约挂号的医院 -->
 	<select id="findOpenHos" resultType="cn.sfturing.entity.Hospital">
@@ -25,13 +28,63 @@
 	</select>
 	<!-- 查询全部支持预约医院的数量 -->
 	<select id="findOrderHosNum" resultType="java.lang.Integer">
-		SELECT count(*) FROM `hospital`
+		SELECT count(*) FROM
+		`hospital`
 		where is_open = 1
-		 
+
 	</select>
 	<!-- 查询全部支持预约医院 -->
 	<select id="findOrderHos" resultType="cn.sfturing.entity.Hospital">
 		SELECT * FROM `hospital`
 		WHERE is_open = 1 limit #{start},#{size}
 	</select>
+	<!-- 查询全部医院等级 -->
+	<select id="findHosGrade" resultType="java.lang.String">
+		SELECT DISTINCT
+		hospital_grade FROM `hospital`
+	</select>
+	<!-- 查询开通医院等级 -->
+	<select id="findHosOpenGrade" resultType="java.lang.String">
+		SELECT DISTINCT
+		hospital_grade FROM `hospital`
+		WHERE is_open = 1
+	</select>
+	<!-- 查询开通医院类型 -->
+	<select id="findHosOpenNature" resultType="java.lang.String">
+		SELECT DISTINCT
+		hospital_nature FROM `hospital`
+		WHERE is_open = 1
+	</select>
+	<!-- 查询所有医院类型 -->
+	<select id="findHosNature" resultType="java.lang.String">
+		SELECT DISTINCT
+		hospital_nature FROM `hospital`
+	</select>
+
+	<!--根据条件查询已开通预约的医院 -->
+	<select id="findHosByCondition" resultType="cn.sfturing.entity.Hospital" parameterType="cn.sfturing.entity.Hospital">
+		SELECT * FROM `hospital`
+		WHERE is_open=1 
+		<if test="hospitalArea != null">
+			AND hospital_area = #{hospitalArea}
+		</if>
+		<if test="hospitalAddress != null">
+			AND hospital_address = #{hospitalAddress}
+		</if>
+		<if test="hospitalNature != null">
+			AND hospital_nature = #{hospitalNature}
+		</if>
+		<if test="hospitalGrade != null">
+			AND hospital_grade = #{hospitalGrade}
+		</if>
+		<if test="isMedicalInsurance != null">
+			AND is_medical_insurance = #{isMedicalInsurance}
+		</if>
+		<!-- <if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if> -->
+		limit #{start},#{size}
+		
+	</select>
+
 </mapper>

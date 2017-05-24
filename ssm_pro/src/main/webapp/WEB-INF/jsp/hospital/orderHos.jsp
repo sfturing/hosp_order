@@ -11,10 +11,7 @@
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
-<link rel="stylesheet"
-	href="${mybasePath}assets/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="${mybasePath}assets/css/form-elements.css">
-<link rel="stylesheet" href="${mybasePath}assets/css/style.css">
+
 </head>
 <body>
 	<jsp:include page="../include/head.jsp" />
@@ -24,10 +21,50 @@
 			<div class="row">
 				<div class="col-md-12">
 					<p class="text-left">预约医院列表</p>
-					<div class="col-md-12">
-						<form class="form-search" id="setchInfo"
-							action="<c:url value='/orderHos/1' />"></form>
-					</div>
+					<hr />
+					<form class="form-search form-horizontal" id="setchInfo"
+						action="<c:url value='/orderHos/1' />">
+						<fieldset>
+							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;&nbsp;&nbsp;地区:</label>
+							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;医院信息:</label>
+							<label for="select" class="col-lg-4 control-la	bel text-left">医院名称:</label>
+							<div class="col-md-12">
+								<div class="col-md-4" data-toggle="distpicker">
+									<select id="province" name="province" style="margin-bottom:6px;" class="col-md-2 form-control"
+										data-province="---- 选择省 ----"></select><select id="city" name="city" style="margin-bottom:6px;" 
+										class="col-md-2 form-control" data-city="---- 选择市 ----"></select>
+									<select id="district" name="district" style="margin-bottom:6px;" class="col-md-2 form-control"
+										data-district="---- 选择区 ----"></select>
+								</div>
+								<div class="col-md-4">
+									<select style="margin-bottom:6px;" class="col-md-2 form-control" id="hospitalGrade" name="hospitalGrade">
+										<option value="null">请选择医院等级</option>
+										<c:forEach var="grade" items="${hospGrade }" varStatus="status">
+										<option value="${grade }">${grade }</option>
+										</c:forEach>
+
+									</select> <select style="margin-bottom:6px;" class="col-md-2 form-control" id="hospNature" name="hospitalNature">
+										<option value="">请选择医院类型</option>
+										<c:forEach var="nature" items="${hospNature }" varStatus="status">
+										<option value="${nature }">${nature }</option>
+										</c:forEach>
+									</select> <select style="margin-bottom:6px;" class="col-md-2 form-control" id="medicalnsuranceNum" name="medicalnsuranceNum">
+										<option value="">医院是否医保</option>
+										<option value="医保">医保</option>
+										<option value="非医保">非医保</option>
+
+									</select>
+								</div>
+								<div style="margin-bottom:50px;" class="col-md-4">
+									<input style="" class="col-md-3 form-control" id="hospitalName" name="hospitalName"
+										type="text">
+								</div>
+								<div class="col-md-4 text-right">
+									<button type="submit" class="btn btn-primary" id = "serchHosp">查找预约医院</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 			<hr />
@@ -69,7 +106,7 @@
 				</c:forEach>
 				<li
 					<c:if test="${pages.currentPage> pages.totalPage}">class="disabled"</c:if>><a
-					href="#">&raquo;</a></li>
+					href="javascript:void(0);" onclick="tijiao('${pages.nextPage }')">&raquo;</a></li>
 				<li class="disabled"><a>共${pages.totalPage}页${pages.totalRecord}条记录</a>
 			</ul>
 		</c:if>
@@ -81,6 +118,7 @@
 <!-- Javascript -->
 <script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${mybasePath}assets/bootstrap/js/jquery.min.js"></script>
+<script src="${mybasePath}assets/js/distpicker.js"></script>
 <script src="${mybasePath}assets/js/jquery.backstretch.min.js"></script>
 <!--不需要背景 <script src="assets/js/scripts.js"></script> -->
 <!-- <script type="text/javascript">
@@ -95,5 +133,13 @@
 		$("#setchInfo").attr("action", "<c:url value='/orderHos/"+url+"' />");
 		$("#setchInfo").submit();
 	}
+</script>
+<script type="text/javascript">
+	$(function(){ 
+		$('#serchHosp').click(function() {
+			$('#setchInfo').submit();
+			return false;
+		});
+	});
 </script>
 </html>

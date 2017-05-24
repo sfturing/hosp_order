@@ -9,12 +9,18 @@
 <link rel="apple-touch-icon-precomposed"
 	href="${mybasePath}assets/ico/favicon.png">
 
+<link rel="stylesheet"
+	href="${mybasePath}assets/font-awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="${mybasePath}assets/css/style.css">
+<%-- <link rel="stylesheet" href="${mybasePath}assets/css/form-elements.css"> --%>
 <!-- Bootstrap Core CSS -->
 <link href="${mybasePath}assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="${mybasePath}assets/bootstrap/css/simple-sidebar.css" rel="stylesheet">
+<link href="${mybasePath}assets/bootstrap/css/simple-sidebar.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="${mybasePath}assets/css/custom.css">
 
 <!-- jQuery -->

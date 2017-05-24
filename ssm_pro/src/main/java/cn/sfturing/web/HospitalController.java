@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,8 +28,6 @@ public class HospitalController {
 
 	@Autowired
 	private HospitalService hospitalService;
-	@Autowired
-	private HospitalDao hospitalDao;
 	@Autowired
 	private OfficeService officeService;
 	@Autowired
@@ -71,7 +70,12 @@ public class HospitalController {
 	 * @return
 	 */
 	@RequestMapping(value = "/orderHos/{page}", method = RequestMethod.GET)
-	public String orderHos(Model model, @PathVariable("page") int page) {
+	public String orderHos(Model model, @PathVariable("page") int page, @ModelAttribute("province") String province,
+			@ModelAttribute("city") String city, @ModelAttribute("district") String district, Hospital hosp) {
+		System.out.println(province+city+district);
+		System.out.println(hosp.getHospitalName()+hosp.getHospitalNature()+hosp.getHospitalGrade()+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		
+		// 设置页面
 		pageUtils.setCurrentPage(page);
 		System.out.println(hospitalService.findOrderHosNum());
 		pageUtils.setTotalRecord(hospitalService.findOrderHosNum());
@@ -81,10 +85,16 @@ public class HospitalController {
 		} else {
 			start = pageUtils.getPageRecord() * (pageUtils.getCurrentPage() - 1);
 		}
-		List<Hospital> hospital = hospitalService.findfindOrderHos(start, pageUtils.getPageRecord());
+		// 查询医院数据
+		List<Hospital> hospital = hospitalService.findHosByConditon(province,city,district,hosp,start, pageUtils.getPageRecord());
+		// 查询医院等级
+		List<String> hospGrade = hospitalService.findHosOpenGrade();
+		// 查询医院类型
+		List<String> hospNature = hospitalService.findHosOpenNature();
 		model.addAttribute("hospital", hospital);
 		model.addAttribute("pages", pageUtils);
-		System.out.println(pageUtils.getCurrentPage());
+		model.addAttribute("hospGrade", hospGrade);
+		model.addAttribute("hospNature", hospNature);
 		return "hospital/orderHos";
 	}
 

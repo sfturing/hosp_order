@@ -55,7 +55,6 @@ public class CommonUserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model, String userEmail, String userPassword, HttpSession session,
 			HttpServletRequest request) {
-
 		// 登录用户，并将登录后的状态码返回，如果是0用户不存在，如果是1那么密码错误，如果是2那么密码正确
 		int result = commonUserService.login(userEmail, userPassword, request);
 		// 错误信息

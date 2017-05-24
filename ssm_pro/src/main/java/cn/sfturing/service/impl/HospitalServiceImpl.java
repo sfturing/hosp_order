@@ -45,4 +45,43 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalDao.findOrderHos(start, size);
 	}
 
+	@Override
+	public List<String> findHosOpenGrade() {
+		// TODO Auto-generated method stub
+		return hospitalDao.findHosOpenGrade();
+	}
+	@Override
+	public List<String> findHosGrade() {
+		// TODO Auto-generated method stub
+		return hospitalDao.findHosGrade();
+	}
+
+	@Override
+	public List<String> findHosOpenNature() {
+		// TODO Auto-generated method stub
+		return hospitalDao.findHosOpenNature();
+	}
+
+	@Override
+	public List<String> findHosNature() {
+		// TODO Auto-generated method stub
+		return hospitalDao.findHosNature();
+	}
+
+
+	@Override
+	public List<Hospital> findHosByConditon(String province, String city, String district, Hospital hospital, int start,
+			int size) {
+		if(province.equals("") && city.equals("") && district.equals("")){
+			
+		}else if(!province.equals("") && city.equals("") && district.equals("")){
+			hospital.setHospitalAddress(province);
+		}else if(!province.equals("") && !city.equals("") && district.equals("")){
+			hospital.setHospitalAddress(city);
+		}else if(!province.equals("") && !city.equals("") && !district.equals("")){
+			hospital.setHospitalArea(district);
+		}
+		return hospitalDao.findHosByCondition(hospital.getHospitalName(), hospital.getIsMedicalInsurance(), hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(), hospital.getHospitalArea(), start, size);
+	}
+
 }
