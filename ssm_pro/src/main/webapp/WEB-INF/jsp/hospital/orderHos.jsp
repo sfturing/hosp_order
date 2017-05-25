@@ -25,43 +25,55 @@
 					<form class="form-search form-horizontal" id="setchInfo"
 						action="<c:url value='/orderHos/1' />">
 						<fieldset>
-							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;&nbsp;&nbsp;地区:</label>
+							<label for="select" class="col-lg-2 control-la	bel text-left">&nbsp;&nbsp;&nbsp;&nbsp;地区:</label>
 							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;医院信息:</label>
-							<label for="select" class="col-lg-4 control-la	bel text-left">医院名称:</label>
+							<!-- <label for="select" class="col-lg-4 control-la	bel text-left">医院名称:</label> -->
 							<div class="col-md-12">
 								<div class="col-md-2" data-toggle="distpicker">
-									<select id="province" name="province" style="margin-bottom:6px;" class="col-md-2 form-control"
-										data-province="---- 选择省 ----"></select><select id="city" name="city" style="margin-bottom:6px;" 
+									<select id="province" name="province"
+										style="margin-bottom: 6px;" class="col-md-2 form-control"
+										data-province="---- 选择省 ----"></select><select id="city"
+										name="city" style="margin-bottom: 6px;"
 										class="col-md-2 form-control" data-city="---- 选择市 ----"></select>
-									<select id="district" name="district" style="margin-bottom:6px;" class="col-md-2 form-control"
+									<select id="district" name="district"
+										style="margin-bottom: 6px;" class="col-md-2 form-control"
 										data-district="---- 选择区 ----"></select>
 								</div>
-								<div class="col-md-4">
-									<select style="margin-bottom:6px;" class="col-md-2 form-control" id="hospitalGrade" name="hospitalGrade">
+								<div class="col-md-2">
+									<select style="margin-bottom: 6px;"
+										class="col-md-2 form-control" id="hospitalGrade"
+										name="hospitalGrade">
 										<option value="默认" selected="selected">请选择医院等级</option>
-										<c:forEach var="grade" items="${hospGrade }" varStatus="status">
-										<option value="${grade }">${grade }</option>
+										<c:forEach var="grade" items="${hospGrade }"
+											varStatus="status">
+											<option value="${grade }">${grade }</option>
 										</c:forEach>
 
-									</select> <select style="margin-bottom:6px;" class="col-md-2 form-control" id="hospNature" name="hospitalNature">
+									</select> <select style="margin-bottom: 6px;"
+										class="col-md-2 form-control" id="hospNature"
+										name="hospitalNature">
 										<option value="默认" selected="selected">请选择医院类型</option>
-										<c:forEach var="nature" items="${hospNature }" varStatus="status">
-										<option value="${nature }">${nature }</option>
+										<c:forEach var="nature" items="${hospNature }"
+											varStatus="status">
+											<option value="${nature }">${nature }</option>
 										</c:forEach>
-									</select> <!-- <select style="margin-bottom:6px;" class="col-md-2 form-control" id="medicalnsuranceNum" name="medicalnsuranceNum">
+									</select> <input class="col-md-3 form-control" id="hospitalName"
+										name="hospitalName" type="text" placeholder="医院名称">
+									<!-- <select style="margin-bottom:6px;" class="col-md-2 form-control" id="medicalnsuranceNum" name="medicalnsuranceNum">
 										<option value="0" selected="selected">医院是否医保</option>
 										<option value="医保">医保</option>
 										<option value="非医保">非医保</option>
 
 									</select> -->
 								</div>
-								<div style="margin-bottom:50px;" class="col-md-4">
+
+								<!-- <div style="margin-bottom:50px;" class="col-md-4">
 									<input class="col-md-3 form-control" id="hospitalName" name="hospitalName"
 										type="text">
-								</div>
-								<div class="col-md-4 text-right">
-									<button type="submit" class="btn btn-primary" id = "serchHosp">查找预约医院</button>
-								</div>
+								</div> -->
+							</div>
+							<div class="col-md-4 text-right">
+								<button type="submit" class="btn btn-primary " id="serchHosp">search </button>
 							</div>
 						</fieldset>
 					</form>
@@ -135,7 +147,7 @@
 	}
 </script>
 <script type="text/javascript">
-	$(function(){ 
+	$(function() {
 		$('#serchHosp').click(function() {
 			$('#setchInfo').submit();
 			return false;

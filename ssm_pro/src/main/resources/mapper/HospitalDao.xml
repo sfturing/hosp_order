@@ -80,9 +80,9 @@
 		<!-- <if test="isMedicalInsurance != 0">
 			AND is_medical_insurance = #{isMedicalInsurance}
 		</if> -->
-		<!-- <if test="hospitalName != null">
+		 <if test="hospitalName != null">
 			AND hospital_name LIKE '%${hospitalName}%'
-		</if> -->
+		</if>
 		limit #{start},#{size}
 		
 	</select>
