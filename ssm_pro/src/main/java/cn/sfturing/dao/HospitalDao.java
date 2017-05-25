@@ -23,7 +23,9 @@ public interface HospitalDao {
 	public List<Hospital> findHosByRe();
 
 	// 查询全部支持预约医院的数量
-	public int findOrderHosNum();
+	public int findOrderHosNum(@Param("hospitalName") String hospitalName,@Param("isMedicalInsurance") String isMedicalInsurance,
+			@Param("hospitalGrade") String hospitalGrade, @Param("hospitalNature") String hospitalNature,
+			@Param("hospitalAddress") String hospitalAddress, @Param("hospitalArea") String hospitalArea);
 
 	// 查询全部支持预约的医院
 	public List<Hospital> findOrderHos(@Param("start") int start, @Param("size") int size);

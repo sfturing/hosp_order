@@ -66,7 +66,7 @@
 				<div class="col-md-12">
 					<div class="col-md-3">
 						<img alt="Bootstrap Thumbnail Third"
-							src="http://healthcenter.people.com.cn/hospital/attach/20166/1467774197812.jpg">
+							src="${hos.hospitalImg }">
 					</div>
 					<div class="col-md-4">
 						<p class="text-left">
@@ -229,7 +229,7 @@
 							</div>
 						</div>
 						<hr width="1300px">
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hos.hospitalAbout }</p>
+						<p>&nbsp;&nbsp;${hos.hospitalAbout }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="equipment">
 						<div class="col-md-12 ">
@@ -238,7 +238,7 @@
 							</div>
 						</div>
 						<hr width="1300px">
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hos.hospitalEquipment }</p>
+						<p>&nbsp;&nbsp;${hos.hospitalEquipment }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="honor">
 						<div class="col-md-12 ">
@@ -247,7 +247,7 @@
 							</div>
 						</div>
 						<hr width="1300px">
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hos.hospitalHonor }</p>
+						<p>&nbsp;&nbsp;${hos.hospitalHonor }</p>
 					</div>
 				</div>
 			</div>

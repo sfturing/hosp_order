@@ -1,5 +1,6 @@
 package cn.sfturing.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class HospitalController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/orderHos/{page}", method = RequestMethod.GET)
+	@RequestMapping(value = "/orderHos/{page}")
 	public String orderHos(Model model, @PathVariable("page") int page, @ModelAttribute("province") String province,
 			@ModelAttribute("city") String city, @ModelAttribute("district") String district, Hospital hosp) {
 		System.out.println(province+city+district+province.equals("")+city.equals("")+district.equals(""));
@@ -81,7 +82,7 @@ public class HospitalController {
 		}*/
 		// 设置页面
 		pageUtils.setCurrentPage(page);
-		pageUtils.setTotalRecord(hospitalService.findOrderHosNum());
+		pageUtils.setTotalRecord(hospitalService.findOrderHosNum(province,city,district,hosp));
 		int start;
 		if (pageUtils.getCurrentPage() == 0) {
 			start = 0;
@@ -94,6 +95,7 @@ public class HospitalController {
 		List<String> hospGrade = hospitalService.findHosOpenGrade();
 		// 查询医院类型
 		List<String> hospNature = hospitalService.findHosOpenNature();
+		//查询条件
 		model.addAttribute("hospital", hospital);
 		model.addAttribute("pages", pageUtils);
 		model.addAttribute("hospGrade", hospGrade);

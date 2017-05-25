@@ -34,10 +34,29 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public int findOrderHosNum() {
+	public int findOrderHosNum(String province, String city, String district, Hospital hospital) {
+		if (province.equals("") && city.equals("") && district.equals("")) {
 
-		return hospitalDao.findOrderHosNum();
+		} else if (!province.equals("") && city.equals("") && district.equals("")) {
+			hospital.setHospitalAddress(province);
+		} else if (!province.equals("") && !city.equals("") && district.equals("")) {
+			hospital.setHospitalAddress(city);
+		} else if (!province.equals("") && !city.equals("") && !district.equals("")) {
+			hospital.setHospitalArea(district);
+		}
+		if (hospital.getHospitalNature() != null && hospital.getHospitalGrade() != null) {
+			if (hospital.getHospitalNature().equals("默认")) {
+				hospital.setHospitalNature(null);
+			}
+			if (hospital.getHospitalGrade().equals("默认")) {
+				hospital.setHospitalGrade(null);
+			}
+		}
+		return hospitalDao.findOrderHosNum(hospital.getHospitalName(), hospital.getIsMedicalInsurance(),
+				hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(),
+				hospital.getHospitalArea());
 	}
+
 
 	@Override
 	public List<Hospital> findfindOrderHos(int start, int size) {
@@ -94,4 +113,5 @@ public class HospitalServiceImpl implements HospitalService {
 				hospital.getHospitalArea(), start, size);
 	}
 
+	
 }

@@ -23,7 +23,7 @@
 					<p class="text-left">预约医院列表</p>
 					<hr />
 					<form class="form-search form-horizontal" id="setchInfo"
-						action="<c:url value='/orderHos/1' />">
+						action="<c:url value='/orderHos/1' />" method="post">
 						<fieldset>
 							<label for="select" class="col-lg-2 control-la	bel text-left">&nbsp;&nbsp;&nbsp;&nbsp;地区:</label>
 							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;医院信息:</label>
@@ -37,7 +37,7 @@
 										class="col-md-2 form-control" data-city="---- 选择市 ----"></select>
 									<select id="district" name="district"
 										style="margin-bottom: 6px;" class="col-md-2 form-control"
-										data-district="---- 选择区 ----"></select>
+										data-district="---- 选择区 ----"></select>	
 								</div>
 								<div class="col-md-2">
 									<select style="margin-bottom: 6px;"
@@ -93,7 +93,7 @@
 								<span class="glyphicon glyphicon-earphone "></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalPhone}
 							</p> --%>
 							<p>
-								<span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalAddress}
+								<span class="glyphicon glyphicon-home"></span>&nbsp;${hos.hospitalAddress}
 							</p>
 							<p>
 								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
@@ -144,6 +144,7 @@
 	function tijiao(url) {
 		$("#setchInfo").attr("action", "<c:url value='/orderHos/"+url+"' />");
 		$("#setchInfo").submit();
+		return false;
 	}
 </script>
 <script type="text/javascript">

@@ -18,7 +18,7 @@ public interface HospitalService {
 	public Hospital findHosById(int id);
 
 	// 查询支持预约医院数量
-	public int findOrderHosNum();
+	public int findOrderHosNum(String province,String city,String district,Hospital hospital);
 
 	// 查询支持预约医院
 	public List<Hospital> findfindOrderHos(int start, int size);

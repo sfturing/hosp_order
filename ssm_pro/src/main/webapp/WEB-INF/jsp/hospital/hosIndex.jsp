@@ -45,7 +45,7 @@
 								<span class="glyphicon glyphicon-earphone "></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalArea}
 							</p> --%>
 							<p>
-								<span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalAddress}
+								<span class="glyphicon glyphicon-home"></span>&nbsp;${hos.hospitalAddress}
 							</p>
 							<p>
 								<a class="btn btn-primary" href="#">预约</a> <a class="btn"

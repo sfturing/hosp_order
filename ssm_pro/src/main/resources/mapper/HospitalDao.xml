@@ -27,14 +27,32 @@
 		WHERE is_open = 1 limit 12,20
 	</select>
 	<!-- 查询全部支持预约医院的数量 -->
-	<select id="findOrderHosNum" resultType="java.lang.Integer">
+	<select id="findOrderHosNum" resultType="java.lang.Integer" parameterType="cn.sfturing.entity.Hospital">
 		SELECT count(*) FROM
 		`hospital`
-		where is_open = 1
+		where is_open = 1 
+		<if test="hospitalArea != null">
+			AND hospital_area = #{hospitalArea}
+		</if>
+		<if test="hospitalAddress != null">
+			AND hospital_address LIKE '%${hospitalAddress}%'
+		</if>
+		<if test="hospitalNature != null">
+			AND hospital_nature = #{hospitalNature}
+		</if>
+		<if test="hospitalGrade != null">
+			AND hospital_grade = #{hospitalGrade}
+		</if>
+		<!-- <if test="isMedicalInsurance != 0">
+			AND is_medical_insurance = #{isMedicalInsurance}
+		</if> -->
+		<if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if>
 
 	</select>
 	<!-- 查询全部支持预约医院 -->
-	<select id="findOrderHos" resultType="cn.sfturing.entity.Hospital">
+	<select id="findOrderHos" resultType="cn.sfturing.entity.Hospital" >
 		SELECT * FROM `hospital`
 		WHERE is_open = 1 limit #{start},#{size}
 	</select>
@@ -69,7 +87,7 @@
 			AND hospital_area = #{hospitalArea}
 		</if>
 		<if test="hospitalAddress != null">
-			AND hospital_address = #{hospitalAddress}
+			AND hospital_address LIKE '%${hospitalAddress}%'
 		</if>
 		<if test="hospitalNature != null">
 			AND hospital_nature = #{hospitalNature}
@@ -80,7 +98,7 @@
 		<!-- <if test="isMedicalInsurance != 0">
 			AND is_medical_insurance = #{isMedicalInsurance}
 		</if> -->
-		 <if test="hospitalName != null">
+		<if test="hospitalName != null">
 			AND hospital_name LIKE '%${hospitalName}%'
 		</if>
 		limit #{start},#{size}
