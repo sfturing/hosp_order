@@ -72,12 +72,15 @@ public class HospitalController {
 	@RequestMapping(value = "/orderHos/{page}", method = RequestMethod.GET)
 	public String orderHos(Model model, @PathVariable("page") int page, @ModelAttribute("province") String province,
 			@ModelAttribute("city") String city, @ModelAttribute("district") String district, Hospital hosp) {
-		System.out.println(province+city+district);
-		System.out.println(hosp.getHospitalName()+hosp.getHospitalNature()+hosp.getHospitalGrade()+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		
+		System.out.println(province+city+district+province.equals("")+city.equals("")+district.equals(""));
+//		System.out.println(hosp.getHospitalNature()+hosp.getHospitalNature().equals("")+hosp.getHospitalGrade()+hosp.getHospitalGrade().equals("")+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		/*if(hosp.getHospitalNature().equals("默认")){
+			hosp.setHospitalNature(null);
+		}if(hosp.getHospitalGrade().equals("默认")){
+			hosp.setHospitalGrade(null);
+		}*/
 		// 设置页面
 		pageUtils.setCurrentPage(page);
-		System.out.println(hospitalService.findOrderHosNum());
 		pageUtils.setTotalRecord(hospitalService.findOrderHosNum());
 		int start;
 		if (pageUtils.getCurrentPage() == 0) {

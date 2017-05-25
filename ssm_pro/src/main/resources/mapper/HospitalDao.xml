@@ -77,9 +77,9 @@
 		<if test="hospitalGrade != null">
 			AND hospital_grade = #{hospitalGrade}
 		</if>
-		<if test="isMedicalInsurance != null">
+		<!-- <if test="isMedicalInsurance != 0">
 			AND is_medical_insurance = #{isMedicalInsurance}
-		</if>
+		</if> -->
 		<!-- <if test="hospitalName != null">
 			AND hospital_name LIKE '%${hospitalName}%'
 		</if> -->

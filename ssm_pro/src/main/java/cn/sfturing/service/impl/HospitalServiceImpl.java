@@ -29,19 +29,19 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public Hospital findHosById(int id) {
-		
+
 		return hospitalDao.findHosById(id);
 	}
 
 	@Override
 	public int findOrderHosNum() {
-		
+
 		return hospitalDao.findOrderHosNum();
 	}
 
 	@Override
 	public List<Hospital> findfindOrderHos(int start, int size) {
-		
+
 		return hospitalDao.findOrderHos(start, size);
 	}
 
@@ -50,6 +50,7 @@ public class HospitalServiceImpl implements HospitalService {
 		// TODO Auto-generated method stub
 		return hospitalDao.findHosOpenGrade();
 	}
+
 	@Override
 	public List<String> findHosGrade() {
 		// TODO Auto-generated method stub
@@ -68,20 +69,29 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalDao.findHosNature();
 	}
 
-
 	@Override
 	public List<Hospital> findHosByConditon(String province, String city, String district, Hospital hospital, int start,
 			int size) {
-		if(province.equals("") && city.equals("") && district.equals("")){
-			
-		}else if(!province.equals("") && city.equals("") && district.equals("")){
+		if (province.equals("") && city.equals("") && district.equals("")) {
+
+		} else if (!province.equals("") && city.equals("") && district.equals("")) {
 			hospital.setHospitalAddress(province);
-		}else if(!province.equals("") && !city.equals("") && district.equals("")){
+		} else if (!province.equals("") && !city.equals("") && district.equals("")) {
 			hospital.setHospitalAddress(city);
-		}else if(!province.equals("") && !city.equals("") && !district.equals("")){
+		} else if (!province.equals("") && !city.equals("") && !district.equals("")) {
 			hospital.setHospitalArea(district);
 		}
-		return hospitalDao.findHosByCondition(hospital.getHospitalName(), hospital.getIsMedicalInsurance(), hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(), hospital.getHospitalArea(), start, size);
+		if (hospital.getHospitalNature() != null && hospital.getHospitalGrade() != null) {
+			if (hospital.getHospitalNature().equals("默认")) {
+				hospital.setHospitalNature(null);
+			}
+			if (hospital.getHospitalGrade().equals("默认")) {
+				hospital.setHospitalGrade(null);
+			}
+		}
+		return hospitalDao.findHosByCondition(hospital.getHospitalName(), hospital.getIsMedicalInsurance(),
+				hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(),
+				hospital.getHospitalArea(), start, size);
 	}
 
 }

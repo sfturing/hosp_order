@@ -40,7 +40,7 @@ public interface HospitalDao {
 	// 查询所遇医院的所有类型
 	public List<String> findHosNature();
 
-	// 根据调价查询已开通预约的医院
+	// 根据条件查询已开通预约的医院
 	public List<Hospital> findHosByCondition(@Param("hospitalName") String hospitalName,@Param("isMedicalInsurance") String isMedicalInsurance,
 			@Param("hospitalGrade") String hospitalGrade, @Param("hospitalNature") String hospitalNature,
 			@Param("hospitalAddress") String hospitalAddress, @Param("hospitalArea") String hospitalArea,
