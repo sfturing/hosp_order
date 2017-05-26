@@ -4,13 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sfturing.dao.AreaDao">
 	<!-- 通过ID地区信息 -->
-	<select id="findAreaById" resultType="cn.sfturing.entity.Area" parameterType="int">
+	<select id="findAreaById" resultType="cn.sfturing.entity.Area"
+		parameterType="int">
 		SELECT
 		* FROM `area`
 		WHERE id = #{id}
 	</select>
 	<!-- 根据地区名称查找城市信息 -->
-	<select id="findAreaByName" resultType="cn.sfturing.entity.Area" parameterType="java.lang.String">
+	<select id="findAreaByName" resultType="cn.sfturing.entity.Area"
+		parameterType="java.lang.String">
 		SELECT * FROM `area`
 		WHERE area_name = #{areaName}
 	</select>
@@ -34,9 +36,53 @@
 		FROM
 		`area`
 		WHERE
-		area_name = #{areaName}
+		area_name =
+		#{areaName}
 		)
 		);
+	</select>
+
+	<!--查找等级为1的城市 -->
+	<select id="findAreaByLevel1" resultType="cn.sfturing.entity.Area"
+		parameterType="java.lang.String">
+		SELECT * FROM `area`
+		WHERE level = 1
+	</select>
+
+	<!--查找等级为2的城市 -->
+	<select id="findAreaByLevel2" resultType="cn.sfturing.entity.Area"
+		parameterType="java.lang.String">
+		SELECT * FROM area WHERE `level` = 2 AND
+		parent_id = (SELECT id FROM
+		area WHERE area_name = #{areaName})
+	</select>
+
+
+	<!--查找等级为3的城市 -->
+	<select id="findAreaByLevel3" resultType="cn.sfturing.entity.Area"
+		parameterType="java.lang.String">
+		SELECT
+		*
+		FROM
+		area
+		WHERE
+		`level` = 3
+		AND parent_id = (
+		SELECT
+		id
+		FROM
+		area
+		WHERE
+		`area_name` = #{cityName}
+		AND parent_id = (
+		SELECT
+		id
+		FROM
+		area
+		WHERE
+		area_name = #{areaName}
+		)
+		)
 	</select>
 
 </mapper>

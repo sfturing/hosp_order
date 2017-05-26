@@ -35,6 +35,23 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public int findOrderHosNum(String province, String city, String district, Hospital hospital) {
+
+		if (hospital.getHospitalNature() != null && hospital.getHospitalNature().equals("默认")) {
+			hospital.setHospitalNature(null);
+		}
+		if (hospital.getHospitalGrade() != null && hospital.getHospitalGrade().equals("默认")) {
+			hospital.setHospitalGrade(null);
+		}
+		if (province != null && province.equals("默认")) {
+			province = "";
+		}
+		if (city != null && city.equals("默认")) {
+			city = "";
+		}
+		if (district != null && district.equals("默认")) {
+			district = "";
+		}
+
 		if (province.equals("") && city.equals("") && district.equals("")) {
 
 		} else if (!province.equals("") && city.equals("") && district.equals("")) {
@@ -44,19 +61,10 @@ public class HospitalServiceImpl implements HospitalService {
 		} else if (!province.equals("") && !city.equals("") && !district.equals("")) {
 			hospital.setHospitalArea(district);
 		}
-		if (hospital.getHospitalNature() != null && hospital.getHospitalGrade() != null) {
-			if (hospital.getHospitalNature().equals("默认")) {
-				hospital.setHospitalNature(null);
-			}
-			if (hospital.getHospitalGrade().equals("默认")) {
-				hospital.setHospitalGrade(null);
-			}
-		}
 		return hospitalDao.findOrderHosNum(hospital.getHospitalName(), hospital.getIsMedicalInsurance(),
 				hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(),
 				hospital.getHospitalArea());
 	}
-
 
 	@Override
 	public List<Hospital> findfindOrderHos(int start, int size) {
@@ -91,6 +99,22 @@ public class HospitalServiceImpl implements HospitalService {
 	@Override
 	public List<Hospital> findHosByConditon(String province, String city, String district, Hospital hospital, int start,
 			int size) {
+		if (hospital.getHospitalNature() != null && hospital.getHospitalNature().equals("默认")) {
+			hospital.setHospitalNature(null);
+		}
+		if (hospital.getHospitalGrade() != null && hospital.getHospitalGrade().equals("默认")) {
+			hospital.setHospitalGrade(null);
+		}
+		if (province != null && province.equals("默认")) {
+			province = "";
+		}
+		if (city != null && city.equals("默认")) {
+			city = "";
+		}
+		if (district != null && district.equals("默认")) {
+			district = "";
+		}
+
 		if (province.equals("") && city.equals("") && district.equals("")) {
 
 		} else if (!province.equals("") && city.equals("") && district.equals("")) {
@@ -100,18 +124,10 @@ public class HospitalServiceImpl implements HospitalService {
 		} else if (!province.equals("") && !city.equals("") && !district.equals("")) {
 			hospital.setHospitalArea(district);
 		}
-		if (hospital.getHospitalNature() != null && hospital.getHospitalGrade() != null) {
-			if (hospital.getHospitalNature().equals("默认")) {
-				hospital.setHospitalNature(null);
-			}
-			if (hospital.getHospitalGrade().equals("默认")) {
-				hospital.setHospitalGrade(null);
-			}
-		}
+
 		return hospitalDao.findHosByCondition(hospital.getHospitalName(), hospital.getIsMedicalInsurance(),
 				hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(),
 				hospital.getHospitalArea(), start, size);
 	}
 
-	
 }
