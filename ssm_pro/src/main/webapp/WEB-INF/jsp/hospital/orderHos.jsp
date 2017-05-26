@@ -30,14 +30,17 @@
 							<!-- <label for="select" class="col-lg-4 control-la	bel text-left">医院名称:</label> -->
 							<div class="col-md-12">
 								<div class="col-md-2" data-toggle="distpicker">
-									<select id="province" name="province"
+								<input id="province" name="province" type="hidden" value="${province }"/>
+								<input id="city" name="city" type="hidden" value="${city }"/>
+								<input id="district" name="district" type="hidden" value="${district }"/>
+									<select id="provinceInfo" name="provinceInfo"
 										style="margin-bottom: 6px;" class="col-md-2 form-control"
-										data-province="---- 选择省 ----"></select><select id="city"
-										name="city" style="margin-bottom: 6px;"
+										data-province="---- 选择省 ----"></select><select id="cityInfo"
+										name="cityInfo" style="margin-bottom: 6px;"
 										class="col-md-2 form-control" data-city="---- 选择市 ----"></select>
-									<select id="district" name="district"
+									<select id="districtInfo" name="districtInfo"
 										style="margin-bottom: 6px;" class="col-md-2 form-control"
-										data-district="---- 选择区 ----"></select>	
+										data-district="---- 选择区 ----"></select>
 								</div>
 								<div class="col-md-2">
 									<select style="margin-bottom: 6px;"
@@ -46,19 +49,33 @@
 										<option value="默认" selected="selected">请选择医院等级</option>
 										<c:forEach var="grade" items="${hospGrade }"
 											varStatus="status">
-											<option value="${grade }">${grade }</option>
+											<c:choose>
+												<c:when test="${commonCondition.hospitalGrade == grade }">
+													<option value="${grade }" selected="selected">${grade }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${grade }">${grade }</option>
+												</c:otherwise>
+											</c:choose>
 										</c:forEach>
-
 									</select> <select style="margin-bottom: 6px;"
 										class="col-md-2 form-control" id="hospNature"
 										name="hospitalNature">
-										<option value="默认" selected="selected">请选择医院类型</option>
+										<option value="默认">请选择医院类型</option>
 										<c:forEach var="nature" items="${hospNature }"
 											varStatus="status">
-											<option value="${nature }">${nature }</option>
+											<c:choose>
+												<c:when test="${commonCondition.hospitalNature == nature }">
+													<option value="${nature }" selected="selected">${nature }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${nature }">${nature }</option>
+												</c:otherwise>
+											</c:choose>
 										</c:forEach>
 									</select> <input class="col-md-3 form-control" id="hospitalName"
-										name="hospitalName" type="text" placeholder="医院名称">
+										name="hospitalName" type="text" placeholder="医院名称"
+										value="${commonCondition.hospitalName }">
 									<!-- <select style="margin-bottom:6px;" class="col-md-2 form-control" id="medicalnsuranceNum" name="medicalnsuranceNum">
 										<option value="0" selected="selected">医院是否医保</option>
 										<option value="医保">医保</option>
@@ -72,8 +89,16 @@
 										type="text">
 								</div> -->
 							</div>
-							<div class="col-md-4 text-right">
-								<button type="submit" class="btn btn-primary " id="serchHosp">search </button>
+							<div class="col-md-6 text-right">
+								<div class="col-md-4 text-left">
+									<span class="label label-primary">${commonCondition.province }</span>
+									<span class="label label-primary">${commonCondition.city }</span>
+									<span class="label label-primary">${commonCondition.district	 }</span>
+								</div>
+								<div class="col-md-4 text-right">
+									<button type="submit" class="btn btn-primary " id="serchHosp">search
+									</button>
+								</div>
 							</div>
 						</fieldset>
 					</form>
@@ -84,9 +109,11 @@
 			<c:forEach var="hos" items="${hospital }" varStatus="status">
 				<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
 				<div class="col-md-3">
-					<div class="thumbnail">
-						<img alt="Bootstrap Thumbnail Third"
-							src="http://yyk.99.com.cn/Images/NoPicture.jpg">
+					<div class="thumbnail" style="width: 300px; height: 400px;">
+						<div>
+							<img alt="Bootstrap Thumbnail Third" src="${hos.hospitalImg}"
+								height="200" width="200" />
+						</div>
 						<div class="caption">
 							<p>${hos.hospitalName}</p>
 							<%-- <p>
@@ -96,8 +123,10 @@
 								<span class="glyphicon glyphicon-home"></span>&nbsp;${hos.hospitalAddress}
 							</p>
 							<p>
+
 								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
 									href="<c:url value='/hosInfoShow/${hos.id}' />">详细信息</a>
+
 							</p>
 						</div>
 					</div>
@@ -150,6 +179,15 @@
 <script type="text/javascript">
 	$(function() {
 		$('#serchHosp').click(function() {
+			var provinceInfo = $("#provinceInfo").val();
+			$("#province").attr("value",'');
+			$("#province").attr("value",provinceInfo);
+			var cityInfo = $("#cityInfo").val();
+			$("#city").attr("value",'');
+			$("#city").attr("value",cityInfo);
+			var districtInfo = $("#districtInfo").val();
+			$("#district").attr("value",'');
+			$("#district").attr("value",districtInfo);
 			$('#setchInfo').submit();
 			return false;
 		});
