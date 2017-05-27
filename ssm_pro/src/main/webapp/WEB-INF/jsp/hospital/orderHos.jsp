@@ -30,10 +30,11 @@
 							<!-- <label for="select" class="col-lg-4 control-la	bel text-left">医院名称:</label> -->
 							<div class="col-md-12">
 								<div class="col-md-2" data-toggle="distpicker">
-								<input id="province" name="province" type="hidden" value="${province }"/>
-								<input id="city" name="city" type="hidden" value="${city }"/>
-								<input id="district" name="district" type="hidden" value="${district }"/>
-									<select id="provinceInfo" name="provinceInfo"
+									<input id="province" name="province" type="hidden"
+										value="${province }" /> <input id="city" name="city"
+										type="hidden" value="${city }" /> <input id="district"
+										name="district" type="hidden" value="${district }" /> <select
+										id="provinceInfo" name="provinceInfo"
 										style="margin-bottom: 6px;" class="col-md-2 form-control"
 										data-province="---- 选择省 ----"></select><select id="cityInfo"
 										name="cityInfo" style="margin-bottom: 6px;"
@@ -180,14 +181,14 @@
 	$(function() {
 		$('#serchHosp').click(function() {
 			var provinceInfo = $("#provinceInfo").val();
-			$("#province").attr("value",'');
-			$("#province").attr("value",provinceInfo);
+			$("#province").attr("value", '');
+			$("#province").attr("value", provinceInfo);
 			var cityInfo = $("#cityInfo").val();
-			$("#city").attr("value",'');
-			$("#city").attr("value",cityInfo);
+			$("#city").attr("value", '');
+			$("#city").attr("value", cityInfo);
 			var districtInfo = $("#districtInfo").val();
-			$("#district").attr("value",'');
-			$("#district").attr("value",districtInfo);
+			$("#district").attr("value", '');
+			$("#district").attr("value", districtInfo);
 			$('#setchInfo').submit();
 			return false;
 		});

@@ -17,7 +17,7 @@ public interface HospitalDao {
 	public Hospital findHosById(int id);
 
 	// 通过医院名称查找医院
-	public List<Hospital> findHosByName(String hospitalName);
+	public Hospital findHosByName(String hospitalName);
 
 	// 推荐9个开通预约挂号的医院
 	public List<Hospital> findHosByRe();

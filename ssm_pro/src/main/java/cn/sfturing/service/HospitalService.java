@@ -16,6 +16,9 @@ public interface HospitalService {
 
 	// 通过医院id查找医院
 	public Hospital findHosById(int id);
+	
+	//通过医院名称查找医院
+	public Hospital findHosByName(String hosptalName);
 
 	// 查询支持预约医院数量
 	public int findOrderHosNum(String province,String city,String district,Hospital hospital);
@@ -38,5 +41,6 @@ public interface HospitalService {
 	//通过条件查询开通预约医院
 	
 	public List<Hospital> findHosByConditon(String province,String city,String district,Hospital hospital, int start,int size);	
+	
 
 }

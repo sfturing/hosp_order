@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sfturing.dao.DoctorDao">
+	<!-- 通过ID地区信息 -->
+	<select id="findAreaByHosAndOfficeName" resultType="cn.sfturing.entity.Doctor"
+		parameterType=cn.sfturing.entity.Doctor>
+		SELECT
+		* FROM `area`
+		WHERE hospital_name = #{hospitalName}
+		AND Office_name = #{OfficeName}
+	</select>
+
+
+</mapper>

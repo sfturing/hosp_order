@@ -130,4 +130,10 @@ public class HospitalServiceImpl implements HospitalService {
 				hospital.getHospitalArea(), start, size);
 	}
 
+	@Override
+	public Hospital findHosByName(String hosptalName) {
+		// TODO Auto-generated method stub
+		return hospitalDao.findHosByName(hosptalName);
+	}
+
 }

@@ -12,16 +12,20 @@ import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import cn.sfturing.web.CommonUserController;
 @Component
 public class MailUtil {
-	
-	private String personal="天津市医院预约系统" ;
-	private String mailhost="smtp.163.com";
-	private String mailuser="sfturing@163.com";
-	private String mailpassword="yyyyxt2017";
+	@Value("#{systemConfigProperties[personal]}")
+	private String personal ;
+	@Value("#{systemConfigProperties[mailhost]}")
+	private String mailhost;
+	@Value("#{systemConfigProperties[mailuser]}")
+	private String mailuser;
+	@Value("#{systemConfigProperties[mailpassword]}")
+	private String mailpassword;
 	private static Logger log = LoggerFactory.getLogger(MailUtil.class);
 	public  Properties getProperties(){
 		Properties properties = new Properties();

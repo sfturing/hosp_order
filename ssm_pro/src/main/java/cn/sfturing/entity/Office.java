@@ -11,7 +11,7 @@ public class Office {
 	//科室姓名
 	private String officesName;
 	//医院名称
-	private String hospital_name;
+	private String hospitalName;
 	//医生数量
 	private String doctorNum;
 	//科室荣誉
@@ -34,11 +34,11 @@ public class Office {
 	public void setOfficesName(String officesName) {
 		this.officesName = officesName;
 	}
-	public String getHospital_name() {
-		return hospital_name;
+	public String gethospitalName() {
+		return hospitalName;
 	}
-	public void setHospital_name(String hospital_name) {
-		this.hospital_name = hospital_name;
+	public void sethospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
 	}
 	public String getDoctorNum() {
 		return doctorNum;
@@ -72,7 +72,7 @@ public class Office {
 	}
 	@Override
 	public String toString() {
-		return "Office [id=" + id + ", officesName=" + officesName + ", hospital_name=" + hospital_name + ", doctorNum="
+		return "Office [id=" + id + ", officesName=" + officesName + ", hospitalName=" + hospitalName + ", doctorNum="
 				+ doctorNum + ", officesHonor=" + officesHonor + ", officesEquipment=" + officesEquipment
 				+ ", officesAbout=" + officesAbout + ", officesDiagnosisScope=" + officesDiagnosisScope + "]";
 	}

@@ -1,11 +1,12 @@
 package cn.sfturing.utils;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PageUtils {
-
-	private int pageRecord = 8;// 每页面的记录数
+	@Value("#{systemConfigProperties[pageRecord]}")
+	private int pageRecord;// 每页面的记录数
 
 	private int totalRecord;// 总记录数
 	private int currentPage = 1;// 当前页
@@ -13,8 +14,8 @@ public class PageUtils {
 	private int pageNumStart;// 页码显示开始;
 	private int pageNumEnd;// 页码显示结束;
 
-
-	private int showPageCount = 10;// 显示页码个数，默认是10
+	@Value("#{systemConfigProperties[showPageCount]}")
+	private int showPageCount;// 显示页码个数，默认是10
 
 	public PageUtils() {
 

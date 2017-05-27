@@ -14,7 +14,7 @@
 		parameterType="java.lang.String">
 		SELECT * FROM `hospital`
 		WHERE hospital_name =
-		#{hospitalName}
+		#{hospitalName} limit 0,1
 	</select>
 	<!-- 查询开通预约挂号的医院 -->
 	<select id="findOpenHos" resultType="cn.sfturing.entity.Hospital">
