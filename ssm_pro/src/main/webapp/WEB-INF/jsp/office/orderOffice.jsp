@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>医院列表</title>
+<title>预约科室列表</title>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
-
+<link rel="stylesheet" href="${mybasePath}assets/css/style.css">
 </head>
 <body>
 	<jsp:include page="../include/head.jsp" />
@@ -20,63 +20,24 @@
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<p class="text-left">预约医院列表</p>
+					<p class="text-left">预约科室列表</p>
 					<hr />
 					<form class="form-search form-horizontal" id="setchInfo"
-						action="<c:url value='/orderHos/1' />" method="post">
+						action="<c:url value='/orderOffice/1' />" method="post">
 						<fieldset>
-							<label for="select" class="col-lg-2 control-la	bel text-left">&nbsp;&nbsp;&nbsp;&nbsp;地区:</label>
-							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;医院信息:</label>
+
+							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;科室信息:</label>
 							<!-- <label for="select" class="col-lg-4 control-la	bel text-left">医院名称:</label> -->
 							<div class="col-md-12">
-								<div class="col-md-2" data-toggle="distpicker">
-									<input id="province" name="province" type="hidden"
-										value="${province }" /> <input id="city" name="city"
-										type="hidden" value="${city }" /> <input id="district"
-										name="district" type="hidden" value="${district }" /> <select
-										id="provinceInfo" name="provinceInfo"
-										style="margin-bottom: 6px;" class="col-md-2 form-control"
-										data-province="---- 选择省 ----"></select><select id="cityInfo"
-										name="cityInfo" style="margin-bottom: 6px;"
-										class="col-md-2 form-control" data-city="---- 选择市 ----"></select>
-									<select id="districtInfo" name="districtInfo"
-										style="margin-bottom: 6px;" class="col-md-2 form-control"
-										data-district="---- 选择区 ----"></select>
-								</div>
 								<div class="col-md-2">
-									<select style="margin-bottom: 6px;"
-										class="col-md-2 form-control" id="hospitalGrade"
-										name="hospitalGrade">
-										<option value="默认" selected="selected">请选择医院等级</option>
-										<c:forEach var="grade" items="${hospGrade }"
-											varStatus="status">
-											<c:choose>
-												<c:when test="${commonCondition.hospitalGrade == grade }">
-													<option value="${grade }" selected="selected">${grade }</option>
-												</c:when>
-												<c:otherwise>
-													<option value="${grade }">${grade }</option>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-									</select> <select style="margin-bottom: 6px;"
-										class="col-md-2 form-control" id="hospNature"
-										name="hospitalNature">
-										<option value="默认">请选择医院类型</option>
-										<c:forEach var="nature" items="${hospNature }"
-											varStatus="status">
-											<c:choose>
-												<c:when test="${commonCondition.hospitalNature == nature }">
-													<option value="${nature }" selected="selected">${nature }</option>
-												</c:when>
-												<c:otherwise>
-													<option value="${nature }">${nature }</option>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-									</select> <input class="col-md-3 form-control" id="hospitalName"
+
+									<input class="col-md-3 form-control" id="hospitalName"
 										name="hospitalName" type="text" placeholder="医院名称"
-										value="${commonCondition.hospitalName }">
+										value="${commonCondition.hospitalName }"
+										style="margin-bottom: 6px;"> <input
+										class="col-md-3 form-control" id="officesName"
+										name="officesName" type="text" placeholder="科室名称"
+										value="${commonCondition.officesName }">
 									<!-- <select style="margin-bottom:6px;" class="col-md-2 form-control" id="medicalnsuranceNum" name="medicalnsuranceNum">
 										<option value="0" selected="selected">医院是否医保</option>
 										<option value="医保">医保</option>
@@ -91,50 +52,42 @@
 								</div> -->
 							</div>
 							<div class="col-md-6 text-right">
-								<div class="col-md-4 text-left">
-									<span class="label label-primary">${commonCondition.province }</span>
-									<span class="label label-primary">${commonCondition.city }</span>
-									<span class="label label-primary">${commonCondition.district	 }</span>
-								</div>
+								<div class="col-md-4 text-left"></div>
 								<div class="col-md-4 text-right">
-									<button type="submit" class="btn btn-primary " id="serchHosp">search
+									<button type="submit" class="btn btn-primary " id="serchOffice">search
 									</button>
 								</div>
 							</div>
 						</fieldset>
 					</form>
-					<div class="nav navbar-nav navbar-right">
-							<a href="/ssm_pro/allHos/1" style="margin-right: 40px; margin-bottom: 60px;">查询全国医院</a>
-						</div>
 				</div>
 			</div>
 			<hr />
 			<br /> <br />
-			<c:forEach var="hos" items="${hospital }" varStatus="status">
+			<c:forEach var="office" items="${officeRe }" varStatus="status">
 				<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
 				<div class="col-md-3">
-					<div class="thumbnail" style="width: 300px; height: 400px;">
-						<div>
-							<img alt="Bootstrap Thumbnail Third" src="${hos.hospitalImg}"
-								height="200" width="200" />
-						</div>
+					<div class="thumbnail" style="width: 300px; height: 200px;">
+						<%-- <div>
+							<img alt="Bootstrap Thumbnail Third"
+								src="${hospitalRe[status.count-1].hospitalImg}" height="200"
+								width="200" />
+						</div> --%>
 						<div class="caption">
-							<p>${hos.hospitalName}</p>
-							<%-- <p>
-								<span class="glyphicon glyphicon-earphone "></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalPhone}
-							</p> --%>
+							<h3>${office.officesName}</h3>
 							<p>
-								<span class="glyphicon glyphicon-home"></span>&nbsp;${hos.hospitalAddress}
+								<span class="glyphicon glyphicon-home"></span>&nbsp;${office.hospitalName}
 							</p>
 							<p>
 
 								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="<c:url value='/hosInfoShow/${hos.id}' />">详细信息</a>
+									href="<c:url value='/officeInfoShow/${office.id}' />">详细信息</a>
 
 							</p>
 						</div>
 					</div>
 				</div>
+
 			</c:forEach>
 		</div>
 		<c:if test="${pages.totalPage > 0}">
@@ -152,8 +105,9 @@
 				<li
 					<c:if test="${pages.currentPage> pages.totalPage}">class="disabled"</c:if>><a
 					href="javascript:void(0);" onclick="tijiao('${pages.nextPage }')">&raquo;</a></li>
+
 				<li><input id="tijiaoInput" name="tijiaoInput" type="text"
-					class="form-control col-md-1" style="width: 60px; height: 54.89px;"></li>
+					class="form-control col-md-1" style="width: 60px; height: 54.89px"></li>
 				<li><a onclick="tijiaoInput()">Go</a></li>
 				<li class="disabled"><a>共${pages.totalPage}页${pages.totalRecord}条记录</a>
 			</ul>
@@ -166,7 +120,6 @@
 <!-- Javascript -->
 <script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${mybasePath}assets/bootstrap/js/jquery.min.js"></script>
-<script src="${mybasePath}assets/js/distpicker.js"></script>
 <script src="${mybasePath}assets/js/jquery.backstretch.min.js"></script>
 <!--不需要背景 <script src="assets/js/scripts.js"></script> -->
 <!-- <script type="text/javascript">
@@ -178,7 +131,8 @@
     </script> -->
 <script type="text/javascript">
 	function tijiao(url) {
-		$("#setchInfo").attr("action", "<c:url value='/orderHos/"+url+"' />");
+		$("#setchInfo")
+				.attr("action", "<c:url value='/orderOffice/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}
@@ -199,14 +153,15 @@
 				return false;
 			}
 		}
-		$("#setchInfo").attr("action", "<c:url value='/orderHos/"+url+"' />");
+		$("#setchInfo")
+				.attr("action", "<c:url value='/orderOffice/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}
 </script>
 <script type="text/javascript">
 	$(function() {
-		$('#serchHosp').click(function() {
+		$('#serchOffice').click(function() {
 			var provinceInfo = $("#provinceInfo").val();
 			$("#province").attr("value", '');
 			$("#province").attr("value", provinceInfo);

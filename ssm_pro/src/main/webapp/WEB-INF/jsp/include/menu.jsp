@@ -9,8 +9,8 @@
 			<br />
 			<br />
 			<li><a href="/ssm_pro/hosIndex">医院</a></li>
-			<li><a href="#">科室</a></li>
-			<li><a href="#">医生</a></li>
+			<li><a href="/ssm_pro/officeIndex/1">科室</a></li>
+			<li><a href="/ssm_pro/doctorIndex/1">医生</a></li>
 			<li><a href="#">疾病</a></li>
 			<br /><br />
 			<hr width="120" />

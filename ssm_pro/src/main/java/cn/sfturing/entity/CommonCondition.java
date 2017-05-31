@@ -11,6 +11,9 @@ public class CommonCondition {
 	private String hospitalGrade;
 	// 医院类型
 	private String hospitalNature;
+	//科室名称
+	private String officesName;
+	
 	// String hospitalAddressString;
 	// String hospitalArea;
 	// int start;
@@ -21,6 +24,14 @@ public class CommonCondition {
 	private String city;
 	//地区
 	private String district;
+	//医生姓名
+	private String doctorName;
+	//医生行政职位
+	private String doctorAdministrative;
+	//医生职称
+	private String doctorTitle;
+	//医生学位
+	private String doctorDegree;
 	public String getHospitalName() {
 		return hospitalName;
 	}
@@ -38,6 +49,12 @@ public class CommonCondition {
 	}
 	public void setHospitalNature(String hospitalNature) {
 		this.hospitalNature = hospitalNature;
+	}
+	public String getOfficesName() {
+		return officesName;
+	}
+	public void setOfficesName(String officesName) {
+		this.officesName = officesName;
 	}
 	public String getProvince() {
 		return province;
@@ -57,12 +74,40 @@ public class CommonCondition {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
+	public String getDoctorName() {
+		return doctorName;
+	}
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+	public String getDoctorAdministrative() {
+		return doctorAdministrative;
+	}
+	public void setDoctorAdministrative(String doctorAdministrative) {
+		this.doctorAdministrative = doctorAdministrative;
+	}
+	public String getDoctorTitle() {
+		return doctorTitle;
+	}
+	public void setDoctorTitle(String doctorTitle) {
+		this.doctorTitle = doctorTitle;
+	}
+	public String getDoctorDegree() {
+		return doctorDegree;
+	}
+	public void setDoctorDegree(String doctorDegree) {
+		this.doctorDegree = doctorDegree;
+	}
 	@Override
 	public String toString() {
 		return "CommonCondition [hospitalName=" + hospitalName + ", hospitalGrade=" + hospitalGrade
-				+ ", hospitalNature=" + hospitalNature + ", province=" + province + ", city=" + city + ", district="
-				+ district + "]";
+				+ ", hospitalNature=" + hospitalNature + ", officesName=" + officesName + ", province=" + province
+				+ ", city=" + city + ", district=" + district + ", doctorName=" + doctorName + ", doctorAdministrative="
+				+ doctorAdministrative + ", doctorTitle=" + doctorTitle + ", doctorDegree=" + doctorDegree + "]";
 	}
+	
+	
+	
 	
 	
 }

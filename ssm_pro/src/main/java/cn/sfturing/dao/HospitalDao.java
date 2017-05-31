@@ -17,15 +17,13 @@ public interface HospitalDao {
 	public Hospital findHosById(int id);
 
 	// 通过医院名称查找医院
-	public List<Hospital> findHosByName(String hospitalName);
+	public Hospital findHosByName(String hospitalName);
 
 	// 推荐9个开通预约挂号的医院
 	public List<Hospital> findHosByRe();
 
-	// 查询全部支持预约医院的数量
-	public int findOrderHosNum(@Param("hospitalName") String hospitalName,@Param("isMedicalInsurance") String isMedicalInsurance,
-			@Param("hospitalGrade") String hospitalGrade, @Param("hospitalNature") String hospitalNature,
-			@Param("hospitalAddress") String hospitalAddress, @Param("hospitalArea") String hospitalArea);
+	// 查询支持开通预约的医院
+	public List<Hospital> findOpenHos();
 
 	// 查询全部支持预约的医院
 	public List<Hospital> findOrderHos(@Param("start") int start, @Param("size") int size);
@@ -42,10 +40,28 @@ public interface HospitalDao {
 	// 查询所遇医院的所有类型
 	public List<String> findHosNature();
 
+	// 查询全部支持预约医院的数量
+	public int findOrderHosNum(@Param("hospitalName") String hospitalName,
+			@Param("isMedicalInsurance") String isMedicalInsurance, @Param("hospitalGrade") String hospitalGrade,
+			@Param("hospitalNature") String hospitalNature, @Param("hospitalAddress") String hospitalAddress,
+			@Param("hospitalArea") String hospitalArea);
+
 	// 根据条件查询已开通预约的医院
-	public List<Hospital> findHosByCondition(@Param("hospitalName") String hospitalName,@Param("isMedicalInsurance") String isMedicalInsurance,
-			@Param("hospitalGrade") String hospitalGrade, @Param("hospitalNature") String hospitalNature,
-			@Param("hospitalAddress") String hospitalAddress, @Param("hospitalArea") String hospitalArea,
-			@Param("start") int start, @Param("size") int size);
+	public List<Hospital> findHosByCondition(@Param("hospitalName") String hospitalName,
+			@Param("isMedicalInsurance") String isMedicalInsurance, @Param("hospitalGrade") String hospitalGrade,
+			@Param("hospitalNature") String hospitalNature, @Param("hospitalAddress") String hospitalAddress,
+			@Param("hospitalArea") String hospitalArea, @Param("start") int start, @Param("size") int size);
+
+	// 查询全部全部的数量
+	public int findAllHosNum(@Param("hospitalName") String hospitalName,
+			@Param("isMedicalInsurance") String isMedicalInsurance, @Param("hospitalGrade") String hospitalGrade,
+			@Param("hospitalNature") String hospitalNature, @Param("hospitalAddress") String hospitalAddress,
+			@Param("hospitalArea") String hospitalArea);
+
+	// 根据条件查询已全部的医院
+	public List<Hospital> findAllHosByCondition(@Param("hospitalName") String hospitalName,
+			@Param("isMedicalInsurance") String isMedicalInsurance, @Param("hospitalGrade") String hospitalGrade,
+			@Param("hospitalNature") String hospitalNature, @Param("hospitalAddress") String hospitalAddress,
+			@Param("hospitalArea") String hospitalArea, @Param("start") int start, @Param("size") int size);
 
 }

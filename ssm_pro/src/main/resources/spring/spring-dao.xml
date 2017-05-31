@@ -7,7 +7,15 @@
 	http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- 1.配置数据库相关参数properties的属性：${url} -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
-
+	<!-- 读取配置文件 system_config.properties-->
+	<bean id="systemConfigProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:system_config.properties</value>
+			</list>
+		</property>
+	</bean>
 	<!-- 2.数据库连接池 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<!-- 配置连接池属性 -->
@@ -17,10 +25,10 @@
 		<property name="password" value="${jdbc.password}" />
 
 		<!-- 不使用property配置 -->
-	<!-- <property name="driverClass" value="com.mysql.jdbc.Driver" /> <property 
-		name="jdbcUrl" value="jdbc:mysql://localhost:3306/ssm" /> <property name="user" 
-		value="root" /> <property name="password" value="root" /> -->
-		
+		<!-- <property name="driverClass" value="com.mysql.jdbc.Driver" /> <property 
+			name="jdbcUrl" value="jdbc:mysql://localhost:3306/ssm" /> <property name="user" 
+			value="root" /> <property name="password" value="root" /> -->
+
 
 		<!-- c3p0连接池的私有属性 -->
 		<property name="maxPoolSize" value="30" />
@@ -52,7 +60,7 @@
 		<!-- 给出需要扫描Dao接口包 -->
 		<property name="basePackage" value="cn.sfturing.dao" />
 	</bean>
-	
+
 	<!-- 5.扫描所需要的包 -->
-		 <context:component-scan base-package="cn.sfturing.utils"/>
+	<context:component-scan base-package="cn.sfturing.utils" />
 </beans>

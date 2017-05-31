@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>医院列表</title>
+<title>医生简介</title>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
@@ -23,7 +23,7 @@
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="text-left">医院详情</h3>
+					<h3 class="text-left">医生详情</h3>
 				</div>
 			</div>
 			<hr />
@@ -33,18 +33,16 @@
 						aria-expanded="true">预约挂号</a></li>
 					<li class=""><a href="#orderNotice" data-toggle="tab"
 						aria-expanded="false">预约须知</a></li>
-					<li class=""><a href="#notice" data-toggle="tab"
-						aria-expanded="false">医院通知</a></li>
 					<li class=""><a href="#about" data-toggle="tab"
-						aria-expanded="false">医院简介</a></li>
-					<li class=""><a href="#equipment" data-toggle="tab"
-						aria-expanded="false">医院设备</a></li>
-					<li class=""><a href="#honor" data-toggle="tab"
-						aria-expanded="false">医院荣誉</a></li>
+						aria-expanded="false">医生简介</a></li>
+					<li class=""><a href="#doctorForte" data-toggle="tab"
+						aria-expanded="false">医院特长</a></li>
+					<li class=""><a href="#comment" data-toggle="tab"
+						aria-expanded="false">医院评论</a></li>
 				</ul>
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<p class="text-left">${hos.hospitalName }</p>
+						<p class="text-left">${doctor.hospitalName }</p>
 					</div>
 					<div class="col-md-5">
 						<p class="text-right">
@@ -65,39 +63,37 @@
 				<hr width="1300px" />
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<img alt="Bootstrap Thumbnail Third"
-							src="${hos.hospitalImg }">
+						<img alt="Bootstrap Thumbnail Third" src="${doctor.doctorImg }"
+							style="width: 180px; height: 180px;">
 					</div>
 					<div class="col-md-4">
 						<p class="text-left">
-							<font color="#eb6864">院长姓名：</font>
-							<c:if test='${hos.hospitalDeanName=="0" }'>不详</c:if>
-							<c:if test='${hos.hospitalDeanName!="0" }'>${hos.hospitalDeanName }</c:if>
-
+							<font color="#eb6864">医生姓名：</font>${doctor.doctorName }
 						</p>
 						<p class="text-left">
-							<font color="#eb6864">建院年份：</font>${hos.hospitalYear }
+							<font color="#eb6864">医生性别：</font>${doctor.doctorSex }
 						</p>
 						<p class="text-left">
-							<font color="#eb6864">科室数量：</font>${hos.hospitalOfficesNum }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">医保人数：</font>${hos.medicalInsuranceNum }
-						</p>
-					</div>
-					<div class="col-md-5">
-						<p class="text-left">
-							<font color="#eb6864">病床数量：</font>${hos.hospitalBedNum }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">年门诊量：</font>${hos.outpatientNum }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">是否医保：</font>${hos.isMedicalInsurance }
+							<font color="#eb6864">医生科室：</font>${doctor.officesName }
 						</p>
 						<p class="text-left">
 							<font color="#eb6864">医院网址：<a href="${hos.hospitalUrl }"
 								target="_blank">${hos.hospitalUrl }</a></font>
+						</p>
+
+					</div>
+					<div class="col-md-5">
+						<p class="text-left">
+							<font color="#eb6864">行政职位：</font>${doctor.doctorAdministrative }
+						</p>
+						<p class="text-left">
+							<font color="#eb6864">学位：</font>${doctor.doctorDegree }
+						</p>
+						<p class="text-left">
+							<font color="#eb6864">医生职称：</font>${doctor.doctorTitle }
+						</p>
+						<p class="text-left">
+							<font color="#eb6864">教学职称：</font>${doctor.teachTitle }
 						</p>
 					</div>
 				</div>
@@ -107,28 +103,11 @@
 					<div class="tab-pane fade active in text-left" id="home">
 						<div class="col-md-12">
 							<div class="col-md-3">
-								<p class="text-left">门诊科室</p>
+								<p class="text-left">预约</p>
 							</div>
 						</div>
 						<hr width="1300px">
-						<table class="table table-striped table-hover ">
-							<thead>
-								<tr>
-									<th>门诊科室</th>
-									<th>科室名称</th>
-									<th>科室人数</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="off" items="${office }" varStatus="status">
-									<tr>
-										<td>${ status.index + 1}</td>
-										<td><a href="<c:url value='/officeInfoShow/${off.id}' />">${off.officesName }</a></td>
-										<td>${off.doctorNum }</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+						<p>预约保留</p>
 					</div>
 					<div class="tab-pane fade text-left" id="orderNotice">
 						<div class="col-md-12 ">
@@ -162,92 +141,32 @@
 							${hos.hospitalName }<br>注意：本站一切预约数据均为测试。
 						</p>
 					</div>
-					<div class="tab-pane fade text-left" id="notice">
-						<div class="col-md-12 ">
-							<div class="col-md-2">
-								<p class="text-left">医院通知</p>
-							</div>
-						</div>
-						<hr width="1300px">
-						<table class="table table-striped table-hover ">
-							<thead>
-								<tr>
-									<th>医院通知</th>
-									<th>通知名称</th>
-									<th>通知时间</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Column content</td>
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
 					<div class="tab-pane fade text-left" id="about">
 						<div class="col-md-12 ">
 							<div class="col-md-2">
-								<p class="text-left">医院简介</p>
+								<p class="text-left">医生简介</p>
 							</div>
 						</div>
 						<hr width="1300px">
-						<p>&nbsp;&nbsp;${hos.hospitalAbout }</p>
+						<p>&nbsp;&nbsp;${doctor.doctorAbout }</p>
 					</div>
-					<div class="tab-pane fade text-left" id="equipment">
+					<div class="tab-pane fade text-left" id="doctorForte">
 						<div class="col-md-12 ">
 							<div class="col-md-2">
-								<p class="text-left">医院设备</p>
+								<p class="text-left">医生特长</p>
 							</div>
 						</div>
 						<hr width="1300px">
-						<p>&nbsp;&nbsp;${hos.hospitalEquipment }</p>
+						<p>&nbsp;&nbsp;${doctor.doctorForte }</p>
 					</div>
-					<div class="tab-pane fade text-left" id="honor">
+					<div class="tab-pane fade text-left" id="comment">
 						<div class="col-md-12 ">
 							<div class="col-md-2">
-								<p class="text-left">医院荣誉</p>
+								<p class="text-left">医院评论</p>
 							</div>
 						</div>
 						<hr width="1300px">
-						<p>&nbsp;&nbsp;${hos.hospitalHonor }</p>
+						<p>&nbsp;&nbsp;评论系统</p>
 					</div>
 				</div>
 			</div>
