@@ -23,7 +23,7 @@
 					<p class="text-left">预约医院列表</p>
 					<hr />
 					<form class="form-search form-horizontal" id="setchInfo"
-						action="<c:url value='/orderHos/1' />" method="post">
+						action="<c:url value='/allHos/1' />" method="post">
 						<fieldset>
 							<label for="select" class="col-lg-2 control-la	bel text-left">&nbsp;&nbsp;&nbsp;&nbsp;地区:</label>
 							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;医院信息:</label>
@@ -103,9 +103,6 @@
 							</div>
 						</fieldset>
 					</form>
-					<div class="nav navbar-nav navbar-right">
-							<a href="/ssm_pro/allHos/1" style="margin-right: 40px; margin-bottom: 60px;">查询全国医院</a>
-						</div>
 				</div>
 			</div>
 			<hr />
@@ -178,7 +175,7 @@
     </script> -->
 <script type="text/javascript">
 	function tijiao(url) {
-		$("#setchInfo").attr("action", "<c:url value='/orderHos/"+url+"' />");
+		$("#setchInfo").attr("action", "<c:url value='/allHos/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}
@@ -199,7 +196,7 @@
 				return false;
 			}
 		}
-		$("#setchInfo").attr("action", "<c:url value='/orderHos/"+url+"' />");
+		$("#setchInfo").attr("action", "<c:url value='/allHos/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}

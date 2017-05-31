@@ -20,39 +20,39 @@
 	<jsp:include page="../include/head.jsp" />
 	<jsp:include page="../include/menu.jsp" />
 	<form class="form-search form-horizontal" id="setchInfo"
-		action="<c:url value='/officeIndex/1' />" method="post"></form>
+		action="<c:url value='/doctorIndex/1' />" method="post"></form>
 	<div id="page-wrapper" style="margin-top: 50px;">
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<p class="text-left">推荐科室列表</p>
+					<p class="text-left">推荐医生列表</p>
 					<div class="col-md-12">
 						<div class="nav navbar-nav navbar-right">
-							<a href="/ssm_pro/orderOffice/1">查看更多可预约科室</a>
+							<a href="/ssm_pro/allDoctor/1">查看更多可医生</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<hr />
 			<br /> <br />
-			<c:forEach var="office" items="${officeRe }" varStatus="status">
+			<c:forEach var="doctor" items="${doctorRe }" varStatus="status">
 				<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
 				<div class="col-md-3">
-					<div class="thumbnail" style="width: 300px; height: 200px;">
-						<%-- <div>
+					<div class="thumbnail">
+						 <div>
 							<img alt="Bootstrap Thumbnail Third"
-								src="${hospitalRe[status.count-1].hospitalImg}" height="200"
+								src="${doctor.doctorImg}" height="200"
 								width="200" />
-						</div> --%>
+						</div> 
 						<div class="caption">
-							<h3>${office.officesName}</h3>
+							<h3>${doctor.doctorName}</h3>
 							<p>
-								<span class="glyphicon glyphicon-home"></span>&nbsp;${office.hospitalName}
+								<span class="glyphicon glyphicon-home"></span>&nbsp;${doctor.hospitalName}
 							</p>
 							<p>
 
 								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="<c:url value='/officeInfoShow/${office.id}' />">详细信息</a>
+									href="<c:url value='/doctorInfoShow/${doctor.id}' />">详细信息</a>
 
 							</p>
 						</div>
@@ -116,7 +116,7 @@
 			}
 		}
 		$("#setchInfo")
-				.attr("action", "<c:url value='/officeIndex/"+url+"' />");
+				.attr("action", "<c:url value='/doctorIndex/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}
@@ -124,7 +124,7 @@
 <script type="text/javascript">
 	function tijiao(url) {
 		$("#setchInfo")
-				.attr("action", "<c:url value='/officeIndex/"+url+"' />");
+				.attr("action", "<c:url value='/doctorIndex/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}

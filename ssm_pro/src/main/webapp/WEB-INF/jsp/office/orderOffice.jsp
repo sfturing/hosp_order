@@ -6,31 +6,60 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>科室列表</title>
+<title>预约科室列表</title>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
-<link rel="stylesheet"
-	href="${mybasePath}assets/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="${mybasePath}assets//css/form-elements.css">
 <link rel="stylesheet" href="${mybasePath}assets/css/style.css">
 </head>
 <body>
 	<jsp:include page="../include/head.jsp" />
 	<jsp:include page="../include/menu.jsp" />
-	<form class="form-search form-horizontal" id="setchInfo"
-		action="<c:url value='/officeIndex/1' />" method="post"></form>
 	<div id="page-wrapper" style="margin-top: 50px;">
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<p class="text-left">推荐科室列表</p>
-					<div class="col-md-12">
-						<div class="nav navbar-nav navbar-right">
-							<a href="/ssm_pro/orderOffice/1">查看更多可预约科室</a>
-						</div>
-					</div>
+					<p class="text-left">预约科室列表</p>
+					<hr />
+					<form class="form-search form-horizontal" id="setchInfo"
+						action="<c:url value='/orderOffice/1' />" method="post">
+						<fieldset>
+
+							<label for="select" class="col-lg-4 control-la	bel text-left">&nbsp;&nbsp;科室信息:</label>
+							<!-- <label for="select" class="col-lg-4 control-la	bel text-left">医院名称:</label> -->
+							<div class="col-md-12">
+								<div class="col-md-2">
+
+									<input class="col-md-3 form-control" id="hospitalName"
+										name="hospitalName" type="text" placeholder="医院名称"
+										value="${commonCondition.hospitalName }"
+										style="margin-bottom: 6px;"> <input
+										class="col-md-3 form-control" id="officesName"
+										name="officesName" type="text" placeholder="科室名称"
+										value="${commonCondition.officesName }">
+									<!-- <select style="margin-bottom:6px;" class="col-md-2 form-control" id="medicalnsuranceNum" name="medicalnsuranceNum">
+										<option value="0" selected="selected">医院是否医保</option>
+										<option value="医保">医保</option>
+										<option value="非医保">非医保</option>
+
+									</select> -->
+								</div>
+
+								<!-- <div style="margin-bottom:50px;" class="col-md-4">
+									<input class="col-md-3 form-control" id="hospitalName" name="hospitalName"
+										type="text">
+								</div> -->
+							</div>
+							<div class="col-md-6 text-right">
+								<div class="col-md-4 text-left"></div>
+								<div class="col-md-4 text-right">
+									<button type="submit" class="btn btn-primary " id="serchOffice">search
+									</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 			<hr />
@@ -76,6 +105,7 @@
 				<li
 					<c:if test="${pages.currentPage> pages.totalPage}">class="disabled"</c:if>><a
 					href="javascript:void(0);" onclick="tijiao('${pages.nextPage }')">&raquo;</a></li>
+
 				<li><input id="tijiaoInput" name="tijiaoInput" type="text"
 					class="form-control col-md-1" style="width: 60px; height: 54.89px"></li>
 				<li><a onclick="tijiaoInput()">Go</a></li>
@@ -100,6 +130,14 @@
     });
     </script> -->
 <script type="text/javascript">
+	function tijiao(url) {
+		$("#setchInfo")
+				.attr("action", "<c:url value='/orderOffice/"+url+"' />");
+		$("#setchInfo").submit();
+		return false;
+	}
+</script>
+<script type="text/javascript">
 	function tijiaoInput() {
 		var url = $("#tijiaoInput").val();
 		if (url == "") {
@@ -116,17 +154,26 @@
 			}
 		}
 		$("#setchInfo")
-				.attr("action", "<c:url value='/officeIndex/"+url+"' />");
+				.attr("action", "<c:url value='/orderOffice/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}
 </script>
 <script type="text/javascript">
-	function tijiao(url) {
-		$("#setchInfo")
-				.attr("action", "<c:url value='/officeIndex/"+url+"' />");
-		$("#setchInfo").submit();
-		return false;
-	}
+	$(function() {
+		$('#serchOffice').click(function() {
+			var provinceInfo = $("#provinceInfo").val();
+			$("#province").attr("value", '');
+			$("#province").attr("value", provinceInfo);
+			var cityInfo = $("#cityInfo").val();
+			$("#city").attr("value", '');
+			$("#city").attr("value", cityInfo);
+			var districtInfo = $("#districtInfo").val();
+			$("#district").attr("value", '');
+			$("#district").attr("value", districtInfo);
+			$('#setchInfo').submit();
+			return false;
+		});
+	});
 </script>
 </html>

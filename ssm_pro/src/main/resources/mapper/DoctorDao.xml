@@ -5,11 +5,109 @@
 <mapper namespace="cn.sfturing.dao.DoctorDao">
 	<!-- 通过ID地区信息 -->
 	<select id="findAreaByHosAndOfficeName" resultType="cn.sfturing.entity.Doctor"
-		parameterType=cn.sfturing.entity.Doctor>
+		parameterType="cn.sfturing.entity.Doctor">
 		SELECT
-		* FROM `area`
+		* FROM `doctor`
 		WHERE hospital_name = #{hospitalName}
-		AND Office_name = #{OfficeName}
+		AND Offices_name = #{OfficeName}
+	</select>
+	<!--推荐医生 -->
+	<select id="findDoctorByRe" resultType="cn.sfturing.entity.Doctor" parameterType="java.util.Map">
+		SELECT *
+		FROM `doctor`
+		WHERE 1=1 AND hospital_name in
+		<foreach item="hospital" index="index" collection="list" open="("
+			separator="," close=")">
+			#{hospital.hospitalName}
+		</foreach>
+		limit #{start},#{size}
+	</select>
+	<!--推荐医生数量 -->
+	<select id="findDoctorByReNum" resultType="java.lang.Integer" >
+		SELECT COUNT(*)
+		FROM `doctor`
+		WHERE 1=1 AND hospital_name in
+		<foreach item="hospitalName" index="index" collection="list" open="("
+			separator="," close=")">
+			#{hospitalName.hospitalName}
+		</foreach>
+	</select>
+	
+	<!-- 通过ID查询医生信息 -->
+	<select id="findDoctorById" resultType="cn.sfturing.entity.Doctor"
+		parameterType="int">
+		SELECT
+		* FROM `doctor`
+		WHERE id =
+		#{id}
+	</select>
+	
+	<!-- 查询全部医生数量（根据条件） -->
+	<select id="findDoctorNum" resultType="java.lang.Integer" parameterType="cn.sfturing.entity.Doctor">
+		SELECT count(*) FROM
+		`doctor`
+		where 1 = 1 
+		<if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if>
+		<if test="officesName != null">
+			AND offices_name LIKE '%${officesName}%'
+		</if>
+		<if test="doctorName != null">
+			AND doctor_name LIKE '%${doctorName}%'
+		</if>
+		<if test="doctorTitle != null">
+			AND doctor_title = #{doctorTitle}
+		</if>
+		<if test="doctorAdministrative != null">
+			AND doctor_administrative = #{doctorAdministrative}
+		</if>
+		<if test="doctorDegree != null">
+			AND doctor_degree = #{doctorDegree}
+		</if>
+
+	</select>
+	
+	<!--根据条件查询全部医生-->
+	<select id="findDoctorByCondition" resultType="cn.sfturing.entity.Doctor" parameterType="cn.sfturing.entity.Doctor">
+		SELECT * FROM `doctor`
+		where 1 = 1 
+		<if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if>
+		<if test="officesName != null">
+			AND offices_name LIKE '%${officesName}%'
+		</if>
+		<if test="doctorName != null">
+			AND doctor_name LIKE '%${doctorName}%'
+		</if>
+		<if test="doctorTitle != null">
+			AND doctor_title = #{doctorTitle}
+		</if>
+		<if test="doctorAdministrative != null">
+			AND doctor_administrative = #{doctorAdministrative}
+		</if>
+		<if test="doctorDegree != null">
+			AND doctor_degree = #{doctorDegree}
+		</if>
+		limit #{start},#{size}
+		
+	</select>
+	
+	<!-- 查询全部医生职称 -->
+	<select id="findDoctorTitle" resultType="java.lang.String">
+		SELECT DISTINCT
+		doctor_title FROM `doctor`
+	</select>
+	<!-- 查询医生行政职位 -->
+	<select id="findDoctorAdministrative" resultType="java.lang.String">
+		SELECT DISTINCT
+		doctor_administrative FROM `doctor`
+	</select>
+	<!-- 查询医生学位 -->
+	<select id="findDoctorDegree" resultType="java.lang.String">
+		SELECT DISTINCT
+		doctor_degree FROM `doctor`
 	</select>
 
 

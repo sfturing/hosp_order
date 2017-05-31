@@ -5,130 +5,106 @@ public class Doctor {
 	// id
 	private int id;
 	// 医生姓名
-	private String docotorame;
+	private String doctorName;
 	// 医生性别
-	private String doctorex;
+	private String doctorSex;
 	// 医院名称
-	private String hospitalame;
+	private String hospitalName;
 	// 科室名称
-	private String officesame;
+	private String officesName;
 	// 医生照片
-	private String doctormg;
+	private String doctorImg;
 	// 医生职称
-	private String doctoritle;
+	private String doctorTitle;
 	// 教学支职称
-	private String teachitle;
+	private String teachTitle;
 	// 行政职位
-	private String doctordministrative;
+	private String doctorAdministrative;
 	// 学位
-	private String doctoregree;
+	private String doctorDegree;
 	// 医生特长
-	private String doctor_forte;
+	private String doctorForte;
 	// 医生关于
 	private String doctorAbout;
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getDocotorame() {
-		return docotorame;
+	public String getDoctorName() {
+		return doctorName;
 	}
-
-	public void setDocotorame(String docotorame) {
-		this.docotorame = docotorame;
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
 	}
-
-	public String getDoctorex() {
-		return doctorex;
+	public String getDoctorSex() {
+		return doctorSex;
 	}
-
-	public void setDoctorex(String doctorex) {
-		this.doctorex = doctorex;
+	public void setDoctorSex(String doctorSex) {
+		this.doctorSex = doctorSex;
 	}
-
-	public String getHospitalame() {
-		return hospitalame;
+	public String getHospitalName() {
+		return hospitalName;
 	}
-
-	public void setHospitalame(String hospitalame) {
-		this.hospitalame = hospitalame;
+	public void setHospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
 	}
-
-	public String getOfficesame() {
-		return officesame;
+	public String getOfficesName() {
+		return officesName;
 	}
-
-	public void setOfficesame(String officesame) {
-		this.officesame = officesame;
+	public void setOfficesName(String officesName) {
+		this.officesName = officesName;
 	}
-
-	public String getDoctormg() {
-		return doctormg;
+	public String getDoctorImg() {
+		return doctorImg;
 	}
-
-	public void setDoctormg(String doctormg) {
-		this.doctormg = doctormg;
+	public void setDoctorImg(String doctorImg) {
+		this.doctorImg = doctorImg;
 	}
-
-	public String getDoctoritle() {
-		return doctoritle;
+	public String getDoctorTitle() {
+		return doctorTitle;
 	}
-
-	public void setDoctoritle(String doctoritle) {
-		this.doctoritle = doctoritle;
+	public void setDoctorTitle(String doctorTitle) {
+		this.doctorTitle = doctorTitle;
 	}
-
-	public String getTeachitle() {
-		return teachitle;
+	public String getTeachTitle() {
+		return teachTitle;
 	}
-
-	public void setTeachitle(String teachitle) {
-		this.teachitle = teachitle;
+	public void setTeachTitle(String teachTitle) {
+		this.teachTitle = teachTitle;
 	}
-
-	public String getDoctordministrative() {
-		return doctordministrative;
+	public String getDoctorAdministrative() {
+		return doctorAdministrative;
 	}
-
-	public void setDoctordministrative(String doctordministrative) {
-		this.doctordministrative = doctordministrative;
+	public void setDoctorAdministrative(String doctorAdministrative) {
+		this.doctorAdministrative = doctorAdministrative;
 	}
-
-	public String getDoctoregree() {
-		return doctoregree;
+	public String getDoctorDegree() {
+		return doctorDegree;
 	}
-
-	public void setDoctoregree(String doctoregree) {
-		this.doctoregree = doctoregree;
+	public void setDoctorDegree(String doctorDegree) {
+		this.doctorDegree = doctorDegree;
 	}
-
-	public String getDoctor_forte() {
-		return doctor_forte;
+	public String getDoctorForte() {
+		return doctorForte;
 	}
-
-	public void setDoctor_forte(String doctor_forte) {
-		this.doctor_forte = doctor_forte;
+	public void setDoctorForte(String doctorForte) {
+		this.doctorForte = doctorForte;
 	}
-
 	public String getDoctorAbout() {
 		return doctorAbout;
 	}
-
 	public void setDoctorAbout(String doctorAbout) {
 		this.doctorAbout = doctorAbout;
 	}
-
 	@Override
 	public String toString() {
-		return "Doctor [id=" + id + ", docotorame=" + docotorame + ", doctorex=" + doctorex + ", hospitalame="
-				+ hospitalame + ", officesame=" + officesame + ", doctormg=" + doctormg + ", doctoritle=" + doctoritle
-				+ ", teachitle=" + teachitle + ", doctordministrative=" + doctordministrative + ", doctoregree="
-				+ doctoregree + ", doctor_forte=" + doctor_forte + ", doctorAbout=" + doctorAbout + "]";
+		return "Doctor [id=" + id + ", doctorName=" + doctorName + ", doctorSex=" + doctorSex + ", hospitalName="
+				+ hospitalName + ", officesName=" + officesName + ", doctorImg=" + doctorImg + ", doctorTitle="
+				+ doctorTitle + ", teachTitle=" + teachTitle + ", doctorAdministrative=" + doctorAdministrative
+				+ ", doctorDegree=" + doctorDegree + ", doctorForte=" + doctorForte + ", doctorAbout=" + doctorAbout
+				+ "]";
 	}
 
 }

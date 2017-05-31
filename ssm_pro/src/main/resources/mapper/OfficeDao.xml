@@ -22,7 +22,7 @@
 	</select>
 
 	<!--推荐科室 -->
-	<select id="findHosByRe" resultType="cn.sfturing.entity.Office" parameterType="java.util.Map">
+	<select id="findOfficeByRe" resultType="cn.sfturing.entity.Office" parameterType="java.util.Map">
 		SELECT *
 		FROM `hos_office`
 		WHERE 1=1 AND hospital_name in
@@ -33,7 +33,7 @@
 		limit #{start},#{size}
 	</select>
 	<!--推荐科室数量 -->
-	<select id="findHosByReNum" resultType="java.lang.Integer" >
+	<select id="findOfficeByReNum" resultType="java.lang.Integer" >
 		SELECT COUNT(*)
 		FROM `hos_office`
 		WHERE 1=1 AND hospital_name in
@@ -41,6 +41,34 @@
 			separator="," close=")">
 			#{hospitalName.hospitalName}
 		</foreach>
+	</select>
+	
+	<!-- 查询全部支持预约科室的数量 -->
+	<select id="findOrderOfficeNum" resultType="java.lang.Integer" parameterType="cn.sfturing.entity.Office">
+		SELECT count(*) FROM
+		`hos_office`
+			where 1 = 1 
+		<if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if>
+		<if test="officesName != null">
+			AND offices_name LIKE '%${officesName}%'
+		</if>
+
+	</select>
+	
+	<!--根据条件查询已开通预约的医院 -->
+	<select id="findOfficeByCondition" resultType="cn.sfturing.entity.Office" parameterType="cn.sfturing.entity.Office">
+		SELECT * FROM `hos_office`
+		WHERE 1=1 
+		<if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if>
+		<if test="officesName != null">
+			AND offices_name LIKE '%${officesName}%'
+		</if>
+		limit #{start},#{size}
+		
 	</select>
 
 

@@ -24,7 +24,7 @@
 	<!-- 推荐9个开通预约挂号的医院 -->
 	<select id="findHosByRe" resultType="cn.sfturing.entity.Hospital">
 		SELECT * FROM `hospital`
-		WHERE is_open = 1 limit 15,20
+		WHERE is_open = 1 limit 19,15
 	</select>
 	<!-- 查询全部支持预约医院的数量 -->
 	<select id="findOrderHosNum" resultType="java.lang.Integer" parameterType="cn.sfturing.entity.Hospital">
@@ -83,6 +83,58 @@
 	<select id="findHosByCondition" resultType="cn.sfturing.entity.Hospital" parameterType="cn.sfturing.entity.Hospital">
 		SELECT * FROM `hospital`
 		WHERE is_open=1 
+		<if test="hospitalArea != null">
+			AND hospital_area = #{hospitalArea}
+		</if>
+		<if test="hospitalAddress != null">
+			AND hospital_address LIKE '%${hospitalAddress}%'
+		</if>
+		<if test="hospitalNature != null">
+			AND hospital_nature = #{hospitalNature}
+		</if>
+		<if test="hospitalGrade != null">
+			AND hospital_grade = #{hospitalGrade}
+		</if>
+		<!-- <if test="isMedicalInsurance != 0">
+			AND is_medical_insurance = #{isMedicalInsurance}
+		</if> -->
+		<if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if>
+		limit #{start},#{size}
+		
+	</select>
+	
+	<!-- 查询全部支持预约医院的数量 -->
+	<select id="findAllHosNum" resultType="java.lang.Integer" parameterType="cn.sfturing.entity.Hospital">
+		SELECT count(*) FROM
+		`hospital`
+		where 1 = 1 
+		<if test="hospitalArea != null">
+			AND hospital_area = #{hospitalArea}
+		</if>
+		<if test="hospitalAddress != null">
+			AND hospital_address LIKE '%${hospitalAddress}%'
+		</if>
+		<if test="hospitalNature != null">
+			AND hospital_nature = #{hospitalNature}
+		</if>
+		<if test="hospitalGrade != null">
+			AND hospital_grade = #{hospitalGrade}
+		</if>
+		<!-- <if test="isMedicalInsurance != 0">
+			AND is_medical_insurance = #{isMedicalInsurance}
+		</if> -->
+		<if test="hospitalName != null">
+			AND hospital_name LIKE '%${hospitalName}%'
+		</if>
+
+	</select>
+	
+	<!--根据条件查询已开通预约的医院 -->
+	<select id="findAllHosByCondition" resultType="cn.sfturing.entity.Hospital" parameterType="cn.sfturing.entity.Hospital">
+		SELECT * FROM `hospital`
+		WHERE 1=1 
 		<if test="hospitalArea != null">
 			AND hospital_area = #{hospitalArea}
 		</if>

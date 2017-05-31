@@ -22,6 +22,12 @@ public class Office {
 	private String officesAbout;
 	//科室诊疗范围
 	private String officesDiagnosisScope;
+	@Override
+	public String toString() {
+		return "Office [id=" + id + ", officesName=" + officesName + ", hospitalName=" + hospitalName + ", doctorNum="
+				+ doctorNum + ", officesHonor=" + officesHonor + ", officesEquipment=" + officesEquipment
+				+ ", officesAbout=" + officesAbout + ", officesDiagnosisScope=" + officesDiagnosisScope + "]";
+	}
 	public int getId() {
 		return id;
 	}
@@ -34,10 +40,10 @@ public class Office {
 	public void setOfficesName(String officesName) {
 		this.officesName = officesName;
 	}
-	public String gethospitalName() {
+	public String getHospitalName() {
 		return hospitalName;
 	}
-	public void sethospitalName(String hospitalName) {
+	public void setHospitalName(String hospitalName) {
 		this.hospitalName = hospitalName;
 	}
 	public String getDoctorNum() {
@@ -70,12 +76,7 @@ public class Office {
 	public void setOfficesDiagnosisScope(String officesDiagnosisScope) {
 		this.officesDiagnosisScope = officesDiagnosisScope;
 	}
-	@Override
-	public String toString() {
-		return "Office [id=" + id + ", officesName=" + officesName + ", hospitalName=" + hospitalName + ", doctorNum="
-				+ doctorNum + ", officesHonor=" + officesHonor + ", officesEquipment=" + officesEquipment
-				+ ", officesAbout=" + officesAbout + ", officesDiagnosisScope=" + officesDiagnosisScope + "]";
-	}
+	
 	
 	
 
