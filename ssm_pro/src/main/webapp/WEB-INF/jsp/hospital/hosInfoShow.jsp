@@ -34,8 +34,6 @@
 							aria-expanded="true">预约挂号</a></li>
 						<li class=""><a href="#orderNotice" data-toggle="tab"
 							aria-expanded="false">预约须知</a></li>
-						<li class=""><a href="#notice" data-toggle="tab"
-							aria-expanded="false">医院通知</a></li>
 					</c:if>
 					<c:if test='${hos.isOpen=="0" }'>
 						<li class="active"><a href="#home" data-toggle="tab"
@@ -167,66 +165,6 @@
 							${hos.hospitalBusRoute }<br> <br> <br> <br>
 							${hos.hospitalName }<br>注意：本站一切预约数据均为测试。
 						</p>
-					</div>
-					<div class="tab-pane fade text-left" id="notice">
-						<div class="col-md-12 ">
-							<div class="col-md-2">
-								<p class="text-left">医院通知</p>
-							</div>
-						</div>
-						<hr width="1300px">
-						<table class="table table-striped table-hover ">
-							<thead>
-								<tr>
-									<th>医院通知</th>
-									<th>通知名称</th>
-									<th>通知时间</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Column content</td>
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>Column content</td>
-
-									<td>Column content</td>
-								</tr>
-							</tbody>
-						</table>
 					</div>
 					<div class="tab-pane fade text-left" id="about">
 						<div class="col-md-12 ">

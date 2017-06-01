@@ -17,19 +17,23 @@
 				</span> <span class="li-social"> </span>
 					<div>
 						<c:if test="${userInfo == null}">
-							<a class="navbar-brand" style="font-size: 12px;" href="<c:url value="/login" />"><strong>登录</strong></a>
-							<a class="navbar-brand" style="font-size: 12px;" href="<c:url value="/sign" />"><strong>注册</strong></a>
+							<a class="navbar-brand" style="font-size: 12px;"
+								href="<c:url value="/login" />"><strong>登录</strong></a>
+							<a class="navbar-brand" style="font-size: 12px;"
+								href="<c:url value="/sign" />"><strong>注册</strong></a>
 						</c:if>
 						<c:if test="${userInfo.userEmail != null}">
 							<c:if test="${userInfo.userIdenf == null}">
-								<a class="navbar-brand" style="font-size: 12px;" href="<c:url value="/addUserInfo" />"><strong>完善个人信息</strong></a>
+								<a class="navbar-brand" style="font-size: 12px;"
+									href="<c:url value="/addUserInfo" />"><strong>完善个人信息</strong></a>
 							</c:if>
 						</c:if>
 						<c:if test="${userInfo.userIdenf != null}">
 							<a class="navbar-brand" style="font-size: 12px;" href="#"><strong>欢迎您,${userInfo.userName }</strong></a>
-							<a class="navbar-brand" style="font-size: 12px;" href="<c:url value="/logOff" />"><strong>注销</strong></a>
+							<a class="navbar-brand" style="font-size: 12px;"
+								href="<c:url value="/logOff" />"><strong>注销</strong></a>
 						</c:if>
-						<a class="navbar-brand" style="font-size: 12px;" href="index"><strong>帮助中心</strong></a>
+						<a class="navbar-brand" style="font-size: 12px;" href="/ssm_pro/help"><strong>帮助中心</strong></a>
 					</div></li>
 			</ul>
 		</div>
