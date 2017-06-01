@@ -11,7 +11,7 @@
 		WHERE hospital_name =
 		#{hospitalName}
 	</select>
-	
+
 	<!-- 通过ID地区信息 -->
 	<select id="findOfficeById" resultType="cn.sfturing.entity.Office"
 		parameterType="int">
@@ -22,7 +22,8 @@
 	</select>
 
 	<!--推荐科室 -->
-	<select id="findOfficeByRe" resultType="cn.sfturing.entity.Office" parameterType="java.util.Map">
+	<select id="findOfficeByRe" resultType="cn.sfturing.entity.Office"
+		parameterType="java.util.Map">
 		SELECT *
 		FROM `hos_office`
 		WHERE 1=1 AND hospital_name in
@@ -30,24 +31,27 @@
 			separator="," close=")">
 			#{hospital.hospitalName}
 		</foreach>
+		ORDER BY
+		RAND() 
 		limit #{start},#{size}
 	</select>
 	<!--推荐科室数量 -->
-	<select id="findOfficeByReNum" resultType="java.lang.Integer" >
+	<select id="findOfficeByReNum" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		FROM `hos_office`
 		WHERE 1=1 AND hospital_name in
-		<foreach item="hospitalName" index="index" collection="list" open="("
-			separator="," close=")">
+		<foreach item="hospitalName" index="index" collection="list"
+			open="(" separator="," close=")">
 			#{hospitalName.hospitalName}
 		</foreach>
 	</select>
-	
+
 	<!-- 查询全部支持预约科室的数量 -->
-	<select id="findOrderOfficeNum" resultType="java.lang.Integer" parameterType="cn.sfturing.entity.Office">
+	<select id="findOrderOfficeNum" resultType="java.lang.Integer"
+		parameterType="cn.sfturing.entity.Office">
 		SELECT count(*) FROM
 		`hos_office`
-			where 1 = 1 
+		where 1 = 1
 		<if test="hospitalName != null">
 			AND hospital_name LIKE '%${hospitalName}%'
 		</if>
@@ -56,19 +60,22 @@
 		</if>
 
 	</select>
-	
+
 	<!--根据条件查询已开通预约的医院 -->
-	<select id="findOfficeByCondition" resultType="cn.sfturing.entity.Office" parameterType="cn.sfturing.entity.Office">
+	<select id="findOfficeByCondition" resultType="cn.sfturing.entity.Office"
+		parameterType="cn.sfturing.entity.Office">
 		SELECT * FROM `hos_office`
-		WHERE 1=1 
+		WHERE 1=1
 		<if test="hospitalName != null">
 			AND hospital_name LIKE '%${hospitalName}%'
 		</if>
 		<if test="officesName != null">
 			AND offices_name LIKE '%${officesName}%'
 		</if>
+		ORDER BY
+		RAND()
 		limit #{start},#{size}
-		
+
 	</select>
 
 

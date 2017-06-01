@@ -20,6 +20,8 @@
 			separator="," close=")">
 			#{hospital.hospitalName}
 		</foreach>
+		ORDER BY
+		RAND()
 		limit #{start},#{size}
 	</select>
 	<!--推荐医生数量 -->
@@ -90,6 +92,8 @@
 		<if test="doctorDegree != null">
 			AND doctor_degree = #{doctorDegree}
 		</if>
+		ORDER BY
+		RAND()
 		limit #{start},#{size}
 		
 	</select>
