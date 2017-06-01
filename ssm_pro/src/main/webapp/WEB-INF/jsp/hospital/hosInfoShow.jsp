@@ -29,12 +29,18 @@
 			<hr />
 			<div class="col-md-12">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#home" data-toggle="tab"
-						aria-expanded="true">预约挂号</a></li>
-					<li class=""><a href="#orderNotice" data-toggle="tab"
-						aria-expanded="false">预约须知</a></li>
-					<li class=""><a href="#notice" data-toggle="tab"
-						aria-expanded="false">医院通知</a></li>
+					<c:if test='${hos.isOpen=="1" }'>
+						<li class="active"><a href="#home" data-toggle="tab"
+							aria-expanded="true">预约挂号</a></li>
+						<li class=""><a href="#orderNotice" data-toggle="tab"
+							aria-expanded="false">预约须知</a></li>
+						<li class=""><a href="#notice" data-toggle="tab"
+							aria-expanded="false">医院通知</a></li>
+					</c:if>
+					<c:if test='${hos.isOpen=="0" }'>
+						<li class="active"><a href="#home" data-toggle="tab"
+							aria-expanded="true">医院科室</a></li>
+					</c:if>
 					<li class=""><a href="#about" data-toggle="tab"
 						aria-expanded="false">医院简介</a></li>
 					<li class=""><a href="#equipment" data-toggle="tab"
@@ -44,7 +50,8 @@
 				</ul>
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<p class="text-left">${hos.hospitalName }</p>
+						<p class="text-left">${hos.hospitalName }
+						</p>
 					</div>
 					<div class="col-md-5">
 						<p class="text-right">
@@ -65,8 +72,7 @@
 				<hr width="1300px" />
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<img alt="Bootstrap Thumbnail Third"
-							src="${hos.hospitalImg }">
+						<img alt="Bootstrap Thumbnail Third" src="${hos.hospitalImg }">
 					</div>
 					<div class="col-md-4">
 						<p class="text-left">

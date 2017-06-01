@@ -104,8 +104,9 @@
 						</fieldset>
 					</form>
 					<div class="nav navbar-nav navbar-right">
-							<a href="/ssm_pro/allHos/1" style="margin-right: 40px; margin-bottom: 60px;">查询全国医院</a>
-						</div>
+						<a href="/ssm_pro/allHos/1"
+							style="margin-right: 40px; margin-bottom: 60px;">查询全国医院</a>
+					</div>
 				</div>
 			</div>
 			<hr />
@@ -127,9 +128,13 @@
 								<span class="glyphicon glyphicon-home"></span>&nbsp;${hos.hospitalAddress}
 							</p>
 							<p>
-
-								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="<c:url value='/hosInfoShow/${hos.id}' />">详细信息</a>
+								<c:if test='${hos.isOpen=="1" }'>
+								<a class="btn btn-primary" href="<c:url value='/hosInfoShow/${hos.id}' />">现在预约</a>
+								</c:if>
+								<c:if test='${hos.isOpen=="0" }'>
+								<a class="btn btn-default disabled" href="#">未开通</a>
+								<a class="btn " href="<c:url value='/hosInfoShow/${hos.id}' />">详细信息</a>
+								</c:if>
 
 							</p>
 						</div>

@@ -28,14 +28,14 @@
 					<p class="text-left">推荐科室列表</p>
 					<div class="col-md-12">
 						<div class="nav navbar-nav navbar-right">
-							<a href="/ssm_pro/orderOffice/1">查看更多可预约科室</a>
+							<a href="/ssm_pro/orderOffice/1">查看全部科室</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<hr />
 			<br /> <br />
-			<c:forEach var="office" items="${officeRe }" varStatus="status">
+			<c:forEach var="office" items="${officeRe }" varStatus="status" >
 				<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
 				<div class="col-md-3">
 					<div class="thumbnail" style="width: 300px; height: 200px;">
@@ -50,10 +50,8 @@
 								<span class="glyphicon glyphicon-home"></span>&nbsp;${office.hospitalName}
 							</p>
 							<p>
-
-								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="<c:url value='/officeInfoShow/${office.id}' />">详细信息</a>
-
+								<a class="btn btn-primary"
+									href="<c:url value='/officeInfoShow/${office.id}' />">现在预约</a>
 							</p>
 						</div>
 					</div>
@@ -61,7 +59,8 @@
 
 			</c:forEach>
 		</div>
-		<c:if test="${pages.totalPage > 0}">
+		<!--推荐科室不需要翻页  -->
+		<%-- <c:if test="${pages.totalPage > 0}">
 			<ul class="pagination pagination-lg">
 				<li <c:if test="${pages.currentPage < 1}">class="disabled"</c:if>><a
 					href="#">&laquo;</a></li>
@@ -81,7 +80,7 @@
 				<li><a onclick="tijiaoInput()">Go</a></li>
 				<li class="disabled"><a>共${pages.totalPage}页${pages.totalRecord}条记录</a>
 			</ul>
-		</c:if>
+		</c:if> --%>
 		<!-- /. PAGE INNER  -->
 	</div>
 	<!-- /. PAGE WRAPPER  -->
@@ -99,7 +98,7 @@
     
     });
     </script> -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function tijiaoInput() {
 		var url = $("#tijiaoInput").val();
 		if (url == "") {
@@ -128,5 +127,5 @@
 		$("#setchInfo").submit();
 		return false;
 	}
-</script>
+</script> -->
 </html>

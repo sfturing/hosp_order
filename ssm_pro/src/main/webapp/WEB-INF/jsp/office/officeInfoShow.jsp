@@ -29,12 +29,18 @@
 			<hr />
 			<div class="col-md-12">
 				<ul class="nav nav-tabs">
+				<c:if test='${hos.isOpen=="1" }'>
 					<li class="active"><a href="#home" data-toggle="tab"
 						aria-expanded="true">预约挂号</a></li>
 					<li class=""><a href="#orderNotice" data-toggle="tab"
 						aria-expanded="false">预约须知</a></li>
 					<li class=""><a href="#notice" data-toggle="tab"
 						aria-expanded="false">科室通知</a></li>
+					</c:if>
+					<c:if test='${hos.isOpen=="0" }'>
+						<li class="active"><a href="#home" data-toggle="tab"
+							aria-expanded="true">科室医生</a></li>
+					</c:if>
 					<li class=""><a href="#about" data-toggle="tab"
 						aria-expanded="false">科室简介</a></li>
 					<li class=""><a href="#equipment" data-toggle="tab"
