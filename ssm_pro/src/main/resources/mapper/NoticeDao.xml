@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sfturing.dao.NoticeDao">
+	<!-- 查询通知 -->
+	<select id="findNoticeByType" resultType="cn.sfturing.entity.Notice">
+		SELECT
+		* FROM `notice`
+		where is_useful = 1 limit #{start},#{size}
+	</select>
+	
+	<!-- 查询通知的数量 -->
+	<select id="findNoticeByTypeNum" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*) FROM `notice`
+		where is_useful = 1
+	</select>
+	<!-- 查询通知 -->
+	<select id="findNoticeById" resultType="cn.sfturing.entity.Notice">
+		SELECT
+		* FROM `notice`
+		where id = #{id}
+	</select>
+	
+
+</mapper>

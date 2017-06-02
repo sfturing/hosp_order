@@ -68,7 +68,7 @@
 						</p>
 					</div>
 				</div>
-				<hr width="1300px" />
+				<hr />
 				<div class="col-md-12">
 					<div class="col-md-3">
 						<img alt="Bootstrap Thumbnail Third" src="${hos.hospitalImg }">
@@ -89,16 +89,18 @@
 						</p>
 					</div>
 				</div>
-				<hr width="1300px" />
+				<hr />
 
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in text-left" id="home">
 						<div class="col-md-12">
-							<div class="col-md-3">
-								<p class="text-left">科室医生</p>
+							<div class="col-md-12">
+								<p class="text-left"><font color="#eb6864">请选择预约医生</font></p>
+								
 							</div>
+							<div style="border-bottom: 1px solid #ccc;"></div>
 						</div>
-						<hr width="1300px">
+						
 						<table class="table table-striped table-hover ">
 							<thead>
 								<tr>
@@ -124,10 +126,12 @@
 					<div class="tab-pane fade text-left" id="orderNotice">
 						<div class="col-md-12 ">
 							<div class="col-md-2">
-								<p class="text-left">预约须知</p>
+								<!-- <p class="text-left"><font color="#eb6864">预约须知</font></p> -->
 							</div>
+							<div style="border-bottom: 1px solid #ccc;"></div>
+								<br /><br />
 						</div>
-						<hr width="1300px">
+						
 						<p>
 							<br> <strong>电话预约挂号：022-022（24小时）<br>
 								网络预约挂号：http://www.sfturing.cn
@@ -155,38 +159,34 @@
 					</div>
 					<div class="tab-pane fade text-left" id="about">
 						<div class="col-md-12 ">
-							<div class="col-md-2">
-								<p class="text-left">科室简介</p>
-							</div>
+							<div style="border-bottom: 1px solid #ccc;"></div>
+								<br /><br />
 						</div>
-						<hr width="1300px">
+						
 						<p>&nbsp;&nbsp;${office.officesAbout }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="equipment">
 						<div class="col-md-12 ">
-							<div class="col-md-2">
-								<p class="text-left">科室设备</p>
-							</div>
+							<div style="border-bottom: 1px solid #ccc;"></div>
+								<br /><br />
 						</div>
-						<hr width="1300px">
+						
 						<p>&nbsp;&nbsp;${office.officesEquipment }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="honor">
 						<div class="col-md-12 ">
-							<div class="col-md-2">
-								<p class="text-left">科室荣誉</p>
-							</div>
+							<div style="border-bottom: 1px solid #ccc;"></div>
+								<br /><br />
 						</div>
-						<hr width="1300px">
+						
 						<p>&nbsp;&nbsp;${office.officesHonor }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="scope">
 						<div class="col-md-12 ">
-							<div class="col-md-2">
-								<p class="text-left">诊疗范围</p>
-							</div>
+							<div style="border-bottom: 1px solid #ccc;"></div>
+								<br /><br />
 						</div>
-						<hr width="1300px">
+						
 						<p>&nbsp;&nbsp;${office.officesDiagnosisScope }</p>
 					</div>
 				</div>

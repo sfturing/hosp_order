@@ -43,7 +43,7 @@
 							</h1>
 							<p>为提高患者预约效率,改善患者预约体验,建立天津市预约挂号统一平台.</p>
 							<p>
-								<a class="btn btn-primary btn-lg">了解挂号流程</a>
+								<a class="btn btn-primary btn-lg" href="/ssm_pro/help/" >了解挂号系统</a>
 							</p>
 					</div>
 
@@ -59,21 +59,21 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item">
-						<img alt="" src="assets/img/1.jpg" />
+						<img alt="" src="${mybasePath}assets/img/1.jpg" />
 						<div class="carousel-caption">
 							<p>天津市挂号系统已上线</p>
 							<p>热烈庆祝挂号系统上线,已经支持网上预付功能。</p>
 						</div>
 					</div>
 					<div class="item active">
-						<img alt="" src="assets/img/2.jpg" />
+						<img alt="" src="${mybasePath}assets/img/2.jpg" />
 						<div class="carousel-caption">
 							<p>全国医院查询功能</p>
 							<p>支持4万余医院信息查询，助您准确查询医院信息。</p>
 						</div>
 					</div>
 					<div class="item">
-						<img alt="" src="assets/img/3.jpg" />
+						<img alt="" src="${mybasePath}assets/img/3.jpg" />
 						<div class="carousel-caption">
 							<p>常见疾病</p>
 							<p>查询常见疾病，提前预防，准确医治。</p>

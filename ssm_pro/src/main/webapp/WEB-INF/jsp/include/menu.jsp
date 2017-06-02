@@ -11,14 +11,14 @@
 			<li><a href="/ssm_pro/hosIndex">医院</a></li>
 			<li><a href="/ssm_pro/officeIndex/1">科室</a></li>
 			<li><a href="/ssm_pro/doctorIndex/1">医生</a></li>
-			<li><a href="#">疾病</a></li>
 			<br /><br />
 			<hr width="120" />
-			<li><a href="#">预约挂号</a></li>
+			<li><a href="/ssm_pro/orderIndex">预约挂号</a></li>
 			<hr width="120" />
 			<br /><br />
-			<li><a href="#">服务</a></li>
-			<li><a href="#">联系我们</a></li>
+			<li><a href="#">意见反馈</a></li>
+			<li><a href="/ssm_pro/noticeIndex/1">最新公告</a></li>
+			<li><a href="/ssm_pro/contact">联系我们</a></li>
 		</ul>
 	</div>
 	<!-- /#sidebar-wrapper -->

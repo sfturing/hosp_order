@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  * 
  * @author sfturing
@@ -36,15 +37,15 @@ public class BaseController {
 	public String index() {
 		return "index/index";
 	}
-	
+
 	/**
-	 * 用户主页
+	 * 用户联系我们
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/logOff", method = RequestMethod.GET)
-	public String logOff(HttpSession session) {
-		session.invalidate();
-		return "index/index";
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String logOff() {
+		return "contact/contactIndex";
 	}
+
 }
