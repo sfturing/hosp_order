@@ -6,62 +6,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>科室列表</title>
+<title>最新公告</title>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
 <link rel="stylesheet"
 	href="${mybasePath}assets/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="${mybasePath}assets//css/form-elements.css">
+<link rel="stylesheet" href="${mybasePath}assets/css/form-elements.css">
 <link rel="stylesheet" href="${mybasePath}assets/css/style.css">
 </head>
 <body>
 	<jsp:include page="../include/head.jsp" />
 	<jsp:include page="../include/menu.jsp" />
-	<form class="form-search form-horizontal" id="setchInfo"
-		action="<c:url value='/doctorIndex/1' />" method="post"></form>
 	<div id="page-wrapper" style="margin-top: 50px;">
+		<form class="form-search form-horizontal" id="setchInfo"
+			action="<c:url value='/allHos/1' />"></form>
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<p class="text-left">推荐医生列表</p>
-					<div class="col-md-12">
-						<div class="nav navbar-nav navbar-right">
-							<a href="/ssm_pro/allDoctor/1">查看更多医生</a>
-						</div>
-					</div>
+					<h3 class="text-left">最新公告</h3>
 				</div>
 			</div>
 			<hr />
-			<br /> <br />
-			<c:forEach var="doctor" items="${doctorRe }" varStatus="status">
-				<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
-				<div class="col-md-3">
-					<div class="thumbnail">
-						 <div>
-							<img alt="Bootstrap Thumbnail Third"
-								src="${doctor.doctorImg}" height="200"
-								width="200" />
-						</div> 
-						<div class="caption">
-							<h3>${doctor.doctorName}</h3>
-							<p>
-								<span class="glyphicon glyphicon-home"></span>&nbsp;${doctor.hospitalName}
-							</p>
-							<p>
-
-								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="<c:url value='/doctorInfoShow/${doctor.id}' />">详细信息</a>
-
-							</p>
-						</div>
-					</div>
-				</div>
-
-			</c:forEach>
-		</div>
-		<c:if test="${pages.totalPage > 0}">
+			<table class="table table-striped table-hover text-left">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>公告名称</th>
+						<th>发布日期</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="notice" items="${notice }" varStatus="status">
+						<tr>
+							<td>${ status.index + 1}</td>
+							<td><a href="<c:url value='/noticeInfo/${notice.id}' />">${notice.noticeName }</a></td>
+							<td>${notice.createTime }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<c:if test="${pages.totalPage > 0}">
 			<ul class="pagination pagination-lg">
 				<li <c:if test="${pages.currentPage < 1}">class="disabled"</c:if>><a
 					href="#">&laquo;</a></li>
@@ -77,11 +63,13 @@
 					<c:if test="${pages.currentPage> pages.totalPage}">class="disabled"</c:if>><a
 					href="javascript:void(0);" onclick="tijiao('${pages.nextPage }')">&raquo;</a></li>
 				<li><input id="tijiaoInput" name="tijiaoInput" type="text"
-					class="form-control col-md-1" style="width: 60px; height: 54.89px"></li>
+					class="form-control col-md-1" style="width: 60px; height: 54.89px;"></li>
 				<li><a onclick="tijiaoInput()">Go</a></li>
 				<li class="disabled"><a>共${pages.totalPage}页${pages.totalRecord}条记录</a>
 			</ul>
 		</c:if>
+		</div>
+		
 		<!-- /. PAGE INNER  -->
 	</div>
 	<!-- /. PAGE WRAPPER  -->
@@ -91,14 +79,14 @@
 <script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${mybasePath}assets/bootstrap/js/jquery.min.js"></script>
 <script src="${mybasePath}assets/js/jquery.backstretch.min.js"></script>
-<!--不需要背景 <script src="assets/js/scripts.js"></script> -->
-<!-- <script type="text/javascript">
-	jQuery(document).ready(function() {
-	
-    $.backstretch("assets/img/backgrounds/1.jpg");
-    
-    });
-    </script> -->
+<script type="text/javascript">
+	function tijiao(url) {
+		$("#setchInfo")
+				.attr("action", "<c:url value='/noticeIndex/"+url+"' />");
+		$("#setchInfo").submit();
+		return false;
+	}
+</script>
 <script type="text/javascript">
 	function tijiaoInput() {
 		var url = $("#tijiaoInput").val();
@@ -116,15 +104,7 @@
 			}
 		}
 		$("#setchInfo")
-				.attr("action", "<c:url value='/doctorIndex/"+url+"' />");
-		$("#setchInfo").submit();
-		return false;
-	}
-</script>
-<script type="text/javascript">
-	function tijiao(url) {
-		$("#setchInfo")
-				.attr("action", "<c:url value='/doctorIndex/"+url+"' />");
+				.attr("action", "<c:url value='/noticeIndex/"+url+"' />");
 		$("#setchInfo").submit();
 		return false;
 	}
