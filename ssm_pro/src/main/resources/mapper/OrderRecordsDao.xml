@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sfturing.dao.OrderRecordsDao">
+	
+	<!-- 插入用户 -->
+	<insert id="insertOrderRecords">
+		INSERT INTO order_records
+		(userID,hospital_name,offices_name,doctor_name,transact_date,transact_time,order_ver)
+		VALUE
+		(#{userID},#{hospitalName},#{officesName},#{doctorName},#{transactDate},#{transactTime},#{orderVer})
+	</insert>
+	
+	<!--通过ID查询预约记录 -->
+	<select id="findOrderRecordsByUserID" resultType="cn.sfturing.entity.OrderRecords"
+		parameterType="int">
+		SELECT * FROM `order_records`
+		WHERE userID = #{userID} AND order_ver=1 
+		order BY transact_date
+	</select>
+	<!--通过ID查询预约记录 -->
+	<select id="findLastId" resultType="int">
+		select last_insert_id()
+	</select>
+	<!-- 更改订单的疾病信息 -->
+	<update id="updateOrderdiseaseInfo">
+		UPDATE order_records SET
+		disease_info=#{diseaseInfo}
+		WHERE id = #{id}
+	</update>
+	<!-- 更改订单状态为1 -->
+	<update id="updateOrderSta1">
+		UPDATE order_records SET
+		order_ver=1
+		WHERE id = #{id}
+	</update>
+
+</mapper>

@@ -50,7 +50,8 @@
 				</ul>
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<p class="text-left">${office.hospitalName }&nbsp;${office.officesName }</p>
+						<a href="<c:url value='/hosInfoShow/${hos.id}' />"><p class="text-left">${hos.hospitalName }
+						</p></a>
 					</div>
 					<div class="col-md-5">
 						<p class="text-right">

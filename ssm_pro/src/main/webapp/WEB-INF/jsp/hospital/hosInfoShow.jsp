@@ -46,10 +46,13 @@
 					<li class=""><a href="#honor" data-toggle="tab"
 						aria-expanded="false">医院荣誉</a></li>
 				</ul>
+				
+				<!-- <div class="panel-heading">
+				</div> -->
 				<div class="col-md-12">
 					<div class="col-md-3">
 						<p class="text-left">${hos.hospitalName }
-						</p>
+						</p>	
 					</div>
 					<div class="col-md-5">
 						<p class="text-right">
@@ -67,6 +70,8 @@
 						</p>
 					</div>
 				</div>
+				
+				<div class="panel-body">
 				<div class="col-md-12">
 					<div class="col-md-3">
 						<img alt="Bootstrap Thumbnail Third" src="${hos.hospitalImg }">
@@ -87,6 +92,9 @@
 						<p class="text-left">
 							<font color="#eb6864">医保人数：</font>${hos.medicalInsuranceNum }
 						</p>
+						<p class="text-left">
+							<font color="#eb6864">医院电话：</font>${hos.hospitalPhone }
+						</p>
 					</div>
 					<div class="col-md-5">
 						<p class="text-left">
@@ -102,15 +110,21 @@
 							<font color="#eb6864">医院网址：<a href="${hos.hospitalUrl }"
 								target="_blank">${hos.hospitalUrl }</a></font>
 						</p>
+						<p class="text-left">
+							<font color="#eb6864">医院邮编：</font>${hos.hospitalPostCode }
+						</p>
 					</div>
 				</div>
+				</div>
+
+				<br />
 
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in text-left" id="home">
 						<div class="col-md-12">
-							<div class="col-md-3">
-								<p class="text-left"><font color="#eb6864">请选择预约科室</font></p>
-							</div>
+							<!-- <div class="col-md-3"> -->
+								<p class="text-left"><font color="#eb6864">请选择预约科室(必选)</font></p>
+							<!-- </div> -->
 						</div>
 						<table class="table table-striped table-hover ">
 							<thead>
@@ -136,7 +150,6 @@
 							<div style="border-bottom: 1px solid #ccc;"></div>
 								<br /><br />
 						</div>
-						<div style="border-bottom: 1px solid #ccc;"></div>
 						<p>
 							<br> <strong>电话预约挂号：022-022（24小时）<br>
 								网络预约挂号：http://www.sfturing.cn
@@ -167,7 +180,6 @@
 							<div style="border-bottom: 1px solid #ccc;"></div>
 								<br /><br />
 						</div>
-						<div style="border-bottom: 1px solid #ccc;"></div>
 						<p>&nbsp;&nbsp;${hos.hospitalAbout }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="equipment">
@@ -175,16 +187,13 @@
 							<div style="border-bottom: 1px solid #ccc;"></div>
 								<br /><br />
 						</div>
-						<div style="border-bottom: 1px solid #ccc;"></div>
 						<p>&nbsp;&nbsp;${hos.hospitalEquipment }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="honor">
 						<div class="col-md-12 ">
-							<div class="col-md-2">
-								<p class="text-left">医院荣誉</p>
-							</div>
+							<div style="border-bottom: 1px solid #ccc;"></div>
 						</div>
-						<div style="border-bottom: 1px solid #ccc;"></div>
+						
 						<p>&nbsp;&nbsp;${hos.hospitalHonor }</p>
 					</div>
 				</div>

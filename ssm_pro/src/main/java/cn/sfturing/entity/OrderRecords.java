@@ -7,13 +7,15 @@ import java.sql.Timestamp;
  *
  * @date 2017年5月22日
  */
-public class Order_records {
+public class OrderRecords {
 	//预约id
 	private int id;
+	//用户ID
+	private int UserID;
 	//预约医院名称
 	private String hospitalName;
 	//预约科室名称
-	private String office_Name;
+	private String officesName;
 	//医生姓名
 	private String doctorName;
 	//预约日期
@@ -28,6 +30,8 @@ public class Order_records {
 	private int isSend;
 	//是否取消
 	private int isCancel;
+	//预约识别码
+	private int orderVer;
 	//创建预约时间
 	private Timestamp createTime;
 	public int getId() {
@@ -36,17 +40,23 @@ public class Order_records {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public int getUserID() {
+		return UserID;
+	}
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
 	public String getHospitalName() {
 		return hospitalName;
 	}
 	public void setHospitalName(String hospitalName) {
 		this.hospitalName = hospitalName;
 	}
-	public String getOffice_Name() {
-		return office_Name;
+	public String getOfficesName() {
+		return officesName;
 	}
-	public void setOffice_Name(String office_Name) {
-		this.office_Name = office_Name;
+	public void setOfficesName(String officesName) {
+		this.officesName = officesName;
 	}
 	public String getDoctorName() {
 		return doctorName;
@@ -90,6 +100,12 @@ public class Order_records {
 	public void setIsCancel(int isCancel) {
 		this.isCancel = isCancel;
 	}
+	public int getOrderVer() {
+		return orderVer;
+	}
+	public void setOrderVer(int orderVer) {
+		this.orderVer = orderVer;
+	}
 	public Timestamp getCreateTime() {
 		return createTime;
 	}
@@ -98,11 +114,18 @@ public class Order_records {
 	}
 	@Override
 	public String toString() {
-		return "Order_records [id=" + id + ", hospitalName=" + hospitalName + ", office_Name=" + office_Name
-				+ ", doctorName=" + doctorName + ", transactDate=" + transactDate + ", transactTime=" + transactTime
-				+ ", diseaseInfo=" + diseaseInfo + ", isSuccess=" + isSuccess + ", isSend=" + isSend + ", isCancel="
-				+ isCancel + ", createTime=" + createTime + "]";
+		return "OrderRecords [id=" + id + ", UserID=" + UserID + ", hospitalName=" + hospitalName + ", officesName="
+				+ officesName + ", doctorName=" + doctorName + ", transactDate=" + transactDate + ", transactTime="
+				+ transactTime + ", diseaseInfo=" + diseaseInfo + ", isSuccess=" + isSuccess + ", isSend=" + isSend
+				+ ", isCancel=" + isCancel + ", orderVer=" + orderVer + ", createTime=" + createTime + "]";
 	}
+	
+	
+	
+	//
+	
+	
+	
 	
 	
 

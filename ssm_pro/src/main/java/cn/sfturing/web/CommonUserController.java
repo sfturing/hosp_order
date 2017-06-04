@@ -1,5 +1,7 @@
 package cn.sfturing.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,10 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-
 import cn.sfturing.entity.CommonUser;
+import cn.sfturing.entity.OrderRecords;
 import cn.sfturing.service.CommonUserService;
+import cn.sfturing.service.OrderRecordsService;
 
 /**
  * 
@@ -26,6 +28,8 @@ import cn.sfturing.service.CommonUserService;
 public class CommonUserController {
 	@Autowired
 	private CommonUserService commonUserService;
+	@Autowired
+	private OrderRecordsService orderRecordsService;
 	/*
 	 * @Autowired private CommonUserDao commonUserDao;
 	 */
@@ -61,7 +65,6 @@ public class CommonUserController {
 		String error = "";
 		// 查找这个用户
 		CommonUser commonUser = commonUserService.findCommonUserByEmail(userEmail);
-
 		if (result == 2) {
 			// 如果是2，那么登录成功，返回index
 			model.addAttribute("user", commonUser);
@@ -297,6 +300,22 @@ public class CommonUserController {
 		CommonUser commonUser1 = commonUserService.findCommonUserByEmail(commonUser.getUserEmail());
 		session.setAttribute("userInfo", commonUser1);
 		return "index/index";
+	}
+	
+	/**
+	 * 用户个人中心
+	 */
+	/**
+	 * 用户主页
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/userCenter", method = RequestMethod.GET)
+	public String userCenter(HttpSession session,Model model) {
+		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		List<OrderRecords> orderRecords = orderRecordsService.findOrderRecordsByUserID(commonUser.getUserId());
+		model.addAttribute("orderRecords", orderRecords);
+		return "userCenter/userCenter";
 	}
 
 }

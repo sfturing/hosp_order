@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class CommonUser {
 	//userid
-	private long userId;
+	private int userId;
 	//user身份证号
 	private String userIdenf;
 	//user姓名
@@ -40,10 +40,10 @@ public class CommonUser {
 	private int status;
 	//user是否存在。0：修改密码校验码，1：完善信息校验码
 	private int isdelete;
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getUserIdenf() {
@@ -138,7 +138,6 @@ public class CommonUser {
 				+ lastLoginIp + ", updateTime=" + updateTime + ", verificationCode=" + verificationCode + ", status="
 				+ status + ", isdelete=" + isdelete + "]";
 	}
-	
 	
 
 }

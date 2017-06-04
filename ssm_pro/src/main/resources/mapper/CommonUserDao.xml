@@ -36,12 +36,12 @@
 
 	<!-- 删除用户(假删除) -->
 	<update id="deleteCommonUser">
-		UPDATE FROM commonuser SET
+		UPDATE  commonuser SET
 		isDelete=1
 		WHERE id = #{id}
 	</update>
 	<update id="deleteCommonUserByIdenf">
-		UPDATE FROM commonuser SET
+		UPDATE  commonuser SET
 		isDelete=1
 		WHERE user_idenf
 		=

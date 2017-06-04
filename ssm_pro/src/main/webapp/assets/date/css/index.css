@@ -1,4 +1,4 @@
-.date-table{width: 408px;border-collapse:collapse;font-size:12px;font-family:Arial,宋体;float: left;}
+.date-table{margin-left: 220px;width: 1000px;height : 500px;border-collapse:collapse;font-size:16px;font-family:Arial,宋体;float: left;}
 .date-table .info-title-tr{height:26px;}
 .date-table .week-tr{height:26px;border:1px solid #eb6864;background:#eb6864;color:#fff;}
 .date-table .week-tr td{width:56px;height:26px;background:#eb6864;color:#fff;text-align:center;}
@@ -7,11 +7,11 @@
 .date-table .keyuyue-div{color:#3c8ab1;}
 .date-table .yuyueyiman-td{color:#cfcfcf;}
 .date-table .date-tr td span.today{color:#eb6864;}
-.date-table .date-plus-tr .yibeiyuyue-span{color:red;}
-.date-table .date-plus-tr td{position:relative;padding:4px;height:27px;border:1px solid #ccc;vertical-align:middle;}
+.date-table .date-plus-tr .yibeiyuyue-span{color:#eb6864;}
+.date-table .date-plus-tr td{position:relative;padding:4px;height:27px;border:1px solid #ccc;vertical-align:middle;text-align: center;}
 .date-table .date-plus-tr{line-height:26px;}
-.date-table .date-plus-tr input[type="checkbox"]{position:relative;top:3px;margin:0 20px 0 0;}
-.date-table .confirm-anchor{position:absolute;top:6px;right:10px;width:47px;height:22px;border-radius:3px;background:#eb6864;color:#fff;text-align:center;text-decoration:none;line-height:22px;}
+.date-table .date-plus-tr input[type="checkbox"]{position:relative;top:3px;margin:0 20px 0 0;width:20px;height: 20px}
+.date-table .confirm-anchor{position:absolute;top:12px;right:10px;width:47px;height:22px;border-radius:3px;background:#eb6864;color:#fff;text-align:center;text-decoration:none;line-height:22px;}
 .date-table .date-tr .woyiyuyue-td{background:#eee;}
 .date-table .woyiyuyue-td .woyiyuyue-div{color:#3c8ab1;}
 .date-plus-tr{display:none;}

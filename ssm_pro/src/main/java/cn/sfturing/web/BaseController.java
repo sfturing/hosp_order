@@ -44,8 +44,19 @@ public class BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
-	public String logOff() {
+	public String contact() {
 		return "contact/contactIndex";
 	}
+	/**
+	 * 用户联系我们
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/logOff", method = RequestMethod.GET)
+	public String logOff(HttpSession session) {
+		session.invalidate();
+		return "index/index";
+	}
+
 
 }

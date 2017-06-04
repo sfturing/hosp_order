@@ -33,11 +33,11 @@
 			</div>
 			<hr />
 			<div class="a" style="width: 800px;">
-				<div class="order-info-div">
+				 <div class="order-info-div">
 					
 					<ol class="oid-ul"></ol>
-					<input type="text" id="orderInfoValue">
-				</div>
+					<!-- <input type="hidden" id="orderInfoValue"> -->
+				</div> 
 			</div>	
 		</div>
 
