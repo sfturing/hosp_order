@@ -39,11 +39,10 @@
 				<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
 				<div class="col-md-3">
 					<div class="thumbnail">
-						 <div>
-							<img alt="Bootstrap Thumbnail Third"
-								src="${doctor.doctorImg}" height="200"
-								width="200" />
-						</div> 
+						<div>
+							<img alt="Bootstrap Thumbnail Third" src="${doctor.doctorImg}"
+								height="200" width="200" />
+						</div>
 						<div class="caption">
 							<h3>${doctor.doctorName}</h3>
 							<p>
@@ -51,8 +50,8 @@
 							</p>
 							<p>
 
-								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
-									href="<c:url value='/doctorInfoShow/${doctor.id}' />">详细信息</a>
+								<a class="btn btn-primary"
+									href="<c:url value='/doctorInfoShow/${doctor.id}' />">现在预约</a>
 
 							</p>
 						</div>

@@ -9,7 +9,7 @@
 	<div class="container">
 		<div style="position: absolute; left: 40px; top: 6px;"></div>
 		<div style="position: absolute; left: 150px; top: -2px;">
-			<a class="navbar-brand" href="<c:url value="/index" />">天津市医院预约挂号系统</a>
+			<a class="navbar-brand" href="<c:url value="/index" />"><font color="#fff">天津市医院预约挂号系统</font></a>
 		</div>
 		<div class="collapse navbar-collapse" id="top-navbar-1">
 			<ul class="nav navbar-nav navbar-right">
@@ -29,7 +29,7 @@
 							</c:if>
 						</c:if>
 						<c:if test="${userInfo.userIdenf != null}">
-							<a class="navbar-brand" style="font-size: 12px;" href="#"><strong>欢迎您,${userInfo.userName }</strong></a>
+							<a class="navbar-brand" style="font-size: 12px;" href="/ssm_pro/userCenter"><strong><font color="#fff">欢迎您,${userInfo.userName }</font></strong></a>
 							<a class="navbar-brand" style="font-size: 12px;"
 								href="<c:url value="/logOff" />"><strong>注销</strong></a>
 						</c:if>

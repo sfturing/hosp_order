@@ -136,7 +136,7 @@
 							</p>
 							<p>
 
-								<a class="btn btn-primary" href="#">预约</a> <a class="btn"
+								<a class="btn"
 									href="<c:url value='/doctorInfoShow/${doctor.id}' />">详细信息</a>
 
 							</p>
@@ -213,5 +213,5 @@
 		return false;
 	}
 </script>
-</script>
+
 </html>

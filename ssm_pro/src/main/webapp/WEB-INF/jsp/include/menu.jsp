@@ -8,17 +8,19 @@
 			<li class="sidebar-brand"><a href="#"> </a></li>
 			<br />
 			<br />
-			<li><a href="/ssm_pro/hosIndex">医院</a></li>
-			<li><a href="/ssm_pro/officeIndex/1">科室</a></li>
-			<li><a href="/ssm_pro/doctorIndex/1">医生</a></li>
-			<br /><br />
-			<hr width="120" />
-			<li><a href="/ssm_pro/orderIndex">预约挂号</a></li>
-			<hr width="120" />
-			<br /><br />
-			<li><a href="#">意见反馈</a></li>
-			<li><a href="/ssm_pro/noticeIndex/1">最新公告</a></li>
-			<li><a href="/ssm_pro/contact">联系我们</a></li>
+			<br />
+			<li><a class="list-group-item" href="/ssm_pro/index"><font  color="#fff">首页</font></a></li>
+			<li><a class="list-group-item" href="/ssm_pro/hosIndex"><font  color="#fff">医院挂号</font></a></li>
+			<li><a class="list-group-item" href="/ssm_pro/officeIndex/1"><font color="#fff">科室挂号</font></a></li>
+			<li><a class="list-group-item" href="/ssm_pro/doctorIndex/1"><font color="#fff">医生挂号</font></a></li>
+				
+			
+			<li><a class="list-group-item" href="/ssm_pro/orderIndex"><font color="#fff">快速预约</font></a></li>
+			
+			
+			<li><a class="list-group-item" href="#"><font color="#fff">意见反馈</font></a></li>
+			<li><a class="list-group-item" href="/ssm_pro/noticeIndex/1"><font color="#fff">最新公告</font></a></li>
+			<li><a class="list-group-item" href="/ssm_pro/contact"><font color="#fff">联系我们</font></a></li>
 		</ul>
 	</div>
 	<!-- /#sidebar-wrapper -->

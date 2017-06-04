@@ -52,11 +52,11 @@ $(function() {
 					+ '<td>星期四</td>' + '<td>星期五</td>' + '<td>星期六</td></tr>');
 
 			var plus_tr = $('<tr class="date-plus-tr"><td colspan="7">'
-					+ '<label for="shang">上:</label>'
+					+ '<label for="shang">8:00-11:00:</label>'
 					+ '<input class="s" type="checkbox" id="Checkbox2" checked="" />'
-					+ '<label for="zhong">中:</label>'
+					+ '<label for="zhong">13:00-15:00:</label>'
 					+ '<input class="z" type="checkbox" id="Checkbox3" checked="" />'
-					+ '<label for="xia">下:</label>'
+					+ '<label for="xia">15:00-18:00:</label>'
 					+ '<input class="x" type="checkbox" id="Checkbox4" checked="" />'
 					+ '<!--<span class="yibeiyuyue-span">已被预约</span>-->'
 					+ '<a href="#" class="confirm-anchor">确定</a></td></tr>');
@@ -217,9 +217,7 @@ $(function() {
 							_this.yuyue_td = _td;
 
 							// 添加弹出行的确定按钮事件
-							cloneTr
-									.find('.confirm-anchor')
-									.on(
+							cloneTr.find('.confirm-anchor').on(
 											'click',
 											function() {
 												/*
@@ -243,19 +241,60 @@ $(function() {
 														+ ', '
 														+ x.prop('checked');
 												// alert(returnValue);
-
+												var userEmail = $("#userEmail");
+												if (userEmail.val() == "") {
+													alert("很抱歉，预约挂号需要您登录!");
+													return false;
+												}
+												var userIdenf = $("#userIdenf");
+												if (userIdenf.val() == "") {
+													alert("很抱歉，请完善您的个人信息!");
+													return false;
+												}
+												if (!s.prop('checked')
+														&& !z.prop('checked')
+														&& !x.prop('checked')) {
+													alert("请选择预约日期");
+													return false;
+												}
 												if (s.prop('checked')
 														|| z.prop('checked')
 														|| x.prop('checked')) {
 													var str = '';
+													if (s.prop('checked')
+															&& z
+																	.prop('checked')
+															&& x
+																	.prop('checked')) {
+														alert("只能选择一个时间段");
+														return false;
+													}
+													if (s.prop('checked')
+															&& z
+																	.prop('checked')) {
+														alert("只能选择一个时间段");
+														return false;
+													}
+													if (s.prop('checked')
+															&& x
+																	.prop('checked')) {
+														alert("只能选择一个时间段");
+														return false;
+													}
+													if (z.prop('checked')
+															&& x
+																	.prop('checked')) {
+														alert("只能选择一个时间段");
+														return false;
+													}
 													if (s.prop('checked')) {
-														str = '上午';
+														str = '8:00-11:00';
 													}
 													if (z.prop('checked')) {
-														str += '中午';
+														str += '13:00-15:00';
 													}
 													if (x.prop('checked')) {
-														str += '下午';
+														str += '15:00-18:00';
 													}
 
 													if (str.substring(
@@ -264,26 +303,25 @@ $(function() {
 														str = str.substring(0,
 																str.length - 1);
 													}
-													alert(date);
-													_this.info_ul
-															.append('<li><p class="oid-'
-																	+ date
+													// alert(date.join('-')+','
+													// +str);
+													$("#orderInfoValue")
+															.attr(
+																	"value",
+																	date
 																			.join('-')
-																	+ '">您已成功预约：'
-																	+ date[0]
-																	+ '年'
-																	+ date[1]
-																	+ '月'
-																	+ date[2]
-																	+ '日 '
-																	+ str
-																	+ '</p></li>');
-													// intoTempArr.push(new
-													// specialDate(date.join('-'),
-													// {s: str[0], z: str[1], x:
-													// str[2]}));
-
+																			+ ','
+																			+ str);// 填充内容
+													$("#orderInfo").submit();
 													/*
+													 * _this.info_ul.append(date +
+													 * str); //
+													 * intoTempArr.push(new //
+													 * specialDate(date.join('-'), //
+													 * {s: str[0], z: str[1], x: //
+													 * str[2]}));
+													 * 
+													 * 
 													 * var dp = new
 													 * Datepicker($('.a'), 2015,
 													 * 5, 16); dp.PArr.push(new
@@ -342,7 +380,7 @@ $(function() {
 	dp.PArr.push(new specialDate(addDate(myDate, 5), {
 		's' : false,
 		'z' : true,
-		'x' : true
+		'x' : false
 	}));
 	dp.PArr.push(new specialDate(addDate(myDate, 6), {
 		's' : true,
@@ -351,16 +389,16 @@ $(function() {
 	}));
 	dp.PArr.push(new specialDate(addDate(myDate, 7), {
 		's' : false,
-		'z' : true,
+		'z' : false,
 		'x' : false
 	}));
 	dp.PArr.push(new specialDate(addDate(myDate, 8), {
 		's' : false,
 		'z' : true,
-		'x' : false
+		'x' : true
 	}));
 	dp.PArr.push(new specialDate(addDate(myDate, 9), {
-		's' : false,
+		's' : true,
 		'z' : true,
 		'x' : false
 	}));

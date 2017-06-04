@@ -49,7 +49,8 @@
 				</ul>
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<p class="text-left">${doctor.hospitalName }</p>
+						<a href="<c:url value='/hosInfoShow/${hos.id}' />"><p class="text-left">${hos.hospitalName }
+						</p></a>
 					</div>
 					<div class="col-md-5">
 						<p class="text-right">
@@ -110,21 +111,29 @@
 						<div class="tab-pane fade active in text-left" id="home">
 							<div class="col-md-12">
 								<div style="border-bottom: 1px solid #ccc;"></div>
-								<br /><br />
+								<br />
+								<br />
 							</div>
 							<hr />
-							<!-- <div class="a" style="width: 800px;">
-								<div class="order-info-div">
-
-									<ol class="oid-ul"></ol>
-									<input type="text" id="orderInfoValue">
+							<form class="form-search form-horizontal" id="orderInfo"
+								action="<c:url value='/order' />" method="post">
+								<input type="hidden" id="orderInfoValue" name="orderInfoValue" value=""/>
+								<input type="hidden" id="hospitalName" name="hospitalName" value="${doctor.hospitalName }"/>
+								<input type="hidden" id="officesName" name="officesName" value="${doctor.officesName }"/>
+								<input type="hidden" id="doctorName" name="doctorName" value="${doctor.doctorName }"/>
+								<input type="hidden" id="userIdenf" name="userIdenf" value="${userInfo.userIdenf }"/>
+								<input type="hidden" id="userEmail" name="userEmail" value="${userInfo.userEmail }"/>
+								<input type="hidden" id="doctorImg" name="doctorImg" value="${doctor.doctorImg }"/>
+								</form>
+								<div class="a" style="width: 800px;">
+									
 								</div>
-							</div>-->
 						</div>
 						<div class="tab-pane fade text-left" id="orderNotice">
 							<div class="col-md-12 ">
 								<div style="border-bottom: 1px solid #ccc;"></div>
-								<br /><br />
+								<br />
+								<br />
 							</div>
 
 							<p>
@@ -157,7 +166,8 @@
 						<div class="col-md-12 ">
 
 							<div style="border-bottom: 1px solid #ccc;"></div>
-							<br /><br />
+							<br />
+							<br />
 						</div>
 						<hr />
 						<p>&nbsp;&nbsp;${doctor.doctorAbout }</p>
