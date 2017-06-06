@@ -40,7 +40,7 @@
 				<div class="col-md-3">
 					<div class="thumbnail">
 						<div>
-							<img alt="Bootstrap Thumbnail Third" src="${doctor.doctorImg}"
+							<img alt="请检查网络，图片加载出现了一点小问题" src="${doctor.doctorImg}"
 								height="200" width="200" />
 						</div>
 						<div class="caption">

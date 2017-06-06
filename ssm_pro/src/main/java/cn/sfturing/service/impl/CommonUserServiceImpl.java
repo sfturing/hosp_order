@@ -68,7 +68,7 @@ public class CommonUserServiceImpl implements CommonUserService {
 			return 0;// 用户身份证号已注册
 		}*/
 		String userEmail = commonUser.getUserEmail();
-		if (commonUserDao.findCommonUserByEmail(userEmail) != null) {
+		if (commonUserDao.findCommonUserByEmail(userEmail.trim()) != null) {
 			return 1;// 用户邮箱已注册
 		}
 		/*String userMobile = commonUser.getUserMobile();
@@ -81,8 +81,7 @@ public class CommonUserServiceImpl implements CommonUserService {
 		// 设置注册ip
 		commonUser.setRegIp(GetIP.getIpAddr(request));
 		commonUser.setUpdateTime(dateUtil.getCurrentTime(DateFormat.YYYY_MM_DD_HH_mm_ss));
-		System.out.println(commonUser.getUserName());
-		System.out.println(commonUser.getUserSex());
+		commonUser.setUserEmail(commonUser.getUserEmail().trim());
 		commonUserDao.insertCommonUser(commonUser);
 		return 3;// 用户注册成功
 
@@ -193,6 +192,23 @@ public class CommonUserServiceImpl implements CommonUserService {
 		}
 		commonUserDao.addUserInfo(userEmail, userIdenf, userName, userMobile,userSex);
 		return 1; //用户更新成功
+	}
+
+	@Override
+	public int modifySex(int userId, String userSex) {
+		// TODO Auto-generated method stub
+		return commonUserDao.modifySex(userId, userSex);
+	}
+
+	@Override
+	public int modifyPhone(String userPhone, String userEmail) {
+		
+		if (commonUserDao.findCommonUserByMobile(userPhone) != null) {
+			return 2;// 用户手机号已注册
+		}
+		commonUserDao.modifyPhone(userEmail, userPhone);
+		
+		return 1;
 	}
 
 

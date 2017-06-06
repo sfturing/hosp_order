@@ -1,4 +1,4 @@
-.date-table{margin-left: 220px;width: 1000px;height : 500px;border-collapse:collapse;font-size:16px;font-family:Arial,宋体;float: left;}
+.date-table{margin-left: 200px;width: 1000px;height : 500px;border-collapse:collapse;font-size:16px;font-family:Arial,宋体;float: left;}
 .date-table .info-title-tr{height:26px;}
 .date-table .week-tr{height:26px;border:1px solid #eb6864;background:#eb6864;color:#fff;}
 .date-table .week-tr td{width:56px;height:26px;background:#eb6864;color:#fff;text-align:center;}

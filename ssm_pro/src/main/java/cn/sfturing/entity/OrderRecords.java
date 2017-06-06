@@ -30,6 +30,8 @@ public class OrderRecords {
 	private int isSend;
 	//是否取消
 	private int isCancel;
+	//是否完成订单
+	private int isFinish;
 	//预约识别码
 	private int orderVer;
 	//创建预约时间
@@ -100,6 +102,12 @@ public class OrderRecords {
 	public void setIsCancel(int isCancel) {
 		this.isCancel = isCancel;
 	}
+	public int getIsFinish() {
+		return isFinish;
+	}
+	public void setIsFinish(int isFinish) {
+		this.isFinish = isFinish;
+	}
 	public int getOrderVer() {
 		return orderVer;
 	}
@@ -117,12 +125,10 @@ public class OrderRecords {
 		return "OrderRecords [id=" + id + ", UserID=" + UserID + ", hospitalName=" + hospitalName + ", officesName="
 				+ officesName + ", doctorName=" + doctorName + ", transactDate=" + transactDate + ", transactTime="
 				+ transactTime + ", diseaseInfo=" + diseaseInfo + ", isSuccess=" + isSuccess + ", isSend=" + isSend
-				+ ", isCancel=" + isCancel + ", orderVer=" + orderVer + ", createTime=" + createTime + "]";
+				+ ", isCancel=" + isCancel + ", isFinish=" + isFinish + ", orderVer=" + orderVer + ", createTime="
+				+ createTime + "]";
 	}
 	
-	
-	
-	//
 	
 	
 	

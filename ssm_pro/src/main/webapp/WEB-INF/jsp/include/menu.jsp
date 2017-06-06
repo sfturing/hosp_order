@@ -15,7 +15,7 @@
 			<li><a class="list-group-item" href="/ssm_pro/doctorIndex/1"><font color="#fff">医生挂号</font></a></li>
 				
 			
-			<li><a class="list-group-item" href="/ssm_pro/orderIndex"><font color="#fff">快速预约</font></a></li>
+			<!-- <li><a class="list-group-item" href="/ssm_pro/orderIndex"><font color="#fff">快速预约</font></a></li> -->
 			
 			
 			<li><a class="list-group-item" href="#"><font color="#fff">意见反馈</font></a></li>

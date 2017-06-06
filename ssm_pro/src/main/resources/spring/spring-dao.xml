@@ -31,7 +31,7 @@
 
 
 		<!-- c3p0连接池的私有属性 -->
-		<property name="maxPoolSize" value="30" />
+		<property name="maxPoolSize" value="50" />
 		<property name="minPoolSize" value="10" />
 		<!-- 关闭连接后不自动commit -->
 		<property name="autoCommitOnClose" value="false" />
@@ -63,4 +63,5 @@
 
 	<!-- 5.扫描所需要的包 -->
 	<context:component-scan base-package="cn.sfturing.utils" />
+	<context:component-scan base-package="cn.sfturing.scheduler" />
 </beans>

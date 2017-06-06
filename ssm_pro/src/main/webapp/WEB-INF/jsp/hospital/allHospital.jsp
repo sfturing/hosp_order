@@ -112,7 +112,7 @@
 				<div class="col-md-3">
 					<div class="thumbnail" style="width: 300px; height: 400px;">
 						<div>
-							<img alt="Bootstrap Thumbnail Third" src="${hos.hospitalImg}"
+							<img alt="请检查网络，图片加载出现了一点小问题" src="${hos.hospitalImg}"
 								height="200" width="200" />
 						</div>
 						<div class="caption">
