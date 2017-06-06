@@ -2,6 +2,7 @@ package cn.sfturing.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 
 import cn.sfturing.entity.CommonUser;
 /**
@@ -96,6 +97,12 @@ public interface CommonUserService {
 	 * @return
 	 */
 	public int addUserInfo(String userEmail,String userIdenf,String userName, String userMobile,String userSex);
+	
+	// 修改用户性别
+	public int modifySex (int userId,String userSex);
+	
+	// 修改用户手机
+	public int modifyPhone (String userPhone,String userEmail);
 	
 
 

@@ -63,6 +63,13 @@
 		WHERE
 		user_email=#{userEmail}
 	</update>
+	
+	<update id="modifySex">
+		UPDATE commonuser SET
+		user_sex=#{userSex}
+		WHERE
+		user_id=#{userId}
+	</update>
 
 	<!-- 更新验证码并设置发送时间 -->
 	<update id="sendVerification">

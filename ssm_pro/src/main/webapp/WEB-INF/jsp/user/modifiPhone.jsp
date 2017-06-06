@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>用户验证</title>
+<title>用户找回密码</title>
 <jsp:include page="../include/headtag.jsp" />
 <!-- CSS -->
 <!-- <link rel="stylesheet"
@@ -45,37 +45,36 @@ input:-webkit-autofill {
 							<h3 style="color: #96968E;">天津市医院预约挂号系统</h3	>
 						</div>
 					</div>
-				</div>  -->
+				</div> -->
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 form-box">
 						<div class="form-top">
 							<div class="form-top-left">
-								<h3 style="color: #969696;">验证码</h3>
-								<p>验证码在1分钟内将发送至您的邮箱,请注意查收，验证码有效期为30分钟,且5分钟内只能发送一次。</p>
+								<h3 style="color: #969696;">更换手机</h3>
+								<p>请输入新的手机号码</p>
 							</div>
 							<div class="pull-right-bottom">
 								<p class="text-danger"
-									style="position: absolute; right: 60px; bottom: 320px"
+									style="position: absolute; right: 60px; bottom: 300px"
 									id="errorTip">${error}</p>
 							</div>
 
 						</div>
 
 						<div class="form-bottom">
-							<form role="form" action="checkVerification" method="post" class="login-form">
+							<form role="form" action="modifiPhone" method="post" class="login-form" id="modifiPhone">
 								<div class="form-group col-xs-12">
-									<label class="sr-only" for="verificationCode">验证码</label>验证码(*):<input
-										type="text" name="verificationCode"
-										class="form-username form-control" id="verificationCode" required
-										onkeyup="isCheckIdenf()" style="font-weight: bold" /><span
-										id="idenfTip"></span>
-								</div>
+								<label class="sr-only" for="userMobile"></label>新手机号(*):<input
+									style="font-weight: bold" type="text" name="userMobile"
+									class=" form-control" id="userMobile" required />
+							</div>
+						
 								<div class="form-group col-xs-12">
-									<button type="submit" class="btn">验证</button>
+									<button type="submit" class="btn">更改手机</button>
 								</div>
 							</form>
-							<span><a href="#"></a></span>&nbsp<span><a href="findPassword"
-							class="pull-right">没收到验证码，点击这里</a></span>
+							 <span><a href="login">用户登录</a></span> <span><a href="sign"
+								class="pull-right">用户注册</a></span>
 						</div>
 					</div>
 				</div>
@@ -84,7 +83,6 @@ input:-webkit-autofill {
 		</div>
 
 	</div>
-
 
 
 	<!-- Javascript -->
@@ -96,7 +94,24 @@ input:-webkit-autofill {
 	<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
         <![endif]-->
-
+	
+	
+	<script type="text/javascript">
+		function isClearTip() {
+			document.getElementById("errorTip").innerHTML = "";
+		}
+	</script>
+	<!-- <script>
+    $(function() {
+        $(".btn").click(function(){
+            $(this).button('loading').delay(1000).queue(function() {
+            // $(this).button('reset');
+            // $(this).dequeue(); 
+            	document.getElementById("findPwdForm").submit();
+            });
+        });
+    });  
+</script> -->
 
 </body>
 

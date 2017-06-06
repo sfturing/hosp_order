@@ -20,8 +20,7 @@
 	<jsp:include page="../include/head.jsp" />
 	<jsp:include page="../include/menu.jsp" />
 	<div id="page-wrapper" style="margin-top: 50px;">
-		<form class="form-search form-horizontal" id="setchInfo"
-			action="<c:url value='/allHos/1' />"></form>
+
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">

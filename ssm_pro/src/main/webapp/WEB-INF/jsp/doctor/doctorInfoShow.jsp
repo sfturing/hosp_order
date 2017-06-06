@@ -71,7 +71,7 @@
 				<hr />
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<img alt="Bootstrap Thumbnail Third" src="${doctor.doctorImg }"
+						<img alt="请检查网络，图片加载出现了一点小问题" src="${doctor.doctorImg }"
 							style="width: 180px; height: 180px;">
 					</div>
 					<div class="col-md-4">

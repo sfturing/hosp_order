@@ -42,6 +42,9 @@ public interface CommonUserDao {
 	/******************** 用户修改信息（用户个人中心修改方法） *************************/
 	// 修改用户密码，需要邮箱验证
 	public int modifyPassWord(@Param("userEmail") String userEmail, @Param("newPassWord") String newPassWord);
+	
+	// 修改用户性别
+	public int modifySex(@Param("userId") int userId,@Param("userSex") String userSex);
 
 	// 修改用户手机，需要邮箱验证
 	public int modifyPhone(@Param("userEmail") String userEmail, @Param("newPhone") String newPhone);

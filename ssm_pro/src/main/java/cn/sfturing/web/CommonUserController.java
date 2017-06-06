@@ -1,6 +1,8 @@
 package cn.sfturing.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.sfturing.entity.CommonUser;
 import cn.sfturing.entity.OrderRecords;
@@ -60,7 +63,7 @@ public class CommonUserController {
 	public String login(Model model, String userEmail, String userPassword, HttpSession session,
 			HttpServletRequest request) {
 		// 登录用户，并将登录后的状态码返回，如果是0用户不存在，如果是1那么密码错误，如果是2那么密码正确
-		int result = commonUserService.login(userEmail, userPassword, request);
+		int result = commonUserService.login(userEmail.trim(), userPassword, request);
 		// 错误信息
 		String error = "";
 		// 查找这个用户
@@ -138,6 +141,50 @@ public class CommonUserController {
 	public String findPassword() {
 		return "user/findPassword";
 	}
+	
+	/**
+	 * 用户修改手机
+	 */
+	@RequestMapping(value = "/modifiPhone", method = RequestMethod.GET)
+	public String modifiPhone(final HttpSession session, Model model) {
+		final CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		// 单独开启线程发送邮件，防止用户等待时间过长，成功日志输出，失败也输出。
+		new Thread(new Runnable() {
+			public void run() {
+				boolean isSuccess = commonUserService.sendEmailCheck(commonUser);
+				if (isSuccess) {
+					log.info(commonUser.getUserEmail() + "发送成功" + commonUser.getUpdateTime());
+					CommonUser userMSG = commonUserService.findCommonUserByEmail(commonUser.getUserEmail());
+					userMSG.setStatus(2);
+					session.setAttribute("userMSG", userMSG);
+				} else {
+					log.info(commonUser.getUserEmail() + "发送失败" + commonUser.getUpdateTime());
+				}
+			}
+		}).start();
+		return "/user/checkVerification";
+	}
+	
+	/**
+	 * 用户修改手机
+	 */
+	@RequestMapping(value = "/modifiPhone", method = RequestMethod.POST)
+	public String modifiPhone(String userMobile, HttpSession session,
+			Model model) {
+		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		String error = "";
+		int result = commonUserService.modifyPhone(userMobile, commonUser.getUserEmail());
+		
+		if (result == 2) {
+			error = "手机号已经被注册";
+			log.info(error);
+			model.addAttribute("error", error);
+			return "user/modifiPhone";
+		}
+		CommonUser commonUser1 = commonUserService.findCommonUserByEmail(commonUser.getUserEmail());
+		session.setAttribute("userInfo", commonUser1);
+		return "redirect:/userCenter";
+	}
 
 	/**
 	 * 用户找回密码
@@ -199,7 +246,9 @@ public class CommonUserController {
 	@RequestMapping(value = "/checkVerification", method = RequestMethod.POST)
 	public String checkVerification(Model model, int verificationCode, HttpSession session) {
 		CommonUser commonUser = (CommonUser) session.getAttribute("userMSG");
+		System.out.println(commonUser.getStatus());
 		int result = commonUserService.checkVerification(verificationCode, commonUser);
+		System.out.println(result);
 		// 错误信息
 		String error = "";
 		if (result == 0) {
@@ -215,16 +264,23 @@ public class CommonUserController {
 			return "user/checkVerification";
 		}
 		if (result == 1) {
-			commonUserService.clearVerification(commonUser.getUserEmail());
-			if(commonUser.getStatus() ==0){
+			//commonUserService.clearVerification(commonUser.getUserEmail());
+			//状态为0修改密码
+			if (commonUser.getStatus() == 0) {
 				System.out.println(commonUser.getStatus());
 				return "/user/updatePassword";
 			}
-			if(commonUser.getStatus() == 1 ){
+			//状态为1完善信息
+			if (commonUser.getStatus() == 1) {
 				System.out.println(commonUser.getStatus());
 				return "user/addUserInfo";
 			}
-			
+			//状态为2修改手机
+			if (commonUser.getStatus() == 2) {
+				System.out.println(commonUser.getStatus());
+				return "user/modifiPhone";
+			}
+
 		}
 		return "/user/checkVerification";
 	}
@@ -257,7 +313,7 @@ public class CommonUserController {
 	 * 用户完善信息
 	 */
 	@RequestMapping(value = "/addUserInfo", method = RequestMethod.GET)
-	public String addUserInfo(final HttpSession session,Model model) {
+	public String addUserInfo(final HttpSession session, Model model) {
 		final CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
 		// 单独开启线程发送邮件，防止用户等待时间过长，成功日志输出，失败也输出。
 		new Thread(new Runnable() {
@@ -301,21 +357,46 @@ public class CommonUserController {
 		session.setAttribute("userInfo", commonUser1);
 		return "index/index";
 	}
-	
+
 	/**
 	 * 用户个人中心
 	 */
 	/**
-	 * 用户主页
+	 *
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/userCenter", method = RequestMethod.GET)
-	public String userCenter(HttpSession session,Model model) {
+	public String userCenter(HttpSession session, Model model) {
 		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
-		List<OrderRecords> orderRecords = orderRecordsService.findOrderRecordsByUserID(commonUser.getUserId());
-		model.addAttribute("orderRecords", orderRecords);
-		return "userCenter/userCenter";
+		if (commonUser != null) {
+			List<OrderRecords> orderRecords = orderRecordsService.findOrderRecordsByUserID(commonUser.getUserId());
+			model.addAttribute("orderRecords", orderRecords);
+			model.addAttribute("commonUser", commonUser);
+			return "userCenter/userCenter";
+		}
+		return "index/index";
+	}
+	
+	/**
+	 * 用户更改性别
+	 * 
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/updateSex", method = RequestMethod.POST)
+	public Map<String, Object> updateSex(String userSex, Model model, HttpSession session) {
+		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		int userId = commonUser.getUserId();
+		if(userSex.equals("男")){
+			commonUserService.modifySex(userId, "男");
+		}else{
+			commonUserService.modifySex(userId, "女");
+		}
+		String userSexInfo = commonUserService.findCommonUserByEmail(commonUser.getUserEmail()).getUserSex();
+		Map<String, Object> rtnMap = new HashMap<String, Object>();
+		rtnMap.put("userSexInfo", userSexInfo);
+		return rtnMap;
 	}
 
 }

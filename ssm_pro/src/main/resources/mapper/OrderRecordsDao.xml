@@ -17,7 +17,7 @@
 		parameterType="int">
 		SELECT * FROM `order_records`
 		WHERE userID = #{userID} AND order_ver=1 
-		order BY transact_date
+		order BY create_time DESC
 	</select>
 	<!--通过ID查询预约记录 -->
 	<select id="findLastId" resultType="int">

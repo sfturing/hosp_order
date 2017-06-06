@@ -72,7 +72,7 @@
 				<hr />
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<img alt="Bootstrap Thumbnail Third" src="${hos.hospitalImg }">
+						<img alt="请检查网络，图片加载出现了一点小问题" src="${hos.hospitalImg }">
 					</div>
 					<div class="col-md-4">
 						<p class="text-left">
