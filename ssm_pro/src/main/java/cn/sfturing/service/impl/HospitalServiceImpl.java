@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.sfturing.dao.FavouriteDao;
 import cn.sfturing.dao.HospitalDao;
+import cn.sfturing.entity.Favourite;
 import cn.sfturing.entity.Hospital;
 import cn.sfturing.service.HospitalService;
 
@@ -20,6 +22,8 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Autowired
 	private HospitalDao hospitalDao;
+	@Autowired
+	private FavouriteDao favouriteDao;
 
 	@Override
 	public List<Hospital> findHosByRe() {
@@ -141,7 +145,7 @@ public class HospitalServiceImpl implements HospitalService {
 		// TODO Auto-generated method stub
 		return hospitalDao.findOpenHos();
 	}
-	
+
 	@Override
 	public int findAllHosNum(String province, String city, String district, Hospital hospital) {
 
@@ -174,10 +178,10 @@ public class HospitalServiceImpl implements HospitalService {
 				hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(),
 				hospital.getHospitalArea());
 	}
-	
+
 	@Override
-	public List<Hospital> findAllHosByConditon(String province, String city, String district, Hospital hospital, int start,
-			int size) {
+	public List<Hospital> findAllHosByConditon(String province, String city, String district, Hospital hospital,
+			int start, int size) {
 		if (hospital.getHospitalNature() != null && hospital.getHospitalNature().equals("默认")) {
 			hospital.setHospitalNature(null);
 		}
@@ -207,6 +211,40 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalDao.findAllHosByCondition(hospital.getHospitalName(), hospital.getIsMedicalInsurance(),
 				hospital.getHospitalGrade(), hospital.getHospitalNature(), hospital.getHospitalAddress(),
 				hospital.getHospitalArea(), start, size);
+	}
+
+	/**
+	 * 是否关注医院
+	 * 如果第一次关注医院先插入记录，如果不是第一次，进行isLike的更改
+	 */
+	@Override
+	public int favourite(int userId, int hospitalId) {
+		
+		if(favouriteDao.findFavByuserIdAndHosId(userId, hospitalId) == null){
+			Favourite favourite = new Favourite();
+			favourite.setUserId(userId);
+			favourite.setHospitalId(hospitalId);
+			//默认isLIke == 0
+			favouriteDao.insetFavourite(favourite);	
+		}
+		Favourite favouriteInfo = favouriteDao.findFavByuserIdAndHosId(userId, hospitalId);
+		int isLike = favouriteInfo.getIsLike();
+		//如果isLIke == 0,则点击的是关注，设置isLike==1
+		if(isLike == 0){
+			favouriteDao.addFavourite(favouriteInfo.getId());
+			isLike=1;
+		}else{
+			//如果isLIke == 1,则点击的是关注，设置isLike==0
+			favouriteDao.cancelFavourite(favouriteInfo.getId());
+			isLike=0;
+		}
+		return isLike;
+	}
+
+	@Override
+	public List<Hospital> findFavHos(List<Favourite> favourites) {
+		// TODO Auto-generated method stub
+		return hospitalDao.findFavHos(favourites);
 	}
 
 }

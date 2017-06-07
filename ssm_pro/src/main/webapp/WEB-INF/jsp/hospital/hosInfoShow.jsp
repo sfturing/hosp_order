@@ -7,6 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>医院列表</title>
+<%
+	/********** 保存网站的基本路径 ***********/
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	//将该路径地址缓存到 session中 ,例如：http://localhost:8090/tjnu_ssh_1128/
+	session.setAttribute("mybasePath", basePath);
+%>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
@@ -46,13 +54,33 @@
 					<li class=""><a href="#honor" data-toggle="tab"
 						aria-expanded="false">医院荣誉</a></li>
 				</ul>
-				
+				<c:if test="${userInfo != null}">
+					<c:if test="${isLike == 1}">
+						<div class="col-md-12 text-right" id="favourite">
+							<span class="glyphicon glyphicon-heart"
+							style="color: #eb6468"></span> <a onclick="favourite(${hos.id })"
+							href="javascript:void(0);">取消关注</a>
+						</div>
+					</c:if>
+					<c:if test="${isLike == 0}">
+					<div class="col-md-12 text-right" id="favourite">
+						<span class="glyphicon glyphicon-heart-empty"
+							style="color: #eb6468"></span> <a onclick="favourite(${hos.id })"
+							href="javascript:void(0);">关注</a>
+					</div></c:if>
+				</c:if>
+				<c:if test="${userInfo == null}">
+					<div class="col-md-12 text-right">
+						<span class="glyphicon glyphicon-heart-empty"
+							style="color: #eb6468"></span> <a onclick="tip()"
+							href="javascript:void(0);">关注</a>
+					</div>
+				</c:if>
 				<!-- <div class="panel-heading">
 				</div> -->
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<p class="text-left">${hos.hospitalName }
-						</p>	
+						<p class="text-left">${hos.hospitalName }</p>
 					</div>
 					<div class="col-md-5">
 						<p class="text-right">
@@ -70,51 +98,51 @@
 						</p>
 					</div>
 				</div>
-				
-				<div class="panel-body">
-				<div class="col-md-12">
-					<div class="col-md-3">
-						<img alt="请检查网络，图片加载出现了一点小问题" src="${hos.hospitalImg }">
-					</div>
-					<div class="col-md-4">
-						<p class="text-left">
-							<font color="#eb6864">院长姓名：</font>
-							<c:if test='${hos.hospitalDeanName=="0" }'>不详</c:if>
-							<c:if test='${hos.hospitalDeanName!="0" }'>${hos.hospitalDeanName }</c:if>
 
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">建院年份：</font>${hos.hospitalYear }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">科室数量：</font>${hos.hospitalOfficesNum }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">医保人数：</font>${hos.medicalInsuranceNum }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">医院电话：</font>${hos.hospitalPhone }
-						</p>
+				<div class="panel-body">
+					<div class="col-md-12">
+						<div class="col-md-3">
+							<img alt="请检查网络，图片加载出现了一点小问题" src="${hos.hospitalImg }">
+						</div>
+						<div class="col-md-4">
+							<p class="text-left">
+								<font color="#eb6864">院长姓名：</font>
+								<c:if test='${hos.hospitalDeanName=="0" }'>不详</c:if>
+								<c:if test='${hos.hospitalDeanName!="0" }'>${hos.hospitalDeanName }</c:if>
+
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">建院年份：</font>${hos.hospitalYear }
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">科室数量：</font>${hos.hospitalOfficesNum }
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">医保人数：</font>${hos.medicalInsuranceNum }
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">医院电话：</font>${hos.hospitalPhone }
+							</p>
+						</div>
+						<div class="col-md-5">
+							<p class="text-left">
+								<font color="#eb6864">病床数量：</font>${hos.hospitalBedNum }
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">年门诊量：</font>${hos.outpatientNum }
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">是否医保：</font>${hos.isMedicalInsurance }
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">医院网址：<a href="${hos.hospitalUrl }"
+									target="_blank">${hos.hospitalUrl }</a></font>
+							</p>
+							<p class="text-left">
+								<font color="#eb6864">医院邮编：</font>${hos.hospitalPostCode }
+							</p>
+						</div>
 					</div>
-					<div class="col-md-5">
-						<p class="text-left">
-							<font color="#eb6864">病床数量：</font>${hos.hospitalBedNum }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">年门诊量：</font>${hos.outpatientNum }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">是否医保：</font>${hos.isMedicalInsurance }
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">医院网址：<a href="${hos.hospitalUrl }"
-								target="_blank">${hos.hospitalUrl }</a></font>
-						</p>
-						<p class="text-left">
-							<font color="#eb6864">医院邮编：</font>${hos.hospitalPostCode }
-						</p>
-					</div>
-				</div>
 				</div>
 
 				<br />
@@ -123,7 +151,9 @@
 					<div class="tab-pane fade active in text-left" id="home">
 						<div class="col-md-12">
 							<!-- <div class="col-md-3"> -->
-								<p class="text-left"><font color="#eb6864">请选择预约科室(必选)</font></p>
+							<p class="text-left">
+								<font color="#eb6864">请选择预约科室(必选)</font>
+							</p>
 							<!-- </div> -->
 						</div>
 						<table class="table table-striped table-hover ">
@@ -148,7 +178,7 @@
 					<div class="tab-pane fade text-left" id="orderNotice">
 						<div class="col-md-12 ">
 							<div style="border-bottom: 1px solid #ccc;"></div>
-								<br /><br />
+							<br /> <br />
 						</div>
 						<p>
 							<br> <strong>电话预约挂号：022-022（24小时）<br>
@@ -178,14 +208,14 @@
 					<div class="tab-pane fade text-left" id="about">
 						<div class="col-md-12 ">
 							<div style="border-bottom: 1px solid #ccc;"></div>
-								<br /><br />
+							<br /> <br />
 						</div>
 						<p>&nbsp;&nbsp;${hos.hospitalAbout }</p>
 					</div>
 					<div class="tab-pane fade text-left" id="equipment">
 						<div class="col-md-12 ">
 							<div style="border-bottom: 1px solid #ccc;"></div>
-								<br /><br />
+							<br /> <br />
 						</div>
 						<p>&nbsp;&nbsp;${hos.hospitalEquipment }</p>
 					</div>
@@ -193,7 +223,7 @@
 						<div class="col-md-12 ">
 							<div style="border-bottom: 1px solid #ccc;"></div>
 						</div>
-						
+
 						<p>&nbsp;&nbsp;${hos.hospitalHonor }</p>
 					</div>
 				</div>
@@ -208,4 +238,28 @@
 <script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${mybasePath}assets/bootstrap/js/jquery.min.js"></script>
 <script src="${mybasePath}assets/js/jquery.backstretch.min.js"></script>
+<script type="text/javascript">
+function favourite(hospitalId){
+	$
+	.post(
+			"/ssm_pro/favourite",
+			{
+				'hospitalId' : hospitalId
+			},
+			function(result) {
+				if (result.isLike == 1) {
+						$("#favourite").html('');
+						$("#favourite").html('<span class="glyphicon glyphicon-heart" style="color: #eb6468"></span> <a onclick="favourite(${hos.id })" href="javascript:void(0);">取消关注</a>'); 
+						}else{
+						$("#favourite").html('');
+						$("#favourite").html('<span class="glyphicon glyphicon-heart-empty" style="color: #eb6468"></span> <a onclick="favourite(${hos.id })" href="javascript:void(0);">关注</a>'); 
+				}
+			});
+	
+}
+function tip(){
+	alert("请登录后收藏!")
+	
+}
+</script>
 </html>

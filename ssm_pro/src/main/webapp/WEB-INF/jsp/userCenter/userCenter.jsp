@@ -7,6 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>联系我们</title>
+<%
+	/********** 保存网站的基本路径 ***********/
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	//将该路径地址缓存到 session中 ,例如：http://localhost:8090/tjnu_ssh_1128/
+	session.setAttribute("mybasePath", basePath);
+%>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"
@@ -30,8 +38,7 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#order" data-toggle="tab">预约信息</a></li>
 				<li><a href="#userInfo" data-toggle="tab">个人信息</a></li>
-				<li><a href="#statement" data-toggle="tab">我的收藏</a></li>
-				<li><a href="#service" data-toggle="tab">我的评论</a></li>
+				<li><a href="#myFavourite" data-toggle="tab">我的收藏</a></li>
 
 			</ul>
 			<br>
@@ -174,6 +181,54 @@
 
 					</div>
 				</div>
+				<div class="tab-pane fade" id="myFavourite">
+					<div class="panel panel-primary ">
+						<div class="panel-heading text-left">
+							<h3 class="panel-title">我的收藏</h3>
+						</div>
+						<div class="panel-body">
+							<c:if test="${hospitals==null }">
+							<div class="col-md-12 text-left">
+								<p>暂无收藏记录</p></div>
+							</c:if>
+							<c:forEach var="hos" items="${hospitals }" varStatus="status">
+								<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
+								<div class="col-md-3">
+									<div class="thumbnail" style="width: 300px; height: 400px;">
+										<div>
+											<img alt="请检查网络，图片加载出现了一点小问题" src="${hos.hospitalImg}"
+												height="200" width="200" />
+										</div>
+										<div class="caption">
+											<p>${hos.hospitalName}</p>
+											<%-- <p>
+								<span class="glyphicon glyphicon-earphone "></span>&nbsp;&nbsp;:&nbsp;${hos.hospitalPhone}
+							</p> --%>
+											<p>
+												<span class="glyphicon glyphicon-home"></span>&nbsp;${hos.hospitalAddress}
+											</p>
+											<p>
+
+												<c:if test='${hos.isOpen=="1" }'>
+													<a class="btn btn-primary"
+														href="<c:url value='/hosInfoShow/${hos.id}' />">现在预约</a>
+												</c:if>
+												<c:if test='${hos.isOpen=="0" }'>
+													<a class="btn btn-default disabled" href="#">未开通</a>
+													<a class="btn "
+														href="<c:url value='/hosInfoShow/${hos.id}' />">详细信息</a>
+												</c:if>
+
+											</p>
+										</div>
+									</div>
+								</div>
+
+							</c:forEach>
+						</div>
+
+					</div>
+				</div>
 			</div>
 
 		</div>
@@ -205,7 +260,7 @@
 														alert("修改成功");
 														var userSexInfo = '<option value="男">男</option>';
 														userSexInfo += '<option value="女">女</option>'
-														$(		
+														$(
 																"select[name='userSex']")
 																.empty()
 																.append(

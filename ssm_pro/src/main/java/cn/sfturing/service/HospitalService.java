@@ -2,6 +2,7 @@ package cn.sfturing.service;
 
 import java.util.List;
 
+import cn.sfturing.entity.Favourite;
 import cn.sfturing.entity.Hospital;
 
 /**
@@ -32,7 +33,7 @@ public interface HospitalService {
 	// 查询医院等级
 	public List<String> findHosGrade();
 
-	// 查询开放预约医院类型	
+	// 查询开放预约医院类型
 	public List<String> findHosOpenNature();
 
 	// 查询开放预约医院类型
@@ -49,9 +50,14 @@ public interface HospitalService {
 
 	// 查询支持预约医院数量
 	public int findAllHosNum(String province, String city, String district, Hospital hospital);
+
 	// 通过条件查询开通预约医院
+	public List<Hospital> findAllHosByConditon(String province, String city, String district, Hospital hospital,
+			int start, int size);
 
-	public List<Hospital> findAllHosByConditon(String province, String city, String district, Hospital hospital, int start,
-			int size);
+	// 收藏医院
+	public int favourite(int userId, int hospitalId);
 
+	// 查询所有的收藏医院
+	public List<Hospital> findFavHos(List<Favourite> favourites);
 }

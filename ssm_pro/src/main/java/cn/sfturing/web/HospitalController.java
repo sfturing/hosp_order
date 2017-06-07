@@ -1,6 +1,10 @@
 package cn.sfturing.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.sfturing.dao.FavouriteDao;
 import cn.sfturing.entity.CommonCondition;
+import cn.sfturing.entity.CommonUser;
 import cn.sfturing.entity.Hospital;
 import cn.sfturing.entity.Office;
 import cn.sfturing.service.HospitalService;
@@ -32,6 +39,8 @@ public class HospitalController {
 	private OfficeService officeService;
 	@Autowired
 	private PageUtils pageUtils;
+	@Autowired
+	private FavouriteDao favouriteDao;
 
 	/**
 	 * 医院主界面(推荐医院)
@@ -51,13 +60,22 @@ public class HospitalController {
 	 * @return
 	 */
 	@RequestMapping(value = "/hosInfoShow/{id}", method = RequestMethod.GET)
-	public String hosInfoShow(Model model, @PathVariable(value = "id") int id) {
+	public String hosInfoShow(Model model, @PathVariable(value = "id") int id,HttpSession session) {
+		if(session.getAttribute("userInfo") != null){
+			//如果用户登录
+			CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+			int isLike = 0;
+			if(favouriteDao.findFavByuserIdAndHosId(commonUser.getUserId(), id) !=null){
+				isLike =  favouriteDao.findFavByuserIdAndHosId(commonUser.getUserId(), id).getIsLike();
+			}
+			model.addAttribute("isLike", isLike);
+		}
 		// 通过传入的id返回医院的详细信息
 		Hospital hospital = hospitalService.findHosById(id);
 		// 通过医院的名称返回医院科室信息
 		List<Office> office = officeService.findOfficeByHosName(hospital.getHospitalName());
 		// 预留通知查询
-		//
+		
 		model.addAttribute("hos", hospital);
 		model.addAttribute("office", office);
 		return "hospital/hosInfoShow";
@@ -151,5 +169,19 @@ public class HospitalController {
 		model.addAttribute("commonCondition", commonCondition);
 		return "hospital/allHospital";
 	}
-
+	
+	//关注医院
+	@ResponseBody
+	@RequestMapping(value = "/favourite", method = RequestMethod.POST)
+	public Map<String, Object> favourite(Model model,int hospitalId,HttpSession session ) {
+		//通过session信息得到userid
+		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		int userId = commonUser.getUserId();
+		int isLike =hospitalService.favourite(userId, hospitalId);
+		System.out.println(isLike+"*******************************88");
+		Map<String, Object> rtnMap = new HashMap<String, Object>();
+		rtnMap.put("isLike", isLike);
+		return rtnMap;
+	}
+	
 }

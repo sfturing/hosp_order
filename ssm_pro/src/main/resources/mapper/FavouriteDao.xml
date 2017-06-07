@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sfturing.dao.FavouriteDao">
+
+	<!--通过ID查询预约记录 -->
+	<select id="findFavByuserIdAndHosId" resultType="cn.sfturing.entity.Favourite">
+		SELECT * FROM
+		`favourite`
+		WHERE user_id = #{userId} AND hospital_id=#{hospitalId}
+		limit 0,1
+
+	</select>
+	<!--通过ID查询预约记录 -->
+	<select id="findFavHos" resultType="cn.sfturing.entity.Favourite">
+		SELECT * FROM
+		`favourite`
+		WHERE user_id=#{userId} AND is_like=1;
+	</select>
+	<!-- 插入一条记录 -->
+	<insert id="insetFavourite">
+		INSERT INTO `favourite`
+		(user_id,hospital_id)
+		VALUE
+		(#{userId},#{hospitalId})
+	</insert>
+	<!-- 取消关注 -->
+	<update id="cancelFavourite">
+		UPDATE `favourite` SET
+		is_like=0
+		WHERE id = #{id}
+	</update>
+	<!--添加关注 -->
+	<update id="addFavourite">
+		UPDATE `favourite` SET
+		is_like=1
+		WHERE id = #{id}
+	</update>
+
+
+</mapper>

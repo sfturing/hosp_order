@@ -1,10 +1,13 @@
 package cn.sfturing.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import cn.sfturing.entity.Favourite;
 import cn.sfturing.entity.Hospital;
+import cn.sfturing.entity.Office;
 
 /**
  * 
@@ -63,5 +66,11 @@ public interface HospitalDao {
 			@Param("isMedicalInsurance") String isMedicalInsurance, @Param("hospitalGrade") String hospitalGrade,
 			@Param("hospitalNature") String hospitalNature, @Param("hospitalAddress") String hospitalAddress,
 			@Param("hospitalArea") String hospitalArea, @Param("start") int start, @Param("size") int size);
+
+	// 查询所有的收藏医院
+	public List<Hospital> findFavHos(List<Favourite> favourites);
+
+	/*// 查询所有的收藏医院的数量
+	public int findFavHosNum(List<Favourite> favourites);*/
 
 }

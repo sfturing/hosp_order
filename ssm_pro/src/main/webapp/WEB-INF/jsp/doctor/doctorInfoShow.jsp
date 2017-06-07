@@ -7,6 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>医生简介</title>
+<%
+	/********** 保存网站的基本路径 ***********/
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	//将该路径地址缓存到 session中 ,例如：http://localhost:8090/tjnu_ssh_1128/
+	session.setAttribute("mybasePath", basePath);
+	
+%>
 <!-- CSS -->
 <jsp:include page="../include/headtag.jsp" />
 <!-- <link rel="stylesheet"

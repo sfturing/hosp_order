@@ -161,5 +161,16 @@
 		limit #{start},#{size}
 		
 	</select>
+	
+	<!--查询用户收藏医院 -->
+	<select id="findFavHos" resultType="cn.sfturing.entity.Hospital">
+		SELECT *
+		FROM `hospital`
+		WHERE 1=1 AND id in
+		<foreach item="favourites" index="index" collection="list"
+			open="(" separator="," close=")">
+			#{favourites.hospitalId}
+		</foreach>
+	</select>
 
 </mapper>

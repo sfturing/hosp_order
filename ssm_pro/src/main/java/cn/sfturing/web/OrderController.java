@@ -2,6 +2,8 @@ package cn.sfturing.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cn.sfturing.dao.FavouriteDao;
 import cn.sfturing.entity.CommonUser;
+import cn.sfturing.entity.Favourite;
+import cn.sfturing.entity.Hospital;
 import cn.sfturing.entity.OrderRecords;
 import cn.sfturing.service.CommonUserService;
+import cn.sfturing.service.HospitalService;
 import cn.sfturing.service.OrderRecordsService;
+
 /**
  * 
  * @author sfturing
@@ -27,6 +34,10 @@ public class OrderController {
 	private CommonUserService commnUserService;
 	@Autowired
 	private OrderRecordsService orderRecordsService;
+	@Autowired
+	private FavouriteDao favouriteDao;
+	@Autowired
+	private HospitalService hospitalService;
 
 	private static Logger log = LoggerFactory.getLogger(OrderController.class);
 
@@ -49,7 +60,7 @@ public class OrderController {
 	@RequestMapping(value = "/order", method = RequestMethod.POST)
 	public String order(String orderInfoValue, String hospitalName, String officesName, String doctorName,
 			String userIdenf, Model model, String doctorImg) {
-		//分解传入的时间以及时间段
+		// 分解传入的时间以及时间段
 		String orderInfoValueArry[] = orderInfoValue.split(",");
 		String transact_date = orderInfoValueArry[0];
 		String transact_time = orderInfoValueArry[1];
@@ -83,10 +94,20 @@ public class OrderController {
 	 * @return
 	 */
 	@RequestMapping(value = "/orderUserCenter", method = RequestMethod.POST)
-	public String OrderUserCenter(Model model, int userID, int id, String diseaseInfo) {
+	public String OrderUserCenter(Model model, int userID, int id, String diseaseInfo,HttpSession session) {
+		// 得到用户的收藏记录
+		List<Favourite> favourites = favouriteDao.findFavHos(userID);
+		List<Hospital> hospitals = null;
+		if (favourites.size() != 0) {
+			hospitals = hospitalService.findFavHos(favourites);
+		}
+		model.addAttribute("hospitals", hospitals);
+		//得到用户的信息
+		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		model.addAttribute("commonUser", commonUser);
 		orderRecordsService.updateOrderSta1(id);
-		orderRecordsService.updateOrderdiseaseInfo(diseaseInfo,id);
-		//通过userId查询所有订单，为个人中心提供
+		orderRecordsService.updateOrderdiseaseInfo(diseaseInfo, id);
+		// 通过userId查询所有订单，为个人中心提供
 		List<OrderRecords> orderRecords = orderRecordsService.findOrderRecordsByUserID(userID);
 		log.info("插入订单，已提交订单！");
 		model.addAttribute("orderRecords", orderRecords);

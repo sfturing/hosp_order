@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.sfturing.dao.FavouriteDao;
 import cn.sfturing.entity.CommonUser;
+import cn.sfturing.entity.Favourite;
+import cn.sfturing.entity.Hospital;
 import cn.sfturing.entity.OrderRecords;
 import cn.sfturing.service.CommonUserService;
+import cn.sfturing.service.HospitalService;
 import cn.sfturing.service.OrderRecordsService;
+import cn.sfturing.service.impl.HospitalServiceImpl;
 
 /**
  * 
@@ -33,6 +38,10 @@ public class CommonUserController {
 	private CommonUserService commonUserService;
 	@Autowired
 	private OrderRecordsService orderRecordsService;
+	@Autowired
+	private FavouriteDao favouriteDao;
+	@Autowired
+	private HospitalService hospitalService;
 	/*
 	 * @Autowired private CommonUserDao commonUserDao;
 	 */
@@ -67,7 +76,7 @@ public class CommonUserController {
 		// 错误信息
 		String error = "";
 		// 查找这个用户
-		CommonUser commonUser = commonUserService.findCommonUserByEmail(userEmail);
+		CommonUser commonUser = commonUserService.findCommonUserByEmail(userEmail.trim());
 		if (result == 2) {
 			// 如果是2，那么登录成功，返回index
 			model.addAttribute("user", commonUser);
@@ -108,6 +117,8 @@ public class CommonUserController {
 	@RequestMapping(value = "/sign", method = RequestMethod.POST)
 	public String sign(Model model, CommonUser commonUser, HttpServletRequest request) {
 		// 注册用户: 0:用户身份证号已注册 1:用户邮箱已注册 2:用户手机号已注册 3:用户注册成功
+		//将输入邮箱去除空格
+		commonUser.setUserEmail(commonUser.getUserEmail().trim());
 		int result = commonUserService.sign(commonUser, request);
 		// 错误信息
 		String error = "";
@@ -141,7 +152,7 @@ public class CommonUserController {
 	public String findPassword() {
 		return "user/findPassword";
 	}
-	
+
 	/**
 	 * 用户修改手机
 	 */
@@ -164,17 +175,16 @@ public class CommonUserController {
 		}).start();
 		return "/user/checkVerification";
 	}
-	
+
 	/**
 	 * 用户修改手机
 	 */
 	@RequestMapping(value = "/modifiPhone", method = RequestMethod.POST)
-	public String modifiPhone(String userMobile, HttpSession session,
-			Model model) {
+	public String modifiPhone(String userMobile, HttpSession session, Model model) {
 		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
 		String error = "";
 		int result = commonUserService.modifyPhone(userMobile, commonUser.getUserEmail());
-		
+
 		if (result == 2) {
 			error = "手机号已经被注册";
 			log.info(error);
@@ -264,18 +274,18 @@ public class CommonUserController {
 			return "user/checkVerification";
 		}
 		if (result == 1) {
-			//commonUserService.clearVerification(commonUser.getUserEmail());
-			//状态为0修改密码
+			// commonUserService.clearVerification(commonUser.getUserEmail());
+			// 状态为0修改密码
 			if (commonUser.getStatus() == 0) {
 				System.out.println(commonUser.getStatus());
 				return "/user/updatePassword";
 			}
-			//状态为1完善信息
+			// 状态为1完善信息
 			if (commonUser.getStatus() == 1) {
 				System.out.println(commonUser.getStatus());
 				return "user/addUserInfo";
 			}
-			//状态为2修改手机
+			// 状态为2修改手机
 			if (commonUser.getStatus() == 2) {
 				System.out.println(commonUser.getStatus());
 				return "user/modifiPhone";
@@ -370,6 +380,14 @@ public class CommonUserController {
 	public String userCenter(HttpSession session, Model model) {
 		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
 		if (commonUser != null) {
+			// 得到用户的收藏记录
+			List<Favourite> favourites = favouriteDao.findFavHos(commonUser.getUserId());
+			List<Hospital> hospitals = null;
+			if (favourites.size() != 0) {
+				hospitals = hospitalService.findFavHos(favourites);
+			}
+			model.addAttribute("hospitals", hospitals);
+			// 得到用户的个人订单
 			List<OrderRecords> orderRecords = orderRecordsService.findOrderRecordsByUserID(commonUser.getUserId());
 			model.addAttribute("orderRecords", orderRecords);
 			model.addAttribute("commonUser", commonUser);
@@ -377,7 +395,7 @@ public class CommonUserController {
 		}
 		return "index/index";
 	}
-	
+
 	/**
 	 * 用户更改性别
 	 * 
@@ -388,9 +406,9 @@ public class CommonUserController {
 	public Map<String, Object> updateSex(String userSex, Model model, HttpSession session) {
 		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
 		int userId = commonUser.getUserId();
-		if(userSex.equals("男")){
+		if (userSex.equals("男")) {
 			commonUserService.modifySex(userId, "男");
-		}else{
+		} else {
 			commonUserService.modifySex(userId, "女");
 		}
 		String userSexInfo = commonUserService.findCommonUserByEmail(commonUser.getUserEmail()).getUserSex();
