@@ -63,5 +63,4 @@
 
 	<!-- 5.扫描所需要的包 -->
 	<context:component-scan base-package="cn.sfturing.utils" />
-	<context:component-scan base-package="cn.sfturing.scheduler" />
 </beans>

@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sfturing.dao.OrderRecordsDao">
-	
+
 	<!-- 插入用户 -->
 	<insert id="insertOrderRecords">
 		INSERT INTO order_records
@@ -11,17 +11,24 @@
 		VALUE
 		(#{userID},#{hospitalName},#{officesName},#{doctorName},#{transactDate},#{transactTime},#{orderVer})
 	</insert>
-	
+
 	<!--通过ID查询预约记录 -->
 	<select id="findOrderRecordsByUserID" resultType="cn.sfturing.entity.OrderRecords"
 		parameterType="int">
 		SELECT * FROM `order_records`
-		WHERE userID = #{userID} AND order_ver=1 
+		WHERE userID = #{userID}
+		AND order_ver=1
 		order BY create_time DESC
 	</select>
 	<!--通过ID查询预约记录 -->
 	<select id="findLastId" resultType="int">
 		select last_insert_id()
+	</select>
+	<!--通过ID查询预约记录 -->
+	<select id="findNeedNoticeOrder" resultType="cn.sfturing.entity.OrderRecords">
+		SELECT * FROM
+		`order_records`
+		WHERE is_cancel = 0 AND is_send = 0 And is_success = 1;
 	</select>
 	<!-- 更改订单的疾病信息 -->
 	<update id="updateOrderdiseaseInfo">
@@ -33,6 +40,20 @@
 	<update id="updateOrderSta1">
 		UPDATE order_records SET
 		order_ver=1
+		WHERE id = #{id}
+	</update>
+
+	<!-- 更改订单状态为1 -->
+	<update id="updateSendSuccess">
+		UPDATE order_records SET
+		is_send=1
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 更改订单状态为1 -->
+	<update id="updateSendFailed">
+		UPDATE order_records SET
+		is_send=2
 		WHERE id = #{id}
 	</update>
 

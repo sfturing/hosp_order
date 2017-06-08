@@ -25,6 +25,7 @@ public class BaseController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexOf() {
+		log.info("用户登录主页");
 		return "index/index";
 	}
 

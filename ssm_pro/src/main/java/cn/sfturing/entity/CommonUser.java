@@ -1,7 +1,7 @@
 package cn.sfturing.entity;
 
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 /**
  * 

@@ -14,7 +14,7 @@ import cn.sfturing.entity.CommonUser;
 public interface CommonUserDao {
 	/************************ 用户查找 ********************/
 	// 通过id查找用户
-	public CommonUser findCommonUserByUserId(long userId);
+	public CommonUser findCommonUserByUserId(int userId);
 
 	// 通过身份证号查找用户
 	public CommonUser findCommonUserByUserIdenf(String userIdenf);

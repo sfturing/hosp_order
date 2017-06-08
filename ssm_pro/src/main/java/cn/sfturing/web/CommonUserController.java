@@ -24,7 +24,7 @@ import cn.sfturing.entity.OrderRecords;
 import cn.sfturing.service.CommonUserService;
 import cn.sfturing.service.HospitalService;
 import cn.sfturing.service.OrderRecordsService;
-import cn.sfturing.service.impl.HospitalServiceImpl;
+
 
 /**
  * 

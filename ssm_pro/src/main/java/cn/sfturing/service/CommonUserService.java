@@ -2,7 +2,6 @@ package cn.sfturing.service;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.annotations.Param;
 
 import cn.sfturing.entity.CommonUser;
 /**
