@@ -207,14 +207,40 @@
 						请不要随意向他人泄露自己的实名身份信息，由于统一平台对预约者实行实名身份信息绑定，这样做会导致您的实名身份信息进入管制名单而无法进行预约。<br>
 						9.5 本服务为用户提供便捷的预约方式，不承诺所有用户随时都能约到指定的号，有不便之处敬请谅解，有任何好的建议也可以直接向我们反馈。<br>
 					</div>
-					</p>
+
 
 				</div>
 				<div class="tab-pane fade text-left" id="netbooking">
-					<p>预约挂号模块完成之后 保留</p>
+				<br/>
+					1、网站预约挂号如何挂号？ 进入天津市预约挂号统一平台网站首页，点击页面右上方的"医院挂号"。<br>
+					<p align="center">
+						<img src="${mybasePath}assets/img/helpImg/order1.png">
+					</p>
+					<br> 2、选择挂号科室。 <br>
+					<p align="center">
+						<img src="${mybasePath}assets/img/helpImg/order2.png">
+					</p>
+					<br> 3选择挂号医生<br>
+					<p align="center">
+						<img src="${mybasePath}assets/img/helpImg/order3.png">
+					</p>
+					<br> 4选择挂号时间<br>
+					<p align="center">
+						<img src="${mybasePath}assets/img/helpImg/order4.png">
+					</p>
+					<br> 5确认个人信息，提交订单<br>
+					<p align="center">
+						<img src="${mybasePath}assets/img/helpImg/order5.png">
+					</p>
+					<br> 温馨提示：<br> ①请按照帮助流程挂号？<br>
+					首次挂号后需要完善个人信息，完善个人信息后方可预约挂号。<br> * 如果有任何问题，请联系客服<br>
 				</div>
 				<div class="tab-pane fade" id="appoint">
-					<p>保留.</p>
+					<br/>
+					登陆个人中心进行订单管理。<br>
+					<p align="center">
+						<img src="${mybasePath}assets/img/helpImg/order6.png">
+					</p>
 				</div>
 				<div class="tab-pane fade text-left" id="howsign">
 					<div class="col-md-12 ">
@@ -257,12 +283,11 @@
 					</div>
 				</div>
 				<div class="tab-pane fade" id="account">
-					<p>Trust fund seitan letterpress, keytar raw denim keffiyeh
-						etsy art party before they sold out master cleanse gluten-free
-						squid scenester freegan cosby sweater. Fanny pack portland seitan
-						DIY, art party locavore wolf cliche high life echo park Austin.
-						Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
-						farm-to-table VHS viral locavore cosby sweater.</p>
+					<br/>
+					登陆个人中心进行账户管理。<br>
+					<p align="center">
+						<img src="${mybasePath}assets/img/helpImg/account.png">
+					</p>
 				</div>
 			</div>
 		</div>

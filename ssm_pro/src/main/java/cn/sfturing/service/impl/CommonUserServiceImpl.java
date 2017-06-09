@@ -77,6 +77,8 @@ public class CommonUserServiceImpl implements CommonUserService {
 		}*/
 		// 将用户密码转为MD5格式
 		String userpwd = commonUser.getUserPassword();
+		log.info(commonUser.getUserEmail()+"**************************************************");
+		log.info(userpwd+"**************************************************");
 		commonUser.setUserPassword(MD5.getMD5(userpwd));
 		// 设置注册ip
 		commonUser.setRegIp(GetIP.getIpAddr(request));

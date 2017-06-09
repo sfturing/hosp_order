@@ -63,6 +63,7 @@
 								<th>医生</th>
 								<th>订单状态</th>
 								<th>订单创建时间</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -105,6 +106,39 @@
 											<font color="#eb6468">订单已完成</font>
 										</c:if></td>
 									<td>${orderRecords.createTime }</td>
+									<td><c:if test="${orderRecords.isFinish==0 }">
+											<c:if test="${orderRecords.isCancel==0 }">
+												<a href="#myModal${orderRecords.id}" data-toggle="modal">取消订单</a>
+											</c:if>
+										</c:if>
+										<div class="modal fade" id="myModal${orderRecords.id}"
+											tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">×</button>
+														<h3 id="myModalLabel">确认取消</h3>
+													</div>
+													<div class="modal-body">
+														<p class="error-text">
+															<i class="icon-warning-sign modal-icon"></i>
+															未通过审核取消不受影响，审核通过取消将受到处罚，你确定要取消订单吗?
+														</p>
+													</div>
+													<div class="modal-footer">
+														<form id="cancel" method="post"
+															action="<c:url value="/cancelOrder/${orderRecords.id}"/>">
+															<button class="btn btn-primary" data-dismiss="modal"
+																aria-hidden="true">我再想想</button>
+															<button class="btn btn-primary" id="submit" name="submit"
+																onclick="cancel();">确认取消</button>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -188,8 +222,9 @@
 						</div>
 						<div class="panel-body">
 							<c:if test="${hospitals==null }">
-							<div class="col-md-12 text-left">
-								<p>暂无收藏记录</p></div>
+								<div class="col-md-12 text-left">
+									<p>暂无收藏记录</p>
+								</div>
 							</c:if>
 							<c:forEach var="hos" items="${hospitals }" varStatus="status">
 								<%-- <c:forEach var="i" begin="1" end="9" varStatus="status"> --%>
@@ -239,7 +274,6 @@
 
 </body>
 <!-- Javascript -->
-<script src="${mybasePath}assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${mybasePath}assets/bootstrap/js/jquery.min.js"></script>
 <script src="${mybasePath}assets/js/jquery.backstretch.min.js"></script>
 <script type="text/javascript">
@@ -286,5 +320,11 @@
 											});
 						});
 	});
+</script>
+<script type="text/javascript">
+	function cancel() {
+		$("#cancel").submit();
+		return false;
+	}
 </script>
 </html>

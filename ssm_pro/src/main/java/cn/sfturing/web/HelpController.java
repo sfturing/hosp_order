@@ -2,12 +2,18 @@ package cn.sfturing.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cn.sfturing.dao.FeedBackDao;
+import cn.sfturing.entity.FeedBack;
 import cn.sfturing.entity.HelpQA;
 import cn.sfturing.service.HelpQAService;
 /**
@@ -20,6 +26,9 @@ import cn.sfturing.service.HelpQAService;
 public class HelpController {
 	@Autowired
 	private HelpQAService helpQAService;
+	@Autowired
+	private FeedBackDao feedBackDao;
+	private static Logger log = LoggerFactory.getLogger(HelpController.class);
 	/**
 	 * 用户帮助首页
 	 * 
@@ -35,5 +44,26 @@ public class HelpController {
 		model.addAttribute("accountQA", accountQA);
 		return "help/helpIndex";
 	}
+	/**
+	 * 意见反馈首页
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/feedBack", method = RequestMethod.GET)
+	public String feedBack(){
+		return "feedBack/feedBack";
+		
+	}
+	
+	//意见反馈
+	@RequestMapping(value = "/feedBackInfo", method = RequestMethod.POST)
+	public String feedBack(FeedBack feedBack){
+		feedBackDao.inserFeedBack(feedBack);
+		log.info("有用户反馈意见"+feedBack.getUserId()+"***"+feedBack.getContent());
+		return "feedBack/thanksFeedBack";
+		
+	}
+	
+	
 
 }

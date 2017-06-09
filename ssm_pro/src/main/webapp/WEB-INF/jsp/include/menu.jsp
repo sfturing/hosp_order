@@ -18,7 +18,7 @@
 			<!-- <li><a class="list-group-item" href="/ssm_pro/orderIndex"><font color="#fff">快速预约</font></a></li> -->
 			
 			
-			<li><a class="list-group-item" href="#"><font color="#fff">意见反馈</font></a></li>
+			<li><a class="list-group-item" href="/ssm_pro/feedBack"><font color="#fff">意见反馈</font></a></li>
 			<li><a class="list-group-item" href="/ssm_pro/noticeIndex/1"><font color="#fff">最新公告</font></a></li>
 			<li><a class="list-group-item" href="/ssm_pro/contact"><font color="#fff">联系我们</font></a></li>
 		</ul>

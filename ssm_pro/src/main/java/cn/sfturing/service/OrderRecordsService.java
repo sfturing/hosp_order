@@ -20,5 +20,8 @@ public interface OrderRecordsService {
 
 	// 取得最后插入的id
 	public int findLastId();
+	
+	//取消订单
+	public int cancelOrder(int id);
 
 }

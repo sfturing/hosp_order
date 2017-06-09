@@ -62,7 +62,7 @@
 						<img alt="" src="${mybasePath}assets/img/1.jpg" />
 						<div class="carousel-caption">
 							<p>天津市挂号系统已上线</p>
-							<p>热烈庆祝挂号系统上线,已经支持网上预付功能。</p>
+							<p>热烈庆祝挂号系统上线。</p>
 						</div>
 					</div>
 					<div class="item active">
@@ -75,8 +75,8 @@
 					<div class="item">
 						<img alt="" src="${mybasePath}assets/img/3.jpg" />
 						<div class="carousel-caption">
-							<p>常见疾病</p>
-							<p>查询常见疾病，提前预防，准确医治。</p>
+							<p>医生信息</p>
+							<p>20w+医生信息，助您提前了解。</p>
 						</div>
 					</div>
 				</div>

@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import cn.sfturing.entity.OrderRecords;
 
 public interface OrderRecordsDao {
+	// 根据id查询单条预约记录
+	public OrderRecords findOrderById(int id);
 
 	// 增加预约新纪录
 	public int insertOrderRecords(OrderRecords orderRecords);
@@ -29,7 +31,13 @@ public interface OrderRecordsDao {
 	// 修改发送成功 is_send=1
 	public int updateSendSuccess(int id);
 
-	// 修改发送失败 is_send=2
+	// 修改发送失败 is_send=2（send为发送邮件失败，保留接口，对_send=2的用户进行检查或者人工通知）
 	public int updateSendFailed(int id);
+
+	// 取消订单设置状态为1
+	public int cancelOrder1(int id);
+
+	// 取消订单设置状态为2
+	public int cancelOrder2(int id);
 
 }

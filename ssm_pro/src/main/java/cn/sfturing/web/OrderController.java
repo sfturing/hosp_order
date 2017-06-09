@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -94,7 +95,7 @@ public class OrderController {
 	 * @return
 	 */
 	@RequestMapping(value = "/orderUserCenter", method = RequestMethod.POST)
-	public String OrderUserCenter(Model model, int userID, int id, String diseaseInfo,HttpSession session) {
+	public String OrderUserCenter(Model model, int userID, int id, String diseaseInfo, HttpSession session) {
 		// 得到用户的收藏记录
 		List<Favourite> favourites = favouriteDao.findFavHos(userID);
 		List<Hospital> hospitals = null;
@@ -102,7 +103,7 @@ public class OrderController {
 			hospitals = hospitalService.findFavHos(favourites);
 		}
 		model.addAttribute("hospitals", hospitals);
-		//得到用户的信息
+		// 得到用户的信息
 		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
 		model.addAttribute("commonUser", commonUser);
 		orderRecordsService.updateOrderSta1(id);
@@ -113,6 +114,31 @@ public class OrderController {
 		model.addAttribute("orderRecords", orderRecords);
 		return "userCenter/userCenter";
 
+	}
+
+	/**
+	 * 取消订单
+	 */
+	@RequestMapping(value = "/cancelOrder/{id}", method = RequestMethod.POST)
+	public String cancelOrder(Model model, @PathVariable(value = "id") int id, HttpSession session) {
+		// 通过id更改订单状态
+		orderRecordsService.cancelOrder(id);
+		CommonUser commonUser = (CommonUser) session.getAttribute("userInfo");
+		if (commonUser != null) {
+			// 得到用户的收藏记录
+			List<Favourite> favourites = favouriteDao.findFavHos(commonUser.getUserId());
+			List<Hospital> hospitals = null;
+			if (favourites.size() != 0) {
+				hospitals = hospitalService.findFavHos(favourites);
+			}
+			model.addAttribute("hospitals", hospitals);
+			// 得到用户的个人订单
+			List<OrderRecords> orderRecords = orderRecordsService.findOrderRecordsByUserID(commonUser.getUserId());
+			model.addAttribute("orderRecords", orderRecords);
+			model.addAttribute("commonUser", commonUser);
+			return "userCenter/userCenter";
+		}
+		return "userCenter/userCenter";
 	}
 
 }
