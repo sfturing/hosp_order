@@ -14,5 +14,5 @@
 
 如需完整数据库，或其他问题请联系sfturing@gmail.com
 
-![主页](http://sfturing.cn/upload/2017/04/ssm_index.png)
+![主页]http://sfturing.cn/upload/2017/04/ssm_index.png)
 
