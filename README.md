@@ -8,9 +8,10 @@
 使用ssm框架，maven管理依赖jar包
 
 
-项目以做学习交流为目的。
+项目以做学习交流为目的。因为项目经验不足，项目可能会有很多潜在的问题，希望多多指教，希望star鼓励一下，谢谢！
 
-如需完整数据库，或其他问题请联系sfturing@gmail.com
+
+其他问题请联系sfturing@gmail.com
 
 ![主页](http://sfturing.cn/upload/2017/04/ssm_index.png)
 
