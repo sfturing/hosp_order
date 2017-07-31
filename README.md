@@ -13,5 +13,7 @@
 
 其他问题请联系sfturing@gmail.com
 
+目前邮箱暂停注册完善服务，可自行更换邮箱发送。
+
 ![主页](http://sfturing.cn/upload/2017/04/ssm_index.png)
 
