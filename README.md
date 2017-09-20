@@ -7,7 +7,7 @@
 使用ssm框架，maven管理依赖jar包
 
 
-项目以做学习交流为目的。因为项目经验不足，项目可能会有很多潜在的问题，希望多多指教。如果觉得不错，请为它[支持](https://github.com/sfturing/hosp_order/stargazers)！
+项目以做学习交流为目的。因为项目经验不足，项目可能会有很多潜在的问题，希望多多指教。如果觉得不错，请为它[STAR](https://github.com/sfturing/hosp_order/stargazers)！
 
 其他问题请联系sfturing@gmail.com
 
