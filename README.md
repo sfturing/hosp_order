@@ -3,7 +3,7 @@
 ### bug
 因为时间预约信息是假数据，控制预约日历显示的代码在[data/index.js](https://github.com/sfturing/hosp_order/blob/master/ssm_pro/src/main/webapp/assets/date/js/index.js)，因为js写的有点bug出现不能显示的问题。
 如果想要试试日历显示效果请修改代码.
-var dp = new Datepicker($('.a'), year, month, day);日期改为今天日期。e.g var dp = new Datepicker($('.a'),'1996', '03', '10');
+var dp = new Datepicker($('.a'), year, month, day);日期改为今天日期。例如. var dp = new Datepicker($('.a'),'1996', '03', '10');
 
 
 
