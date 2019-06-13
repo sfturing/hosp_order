@@ -91,7 +91,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>5.1.8.RELEASE</version>
 		</dependency>
 		<!-- 3)Spring web -->
 		<dependency>
