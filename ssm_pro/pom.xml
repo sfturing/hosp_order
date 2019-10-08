@@ -125,7 +125,7 @@
 		<dependency>
 			<groupId>com.dyuproject.protostuff</groupId>
 			<artifactId>protostuff-runtime</artifactId>
-			<version>1.0.8</version>
+			<version>1.1.5</version>
 		</dependency>
 
 		<!-- Map工具类 -->
