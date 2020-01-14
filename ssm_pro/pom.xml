@@ -108,7 +108,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>5.2.3.RELEASE</version>
 		</dependency>
 
 		<!-- redis客户端:Jedis -->
