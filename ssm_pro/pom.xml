@@ -80,7 +80,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>5.2.8.RELEASE</version>
 		</dependency>
 		<!-- 2)Spring DAO层 -->
 		<dependency>
