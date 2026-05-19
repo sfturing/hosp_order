@@ -53,10 +53,10 @@
 		`hos_office`
 		where 1 = 1
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 		<if test="officesName != null">
-			AND offices_name LIKE '%${officesName}%'
+			AND offices_name LIKE CONCAT('%', #{officesName}, '%')
 		</if>
 
 	</select>
@@ -67,10 +67,10 @@
 		SELECT * FROM `hos_office`
 		WHERE 1=1
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 		<if test="officesName != null">
-			AND offices_name LIKE '%${officesName}%'
+			AND offices_name LIKE CONCAT('%', #{officesName}, '%')
 		</if>
 		ORDER BY
 		RAND()

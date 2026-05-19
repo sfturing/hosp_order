@@ -50,13 +50,13 @@
 		`doctor`
 		where 1 = 1 
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 		<if test="officesName != null">
-			AND offices_name LIKE '%${officesName}%'
+			AND offices_name LIKE CONCAT('%', #{officesName}, '%')
 		</if>
 		<if test="doctorName != null">
-			AND doctor_name LIKE '%${doctorName}%'
+			AND doctor_name LIKE CONCAT('%', #{doctorName}, '%')
 		</if>
 		<if test="doctorTitle != null">
 			AND doctor_title = #{doctorTitle}
@@ -75,13 +75,13 @@
 		SELECT * FROM `doctor`
 		where 1 = 1 
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 		<if test="officesName != null">
-			AND offices_name LIKE '%${officesName}%'
+			AND offices_name LIKE CONCAT('%', #{officesName}, '%')
 		</if>
 		<if test="doctorName != null">
-			AND doctor_name LIKE '%${doctorName}%'
+			AND doctor_name LIKE CONCAT('%', #{doctorName}, '%')
 		</if>
 		<if test="doctorTitle != null">
 			AND doctor_title = #{doctorTitle}

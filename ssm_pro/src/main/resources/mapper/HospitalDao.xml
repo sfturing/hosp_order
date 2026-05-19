@@ -36,7 +36,7 @@
 			AND hospital_area = #{hospitalArea}
 		</if>
 		<if test="hospitalAddress != null">
-			AND hospital_address LIKE '%${hospitalAddress}%'
+			AND hospital_address LIKE CONCAT('%', #{hospitalAddress}, '%')
 		</if>
 		<if test="hospitalNature != null">
 			AND hospital_nature = #{hospitalNature}
@@ -48,7 +48,7 @@
 			AND is_medical_insurance = #{isMedicalInsurance}
 		</if> -->
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 
 	</select>
@@ -88,7 +88,7 @@
 			AND hospital_area = #{hospitalArea}
 		</if>
 		<if test="hospitalAddress != null">
-			AND hospital_address LIKE '%${hospitalAddress}%'
+			AND hospital_address LIKE CONCAT('%', #{hospitalAddress}, '%')
 		</if>
 		<if test="hospitalNature != null">
 			AND hospital_nature = #{hospitalNature}
@@ -100,7 +100,7 @@
 			AND is_medical_insurance = #{isMedicalInsurance}
 		</if> -->
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 		ORDER BY
 		RAND()
@@ -117,7 +117,7 @@
 			AND hospital_area = #{hospitalArea}
 		</if>
 		<if test="hospitalAddress != null">
-			AND hospital_address LIKE '%${hospitalAddress}%'
+			AND hospital_address LIKE CONCAT('%', #{hospitalAddress}, '%')
 		</if>
 		<if test="hospitalNature != null">
 			AND hospital_nature = #{hospitalNature}
@@ -129,7 +129,7 @@
 			AND is_medical_insurance = #{isMedicalInsurance}
 		</if> -->
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 
 	</select>
@@ -142,7 +142,7 @@
 			AND hospital_area = #{hospitalArea}
 		</if>
 		<if test="hospitalAddress != null">
-			AND hospital_address LIKE '%${hospitalAddress}%'
+			AND hospital_address LIKE CONCAT('%', #{hospitalAddress}, '%')
 		</if>
 		<if test="hospitalNature != null">
 			AND hospital_nature = #{hospitalNature}
@@ -154,7 +154,7 @@
 			AND is_medical_insurance = #{isMedicalInsurance}
 		</if> -->
 		<if test="hospitalName != null">
-			AND hospital_name LIKE '%${hospitalName}%'
+			AND hospital_name LIKE CONCAT('%', #{hospitalName}, '%')
 		</if>
 		ORDER BY
 		RAND()
